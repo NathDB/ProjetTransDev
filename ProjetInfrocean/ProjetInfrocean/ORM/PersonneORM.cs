@@ -14,7 +14,7 @@ namespace ProjetInfrocean.ORM
         public static PersonneViewModel getPersonne(int idPersonne)
         {
             PersonneDAO pDAO = PersonneDAO.getPersonne(idPersonne);
-            PersonneViewModel p = new PersonneViewModel(pDAO.idPersonneDAO, pDAO.nomPersonneDAO, pDAO.prenomPersonneDAO);
+            PersonneViewModel p = new PersonneViewModel(pDAO.idPersonneDAO, pDAO.nomPersonneDAO, pDAO.prenomPersonneDAO, pDAO.etudePersonneDAO, pDAO.isAdminPersonneDAO);
             return p;
         }
 
@@ -24,7 +24,7 @@ namespace ProjetInfrocean.ORM
             ObservableCollection<PersonneViewModel> l = new ObservableCollection<PersonneViewModel>();
             foreach (PersonneDAO element in lDAO)
             {                
-                PersonneViewModel p = new PersonneViewModel(element.idPersonneDAO, element.nomPersonneDAO, element.prenomPersonneDAO);
+                PersonneViewModel p = new PersonneViewModel(element.idPersonneDAO, element.nomPersonneDAO, element.prenomPersonneDAO, element.etudePersonneDAO, element.isAdminPersonneDAO);
                 l.Add(p);
             }
             return l;
@@ -34,7 +34,7 @@ namespace ProjetInfrocean.ORM
         
         public static void updatePersonne(PersonneViewModel p)
         {
-            PersonneDAO.updatePersonne(new PersonneDAO(p.idPersonneProperty, p.nomPersonneProperty, p.prenomPersonneProperty));
+            PersonneDAO.updatePersonne(new PersonneDAO(p.idPersonneProperty, p.nomPersonneProperty, p.prenomPersonneProperty, p.etudePersonneProperty, p.isAdminPersonneProperty));
         }
 
         public static void supprimerPersonne(int id)
@@ -44,7 +44,7 @@ namespace ProjetInfrocean.ORM
 
         public static void insertPersonne(PersonneViewModel p)
         {
-            PersonneDAO.insertPersonne(new PersonneDAO(p.idPersonneProperty, p.nomPersonneProperty, p.prenomPersonneProperty));
+            PersonneDAO.insertPersonne(new PersonneDAO(p.idPersonneProperty, p.nomPersonneProperty, p.prenomPersonneProperty, p.etudePersonneProperty, p.isAdminPersonneProperty));
         }
     }
 }

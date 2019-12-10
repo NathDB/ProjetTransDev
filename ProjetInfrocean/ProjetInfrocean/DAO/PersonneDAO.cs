@@ -13,12 +13,16 @@ namespace ProjetInfrocean.DAO
         public int idPersonneDAO;
         public string nomPersonneDAO;
         public string prenomPersonneDAO;
+        public int etudePersonneDAO;
+        public int isAdminPersonneDAO;
 
-        public PersonneDAO(int idPersonneDAO, string nomPersonneDAO, string prenomPersonneDAO)
+        public PersonneDAO(int idPersonneDAO, string nomPersonneDAO, string prenomPersonneDAO, int etudePersonneDAO, int isAdminPersonneDAO)
         {
             this.idPersonneDAO = idPersonneDAO;
             this.nomPersonneDAO = nomPersonneDAO;
             this.prenomPersonneDAO = prenomPersonneDAO;
+            this.etudePersonneDAO = etudePersonneDAO;
+            this.isAdminPersonneDAO = isAdminPersonneDAO;
         }
 
         public static ObservableCollection<PersonneDAO> listePersonnes()

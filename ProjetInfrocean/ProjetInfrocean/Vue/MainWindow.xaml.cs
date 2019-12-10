@@ -51,7 +51,7 @@ namespace ProjetInfrocean
             myDataObject = new PersonneViewModel();
             myDataObject.prenomPersonneProperty = prenom.Text;
             myDataObject.nomPersonneProperty = nom.Text;
-            PersonneViewModel nouveau = new PersonneViewModel(PersonneDAL.getMaxIdPersonne() + 1, myDataObject.nomPersonneProperty, myDataObject.prenomPersonneProperty);
+            PersonneViewModel nouveau = new PersonneViewModel(PersonneDAL.getMaxIdPersonne() + 1, myDataObject.nomPersonneProperty, myDataObject.prenomPersonneProperty, myDataObject.etudePersonneProperty, myDataObject.isAdminPersonneProperty);
             lp.Add(nouveau);
             PersonneORM.insertPersonne(nouveau);
             listePersonnes.Items.Refresh();
@@ -97,7 +97,7 @@ namespace ProjetInfrocean
             myDataObject.prenomPersonneProperty = prenom.Text;
 
            
-            PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObject.nomPersonneProperty, myDataObject.prenomPersonneProperty);
+            PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObject.nomPersonneProperty, myDataObject.prenomPersonneProperty, myDataObject.etudePersonneProperty, myDataObject.isAdminPersonneProperty);
             lp.Add(nouveau);
             PersonneORM.insertPersonne(nouveau);
             listePersonnes.Items.Refresh();
