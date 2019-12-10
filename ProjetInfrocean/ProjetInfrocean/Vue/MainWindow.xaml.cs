@@ -97,7 +97,7 @@ namespace ProjetInfrocean
             myDataObject.prenomPersonneProperty = prenom.Text;
 
            
-            PersonneViewModel nouveau = new PersonneViewModel(myDataObject.nomPersonneProperty, myDataObject.prenomPersonneProperty);
+            PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObject.nomPersonneProperty, myDataObject.prenomPersonneProperty);
             lp.Add(nouveau);
             PersonneORM.insertPersonne(nouveau);
             listePersonnes.Items.Refresh();

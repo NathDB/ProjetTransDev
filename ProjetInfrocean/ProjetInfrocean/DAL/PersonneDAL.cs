@@ -41,6 +41,18 @@ namespace ProjetInfrocean.DAL
             }
             return l;
         }
+        public static int getMaxIdPersonne()
+        {
+            string query = "SELECT MAX(idPersonne) FROM personne;";
+            MySqlCommand cmd = new MySqlCommand(query, DalConnexion.connection);
+            cmd.ExecuteNonQuery();
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            int maxIdPersonne = reader.GetInt32(0);
+            reader.Close();
+            return maxIdPersonne;
+        }
         public static void insertPersonne(PersonneDAO p)
         {
             int id = getMaxIdPersonne() + 1;

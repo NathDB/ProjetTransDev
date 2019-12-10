@@ -13,7 +13,6 @@ namespace ProjetInfrocean.DAO
         public int idPersonneDAO;
         public string nomPersonneDAO;
         public string prenomPersonneDAO;
-        public int idMetierPersonneDAO;
 
         public PersonneDAO(int idPersonneDAO, string nomPersonneDAO, string prenomPersonneDAO)
         {
