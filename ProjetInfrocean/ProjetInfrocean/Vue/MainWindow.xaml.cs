@@ -39,18 +39,18 @@ namespace ProjetInfrocean
         }
         public void prenomChanged(object sender, TextChangedEventArgs e)
         {
-            myDataObject.prenomPersonneProperty = prenomTextBox.Text;
+            myDataObject.prenomPersonneProperty = prenom.Text;
         }
         public void nomChanged(object sender, TextChangedEventArgs e)
         {
-            myDataObject.nomPersonneProperty = nomTextBox.Text;
+            myDataObject.nomPersonneProperty = nom.Text;
         }
 
         private void nomPrenomButton_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             myDataObject = new PersonneViewModel();
-            myDataObject.prenomPersonneProperty = prenomTextBox.Text;
-            myDataObject.nomPersonneProperty = nomTextBox.Text;
+            myDataObject.prenomPersonneProperty = prenom.Text;
+            myDataObject.nomPersonneProperty = nom.Text;
             PersonneViewModel nouveau = new PersonneViewModel(PersonneDAL.getMaxIdPersonne() + 1, myDataObject.nomPersonneProperty, myDataObject.prenomPersonneProperty);
             lp.Add(nouveau);
             PersonneORM.insertPersonne(nouveau);
@@ -88,6 +88,20 @@ namespace ProjetInfrocean
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             grigrid.Height = sliderHeight.Value + 200;
+        }
+        
+        private void nomPrenomButton_Click(object sender, RoutedEventArgs e)
+        {
+            myDataObject = new PersonneViewModel();
+            myDataObject.nomPersonneProperty = nom.Text;
+            myDataObject.prenomPersonneProperty = prenom.Text;
+
+           
+            PersonneViewModel nouveau = new PersonneViewModel(myDataObject.nomPersonneProperty, myDataObject.prenomPersonneProperty);
+            lp.Add(nouveau);
+            PersonneORM.insertPersonne(nouveau);
+            listePersonnes.Items.Refresh();
+            MessageBox.Show("==>insert");
         }
     }
 }

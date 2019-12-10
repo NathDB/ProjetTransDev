@@ -25,30 +25,28 @@
         <StackPanel >
 
             <TabControl Margin="0,0,0,0" Height="394">
-                <TabItem Header="TextBox">
+                <TabItem Header="Ajouter une personne">
                     <Grid Name ="grigrid" Height="300" Margin="0,0,0.300,0" VerticalAlignment="Top">
-                        <StackPanel>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="27*"/>
+                            <ColumnDefinition Width="233*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.ColumnSpan="2" Margin="0,0,-0.3,0">
 
-                            <Label Content="nom"></Label>
+                            <Label Content="Nom"></Label>
                             <!--            <TextBox Name="nomTextBox" TextChanged="nomChanged"/> -->
-                            <TextBox Name="nomTextBox" Height="20"/>
-                            <Label Content="prenom"></Label>
+                            <TextBox Name="nom" Height="20"/>
+                            <Label Content="Prénom"></Label>
                             <!-- <TextBox Name="prenomTextBox" TextChanged="prenomChanged"/> -->
-                            <TextBox Name="prenomTextBox" Height="20" Margin="0,0,0.300,0" />
-                            <Button x:Name="nomPrenomButton" Content="{Binding concatProperty}" MouseDoubleClick="nomPrenomButton_MouseDoubleClick" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="427" RenderTransformOrigin="0.5,2.31" >
-                                <Button.Background>
-                                    <RadialGradientBrush>
-                                        <GradientStop Color="#FFF26A66" Offset="0.279"/>
-                                        <GradientStop Color="#FFFFE10A" Offset="0.779"/>
-                                        <GradientStop Color="#FFD3B220" Offset="0.986"/>
-                                    </RadialGradientBrush>
-                                </Button.Background>
+                            <TextBox Name="prenom" Height="20" Margin="0,0,0.300,0" />
+                            <Button x:Name="nomPrenomButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="nomPrenomButton_Click" >
+
                             </Button>
                         </StackPanel>
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="DataGrid">
+                <TabItem Header="Liste des Personnes">
                     <StackPanel>
                         <Grid Margin="10">
                             <DataGrid Name="listePersonnes" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listePersonnes_SelectionChanged">
@@ -71,7 +69,7 @@
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Slider">
-                    <Slider Name="sliderHeight"  Margin="0,0,0.333,102" ValueChanged="Slider_ValueChanged" />
+                    <Slider Name="sliderHeight"  Margin="0,4,0,98" ValueChanged="Slider_ValueChanged" />
                 </TabItem>
             </TabControl>
         </StackPanel>
