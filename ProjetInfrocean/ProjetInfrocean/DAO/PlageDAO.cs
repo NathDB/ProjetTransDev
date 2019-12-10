@@ -8,47 +8,45 @@ using System.Threading.Tasks;
 
 namespace ProjetInfrocean.DAO
 {
-    public class PersonneDAO
+    public class PlageDAO
     {
-        public int idPersonneDAO;
-        public string nomPersonneDAO;
-        public string prenomPersonneDAO;
-        public int etudePersonneDAO;
-        public int isAdminPersonneDAO;
+        public int idPlage;
+        public string nomPlageDAO;
+        public string departementPlageDAO;
+        public int communePlageDAO;
 
-        public PersonneDAO(int idPersonneDAO, string nomPersonneDAO, string prenomPersonneDAO, int etudePersonneDAO, int isAdminPersonneDAO)
+        public PlageDAO(int idPlageDAO, string nomPlageDAO, string departementPlageDAO, int communePlageDAO)
         {
-            this.idPersonneDAO = idPersonneDAO;
-            this.nomPersonneDAO = nomPersonneDAO;
-            this.prenomPersonneDAO = prenomPersonneDAO;
-            this.etudePersonneDAO = etudePersonneDAO;
-            this.isAdminPersonneDAO = isAdminPersonneDAO;
+            this.idPlageDAO = idPlageDAO;
+            this.nomPlageDAO = nomPlageDAO;
+            this.departementPlageDAO = departementPlageDAO;
+            this.communePlageDAO = communePlageDAO;
         }
 
-        public static ObservableCollection<PersonneDAO> listePersonnes()
+        public static ObservableCollection<PlageDAO> listePlages()
         {
-            ObservableCollection<PersonneDAO> l = PersonneDAL.selectPersonnes();
+            ObservableCollection<PlageDAO> l = PersonneDAL.selectPlages();
             return l;
         }
-        public static PersonneDAO getPersonne(int idPersonne)
+        public static PlageDAO getPlage(int idPlage)
         {
-            PersonneDAO p = PersonneDAL.getPersonne(idPersonne);
+            PlageDAO p = PlageDAL.getPlage(idPlage);
             return p;
         }
 
-        public static void updatePersonne(PersonneDAO p)
+        public static void updatePlage(PlageDAO pl)
         {
-            PersonneDAL.updatePersonne(p);
+            PlageDAL.updatePlage(pl);
         }
 
-        public static void supprimerPersonne(int id)
+        public static void supprimerPlage(int id)
         {
-            PersonneDAL.supprimerPersonne(id);
+            PlageDAL.supprimerPlage(id);
         }
 
-        public static void insertPersonne(PersonneDAO p)
+        public static void insertPlage(PlageDAO pl)
         {
-            PersonneDAL.insertPersonne(p);
+            PlageDAL.insertPlage(pl);
         }
     }
 }

@@ -19,61 +19,48 @@ namespace ProjetInfrocean.Ctrl
         //private string concat;
         
 
-        public PersonneViewModel() { }
+        public PlageViewModel() { }
 
-        public PersonneViewModel(int id, string nom, string prenom, int Etude_idEtude, int isAdmin)
+        public PlageViewModel(int id, string nom, string departement, int Commune_idCommune)
         {
-            this.idPersonne = id;
-            this.nomPersonneProperty = nom;
-            this.prenomPersonneProperty = prenom;
-            this.etudePersonneProperty = Etude_idEtude;
-            this.isAdminPersonneProperty = isAdmin;
+            this.idPlage = id;
+            this.nomPlageProperty = nom;
+            this.departementPersonneProperty = departement;
+            this.communePlageProperty = Commune_idCommune;
             
         }
-        public int idPersonneProperty
+        public int idPlagePlage
         {
-            get { return idPersonne; }
+            get { return idPlage; }
         }
 
-        public String nomPersonneProperty
+        public String nomPlageProperty
         {
-            get { return nomPersonne; }
+            get { return nomPlage; }
             set
             {
-                nomPersonne = value.ToUpper();
-                //this.concatProperty = value.ToUpper() + " " + prenomPersonne;
-                OnPropertyChanged("nomPersonneProperty");
+                nomPlage = value;
+                OnPropertyChanged("nomPlageProperty");
             }
 
         }
-        public String prenomPersonneProperty
+        public String departementPersonneProperty
         {
-            get { return prenomPersonne; }
+            get { return departementPlage; }
             set
             {
-                this.prenomPersonne = value;
-                this.concatProperty = this.nomPersonne + " " + value;
+                this.departementPlage = value;
                 OnPropertyChanged("prenomPersonneProperty");
             }
         }
-        public int etudePersonneProperty
+        public int communePlageProperty
         {
-            get { return etudePersonne; }
+            get { return communePlage; }
             set
             {
-                this.etudePersonne = 1;
-                this.concatProperty = this.etudePersonne + " " + 1;
-                OnPropertyChanged("etudePersonneProperty");
-            }
-        }
-        public int isAdminPersonneProperty
-        {
-            get { return isAdminPersonne; }
-            set
-            {
-                this.isAdminPersonne = 0;
-                this.concatProperty = this.isAdminPersonne + " " + 0;
-                OnPropertyChanged("isAdminPersonneProperty");
+                this.communePlage = 1;
+                this.concatProperty = this.communePlage + " " + 1;
+                OnPropertyChanged("communePlageProperty");
             }
         }
 
@@ -95,7 +82,7 @@ namespace ProjetInfrocean.Ctrl
             if (handler != null)
             {
                 handler(this, new PropertyChangedEventArgs(info));
-                PersonneORM.updatePersonne(this);
+                PlageORM.updatePlage(this);
             }
         }
     }
