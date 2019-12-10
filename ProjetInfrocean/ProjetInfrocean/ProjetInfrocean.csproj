@@ -75,10 +75,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Ctrl\EtudeViewModel.cs" />
+    <Compile Include="Ctrl\PlageViewModel.cs" />
     <Compile Include="Ctrl\PersonneViewModel.cs" />
     <Compile Include="DAL\DalConnexion.cs" />
+    <Compile Include="DAL\EtudeDAL.cs" />
+    <Compile Include="DAL\PlageDAL.cs" />
     <Compile Include="DAL\PersonneDAL.cs" />
+    <Compile Include="DAO\EtudeDAO.cs" />
+    <Compile Include="DAO\PlageDAO.cs" />
     <Compile Include="DAO\PersonneDAO.cs" />
+    <Compile Include="ORM\EtudeORM.cs" />
+    <Compile Include="ORM\PlageORM.cs" />
     <Compile Include="ORM\PersonneORM.cs" />
     <Page Include="Vue\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
