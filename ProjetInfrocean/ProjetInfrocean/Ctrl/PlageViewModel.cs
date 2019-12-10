@@ -25,7 +25,7 @@ namespace ProjetInfrocean.Ctrl
         {
             this.idPlage = id;
             this.nomPlageProperty = nom;
-            this.departementPersonneProperty = departement;
+            this.departementPlageProperty = departement;
             this.communePlageProperty = Commune_idCommune;
             
         }
@@ -44,7 +44,7 @@ namespace ProjetInfrocean.Ctrl
             }
 
         }
-        public String departementPersonneProperty
+        public String departementPlageProperty
         {
             get { return departementPlage; }
             set

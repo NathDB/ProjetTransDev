@@ -105,7 +105,21 @@
                         
                     </StackPanel>
                 </TabItem>
-               
+                <TabItem Header="Liste des Plages">
+                    <StackPanel>
+                        <Grid Margin="10">
+                            <DataGrid Name="listePlages" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listePlages_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="id" Binding="{Binding idPlageProperty, Mode=OneWay}" />
+                                    <DataGridTextColumn Header="nom" Binding="{Binding nomPlageProperty}" />
+                                    <DataGridTextColumn Header="departement" Binding="{Binding departementPlageProperty, Mode=TwoWay}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+
+                    </StackPanel>
+                </TabItem>
+
             </TabControl>
         </StackPanel>
     </DockPanel>

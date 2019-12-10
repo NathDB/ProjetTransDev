@@ -30,7 +30,7 @@ namespace ProjetInfrocean.DAL
 
                 while (reader.Read())
                 {
-                    PlageDAO p = new PlageDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                    PlageDAO pl = new PlageDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3));
                     l.Add(pl);
                 }
                 reader.Close();
@@ -64,8 +64,8 @@ namespace ProjetInfrocean.DAL
 
         public static void updatePlage(PlageDAO pl)
         {
-            string query = "UPDATE plage set nomPlage=\"" + pl.nomPlageDAO + "\", departementPlage=\"" + pl.departementPlageDAO "\", communePlage=\"" + pl.communePlageDAO;
-            MySqlCommand cmdPers = new MySqlCommand(query, connection);
+            string query = "UPDATE plage set nomPlage=\"" + pl.nomPlageDAO + "\", departementPlage=\"" + pl.departementPlageDAO + "\", communePlage=\"" + pl.communePlageDAO;
+            MySqlCommand cmdPlage = new MySqlCommand(query, connection);
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPlage);
             cmdPlage.ExecuteNonQuery();
         }
@@ -84,7 +84,7 @@ namespace ProjetInfrocean.DAL
             cmdPlage.ExecuteNonQuery();
             MySqlDataReader reader = cmdPlage.ExecuteReader();
             reader.Read();
-            PlageDAO plage = new PlageDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+            PlageDAO plage = new PlageDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3));
             reader.Close();
             return plage;
         }

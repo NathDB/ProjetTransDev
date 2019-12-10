@@ -21,10 +21,15 @@ namespace ProjetInfrocean
     {
         int selectedPersonneId;
         int selectedEtudeId;
+        int selectedPlageId;
+
         PersonneViewModel myDataObjectPersonne; // Objet de liaison
         EtudeViewModel myDataObjectEtude; // Objet de liaison
+        PlageViewModel myDataObjectPlage; // Objet de liaison
+
         ObservableCollection<PersonneViewModel> lp;
         ObservableCollection<EtudeViewModel> le;
+        ObservableCollection<PlageViewModel> lpl;
 
         int compteur = 0;
 
@@ -36,10 +41,12 @@ namespace ProjetInfrocean
             // Initialisation de la liste des personnes via la BDD.
             lp = PersonneORM.listePersonnes();
             le = EtudeORM.listeEtudes();
+            lpl = PlageORM.listePlages();
 
             //LIEN AVEC la VIEW
             listePersonnes.ItemsSource = lp; // bind de la liste avec la source, permettant le binding.
             listeEtudes.ItemsSource = le;
+            listePlages.ItemsSource = lpl;
             // this.DataContext = lp; // bind de la liste avec la source, permettant le binding mais de façon globale sur toute la fenetre
         }
         public void prenomChanged(object sender, TextChangedEventArgs e)
@@ -53,6 +60,14 @@ namespace ProjetInfrocean
         public void titreChanged(object sender, TextChangedEventArgs e)
         {
             myDataObjectEtude.titreEtudeProperty = titre.Text;
+        }
+        public void nomPlageChanged(object sender, TextChangedEventArgs e)
+        {
+            myDataObjectPlage.nomPlageProperty = nomPlage.Text;
+        }
+        public void departementChanged(object sender, TextChangedEventArgs e)
+        {
+            myDataObjectPlage.departementPlageProperty = departement.Text;
         }
 
         private void supprimerButton_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -90,6 +105,13 @@ namespace ProjetInfrocean
                 selectedEtudeId = (le.ElementAt<EtudeViewModel>(listeEtudes.SelectedIndex)).idEtudeProperty;
             }
         }
+        private void listePlages_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((listePlages.SelectedIndex < lp.Count) && (listePlages.SelectedIndex >= 0))
+            {
+                selectedPlageId = (lpl.ElementAt<PlageViewModel>(listePlages.SelectedIndex)).idPlageProperty;
+            }
+        }
 
         private void nomPrenomButton_Click(object sender, RoutedEventArgs e)
         {
@@ -118,6 +140,18 @@ namespace ProjetInfrocean
             listeEtudes.Items.Refresh();
             MessageBox.Show("==>insert");
         }
-        
+        private void ajoutPlageButton_Click(object sender, RoutedEventArgs e)
+        {
+            myDataObjectPlage = new PlageViewModel();
+            myDataObjectPlage.nomPlageProperty = nom.Text;
+            myDataObjectPlage.departementPlageProperty = departement.Text;
+
+            PlageViewModel nouveau = new PlageViewModel(+1, myDataObjectPlage.nomPlageProperty, myDataObjectPlage.departementPlageProperty, myDataObjectPlage.communePlageProperty);
+            lpl.Add(nouveau);
+            PlageORM.insertPlage(nouveau);
+            listePlages.Items.Refresh();
+            MessageBox.Show("==>insert");
+        }
+
     }
 }
