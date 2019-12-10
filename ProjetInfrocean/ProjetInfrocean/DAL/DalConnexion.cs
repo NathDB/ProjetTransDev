@@ -22,7 +22,7 @@ namespace ProjetInfrocean.DAL
                     server = "localhost";
                     database = "ifrocean";
                     uid = "ifrocean";
-                    password = "ifrocean";
+                    password = "epsi2019";
                     string connectionString;
                     connectionString = "SERVER=" + server + ";" + "DATABASE=" +
                     database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";

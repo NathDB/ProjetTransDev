@@ -10,18 +10,18 @@ using System.Windows;
 
 namespace ProjetInfrocean.DAL
 {
-    public class PersonneDAL
+    public class PlageDAL
     {
         private static MySqlConnection connection;
-        public PersonneDAL()
+        public PlageDAL()
         {
             //  si la connexion est déjà ouverte, il ne la refera pas (voir code dans DALConnection)
             connection = DalConnexion.connection;
         }
-        public static ObservableCollection<PersonneDAO> selectPersonnes()
+        public static ObservableCollection<PlageDAO> selectPlage()
         {
-            ObservableCollection<PersonneDAO> l = new ObservableCollection<PersonneDAO>();
-            string query = "SELECT * FROM personne;";
+            ObservableCollection<PlageDAO> l = new ObservableCollection<PlageDAO>();
+            string query = "SELECT * FROM plage;";
             MySqlCommand cmd = new MySqlCommand(query, DalConnexion.OpenConnection());
             try
             {
@@ -30,7 +30,7 @@ namespace ProjetInfrocean.DAL
 
                 while (reader.Read())
                 {
-                    PersonneDAO p = new PersonneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                    PlageDAO p = new PlageDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
                     l.Add(p);
                 }
                 reader.Close();
@@ -41,52 +41,52 @@ namespace ProjetInfrocean.DAL
             }
             return l;
         }
-        public static int getMaxIdPersonne()
+        public static int getMaxIdPlage()
         {
-            string query = "SELECT MAX(idPersonne) FROM personne;";
-            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.connection);
-            cmdPers.ExecuteNonQuery();
+            string query = "SELECT MAX(idPlage) FROM plage;";
+            MySqlCommand cmdPlage = new MySqlCommand(query, DalConnexion.connection);
+            cmdPlage.ExecuteNonQuery();
 
-            MySqlDataReader reader = cmdPers.ExecuteReader();
+            MySqlDataReader reader = cmdPlage.ExecuteReader();
             reader.Read();
-            int maxIdPersonne = reader.GetInt32(0);
+            int maxIdPlage = reader.GetInt32(0);
             reader.Close();
-            return maxIdPersonne;
+            return maxIdPlage;
         }
-        public static void insertPersonne(PersonneDAO p)
+        public static void insertPlage(PlageDAO p)
         {
-            int id = getMaxIdPersonne() + 1;
-            string query = "INSERT INTO personne VALUES (\"" + id + "\",\"" + p.nomPersonneDAO + "\",\"" + p.prenomPersonneDAO + "\",\"" + p.etudePersonneDAO + "\",\"" + p.isAdminPersonneDAO + "\");";
-            MySqlCommand cmd2Pers = new MySqlCommand(query, DalConnexion.connection);
-            MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmd2Pers);
-            cmd2Pers.ExecuteNonQuery();
-        }
-
-        public static void updatePersonne(PersonneDAO p)
-        {
-            string query = "UPDATE personne set nomPersonne=\"" + p.nomPersonneDAO + "\", prenomPersonne=\"" + p.prenomPersonneDAO;
-            MySqlCommand cmdPers = new MySqlCommand(query, connection);
-            MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPers);
-            cmdPers.ExecuteNonQuery();
+            int id = getMaxIdPlage() + 1;
+            string query = "INSERT INTO plage VALUES (\"" + id + "\",\"" + p.nomPlageDAO + "\",\"" + p.departementPlageDAO + "\",\"" + p.communePlageDAO +"\");";
+            MySqlCommand cmd2Plage = new MySqlCommand(query, DalConnexion.connection);
+            MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmd2Plage);
+            cmd2Plage.ExecuteNonQuery();
         }
 
-        public static void supprimerPersonne(int id)
+        public static void updatePlage(PlageDAO p)
         {
-            string query = "DELETE FROM personne WHERE idPersonne = \"" + id + "\";";
-            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.connection);
-            MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPers);
-            cmdPers.ExecuteNonQuery();
-        }
-        public static PersonneDAO getPersonne(int idPersonne)
-        {
-            string query = "SELECT * FROM personne WHERE id="+idPersonne+";";
+            string query = "UPDATE plage set nomPlage=\"" + p.nomPlageDAO + "\", departementPlage=\"" + p.departementPlageDAO "\", communePlage=\"" + p.communePlageDAO;
             MySqlCommand cmdPers = new MySqlCommand(query, connection);
-            cmdPers.ExecuteNonQuery();
-            MySqlDataReader reader = cmdPers.ExecuteReader();
+            MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPlage);
+            cmdPlage.ExecuteNonQuery();
+        }
+
+        public static void supprimerPlage(int id)
+        {
+            string query = "DELETE FROM plage WHERE idPlage = \"" + id + "\";";
+            MySqlCommand cmdPlage = new MySqlCommand(query, DalConnexion.connection);
+            MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPlage);
+            cmdPlage.ExecuteNonQuery();
+        }
+        public static PlageDAO getPlage(int idPlage)
+        {
+            string query = "SELECT * FROM plage WHERE id="+idPlage+";";
+            MySqlCommand cmdPlage = new MySqlCommand(query, connection);
+            cmdPlage.ExecuteNonQuery();
+            MySqlDataReader reader = cmdPlage.ExecuteReader();
             reader.Read();
-            PersonneDAO pers = new PersonneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+            PlageDAO plage = new PlageDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
             reader.Close();
-            return pers;
+            return plage;
         }
 
       
