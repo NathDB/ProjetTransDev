@@ -41,18 +41,6 @@ namespace ProjetInfrocean.DAL
             }
             return l;
         }
-        public static int getMaxIdPersonne()
-        {
-            string query = "SELECT MAX(idPersonne) FROM personne;";
-            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.connection);
-            cmdPers.ExecuteNonQuery();
-
-            MySqlDataReader reader = cmdPers.ExecuteReader();
-            reader.Read();
-            int maxIdPersonne = reader.GetInt32(0);
-            reader.Close();
-            return maxIdPersonne;
-        }
         public static void insertPersonne(PersonneDAO p)
         {
             int id = getMaxIdPersonne() + 1;
@@ -77,6 +65,19 @@ namespace ProjetInfrocean.DAL
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPers);
             cmdPers.ExecuteNonQuery();
         }
+        public static int getMaxIdPersonne()
+        {
+            string query = "SELECT MAX(idPersonne) FROM personne;";
+            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.connection);
+            cmdPers.ExecuteNonQuery();
+
+            MySqlDataReader reader = cmdPers.ExecuteReader();
+            reader.Read();
+            int maxIdPersonne = reader.GetInt32(0);
+            reader.Close();
+            return maxIdPersonne;
+        }
+
         public static PersonneDAO getPersonne(int idPersonne)
         {
             string query = "SELECT * FROM personne WHERE id="+idPersonne+";";

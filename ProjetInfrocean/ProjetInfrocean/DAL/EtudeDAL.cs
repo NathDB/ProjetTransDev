@@ -51,23 +51,10 @@ namespace ProjetInfrocean.DAL
         public static void insertEtude(EtudeDAO e)
         {
             int id = getMaxIdEtude() + 1;
-            string query = "INSERT INTO personne VALUES (\"" + id + "\",\"" + e.titreEtudeDAO + "\",\"" + e.dateCreationEtudeDAO + "\",\"" + e.dateFinEtudeDAO + "\");";
+            string query = "INSERT INTO etude VALUES (\"" + id + "\",\"" + e.titreEtudeDAO + "\",\"" + e.dateCreationEtudeDAO + "\",\"" + e.dateFinEtudeDAO + "\");";
             MySqlCommand cmd2Etu = new MySqlCommand(query, DalConnexion.connection);
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmd2Etu);
             cmd2Etu.ExecuteNonQuery();
-        }
-
-        private static int getMaxIdEtude()
-        {
-            string query = "SELECT MAX(idEtude) FROM etude;";
-            MySqlCommand cmdEtu = new MySqlCommand(query, DalConnexion.connection);
-            cmdEtu.ExecuteNonQuery();
-
-            MySqlDataReader reader = cmdEtu.ExecuteReader();
-            reader.Read();
-            int maxIdEtude = reader.GetInt32(0);
-            reader.Close();
-            return maxIdEtude;
         }
 
         public static void supprimerEtude(int id)
@@ -76,6 +63,18 @@ namespace ProjetInfrocean.DAL
             MySqlCommand cmdEtu = new MySqlCommand(query, DalConnexion.connection);
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdEtu);
             cmdEtu.ExecuteNonQuery();
+        }
+        public static int getMaxIdEtude()
+        {
+            string query = "SELECT MAX(idEtude) FROM etude;";
+            MySqlCommand cmdEtu = new MySqlCommand(query, connection);
+            cmdEtu.ExecuteNonQuery();
+
+            MySqlDataReader reader = cmdEtu.ExecuteReader();
+            reader.Read();
+            int maxIdEtude = reader.GetInt32(0);
+            reader.Close();
+            return maxIdEtude;
         }
 
         public static EtudeDAO getEtude(int idEtude)

@@ -41,18 +41,7 @@ namespace ProjetInfrocean.DAL
             }
             return l;
         }
-        public static int getMaxIdPlage()
-        {
-            string query = "SELECT MAX(idPlage) FROM plage;";
-            MySqlCommand cmdPlage = new MySqlCommand(query, DalConnexion.connection);
-            cmdPlage.ExecuteNonQuery();
-
-            MySqlDataReader reader = cmdPlage.ExecuteReader();
-            reader.Read();
-            int maxIdPlage = reader.GetInt32(0);
-            reader.Close();
-            return maxIdPlage;
-        }
+        
         public static void insertPlage(PlageDAO pl)
         {
             int id = getMaxIdPlage() + 1;
@@ -77,6 +66,20 @@ namespace ProjetInfrocean.DAL
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPlage);
             cmdPlage.ExecuteNonQuery();
         }
+
+        public static int getMaxIdPlage()
+        {
+            string query = "SELECT MAX(idPlage) FROM plage;";
+            MySqlCommand cmdPlage = new MySqlCommand(query, DalConnexion.connection);
+            cmdPlage.ExecuteNonQuery();
+
+            MySqlDataReader reader = cmdPlage.ExecuteReader();
+            reader.Read();
+            int maxIdPlage = reader.GetInt32(0);
+            reader.Close();
+            return maxIdPlage;
+        }
+
         public static PlageDAO getPlage(int idPlage)
         {
             string query = "SELECT * FROM plage WHERE id="+idPlage+";";
