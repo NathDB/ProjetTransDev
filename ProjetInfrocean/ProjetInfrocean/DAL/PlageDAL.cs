@@ -18,7 +18,7 @@ namespace ProjetInfrocean.DAL
             //  si la connexion est déjà ouverte, il ne la refera pas (voir code dans DALConnection)
             connection = DalConnexion.connection;
         }
-        public static ObservableCollection<PlageDAO> selectPlage()
+        public static ObservableCollection<PlageDAO> selectPlages()
         {
             ObservableCollection<PlageDAO> l = new ObservableCollection<PlageDAO>();
             string query = "SELECT * FROM plage;";

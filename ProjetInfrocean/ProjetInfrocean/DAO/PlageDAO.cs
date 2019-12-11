@@ -10,7 +10,7 @@ namespace ProjetInfrocean.DAO
 {
     public class PlageDAO
     {
-        public int idPlage;
+        public int idPlageDAO;
         public string nomPlageDAO;
         public string departementPlageDAO;
         public int communePlageDAO;
@@ -25,7 +25,7 @@ namespace ProjetInfrocean.DAO
 
         public static ObservableCollection<PlageDAO> listePlages()
         {
-            ObservableCollection<PlageDAO> l = PersonneDAL.selectPlages();
+            ObservableCollection<PlageDAO> l = PlageDAL.selectPlages();
             return l;
         }
         public static PlageDAO getPlage(int idPlage)

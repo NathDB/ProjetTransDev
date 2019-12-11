@@ -67,6 +67,26 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
+                <TabItem Header="Ajouter une plage">
+                    <Grid Name ="gridAjoutPlage" Height="300" Margin="0,0,0.300,0" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="27*"/>
+                            <ColumnDefinition Width="233*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.ColumnSpan="2" Margin="0,0,-0.3,0">
+
+                            <Label Content="Nom"></Label>
+                            <TextBox Name="nomPlage" Height="20"/>
+                            
+                            <Label Content="Nom Plage"></Label>
+                            <TextBox Name="departement" Height="20" Margin="0,0,0.300,0" />
+
+                            <Button x:Name="ajoutPlageButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="ajoutPlageButton_Click" >
+
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
                 <TabItem Header="Liste des Etudes">
                     <StackPanel>
                         <Grid Margin="10">
@@ -111,7 +131,7 @@
                             <DataGrid Name="listePlages" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listePlages_SelectionChanged">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="id" Binding="{Binding idPlageProperty, Mode=OneWay}" />
-                                    <DataGridTextColumn Header="nom" Binding="{Binding nomPlageProperty}" />
+                                    <DataGridTextColumn Header="nomPlage" Binding="{Binding nomPlageProperty}" />
                                     <DataGridTextColumn Header="departement" Binding="{Binding departementPlageProperty, Mode=TwoWay}" />
                                 </DataGrid.Columns>
                             </DataGrid>

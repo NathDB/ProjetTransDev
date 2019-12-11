@@ -29,7 +29,7 @@ namespace ProjetInfrocean.Ctrl
             this.communePlageProperty = Commune_idCommune;
             
         }
-        public int idPlagePlage
+        public int idPlageProperty
         {
             get { return idPlage; }
         }

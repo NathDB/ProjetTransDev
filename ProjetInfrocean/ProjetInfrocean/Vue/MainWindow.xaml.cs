@@ -61,14 +61,7 @@ namespace ProjetInfrocean
         {
             myDataObjectEtude.titreEtudeProperty = titre.Text;
         }
-        public void nomPlageChanged(object sender, TextChangedEventArgs e)
-        {
-            myDataObjectPlage.nomPlageProperty = nomPlage.Text;
-        }
-        public void departementChanged(object sender, TextChangedEventArgs e)
-        {
-            myDataObjectPlage.departementPlageProperty = departement.Text;
-        }
+        
 
         private void supprimerButton_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -143,7 +136,7 @@ namespace ProjetInfrocean
         private void ajoutPlageButton_Click(object sender, RoutedEventArgs e)
         {
             myDataObjectPlage = new PlageViewModel();
-            myDataObjectPlage.nomPlageProperty = nom.Text;
+            myDataObjectPlage.nomPlageProperty = nomPlage.Text;
             myDataObjectPlage.departementPlageProperty = departement.Text;
 
             PlageViewModel nouveau = new PlageViewModel(+1, myDataObjectPlage.nomPlageProperty, myDataObjectPlage.departementPlageProperty, myDataObjectPlage.communePlageProperty);

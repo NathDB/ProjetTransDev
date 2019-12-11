@@ -13,7 +13,7 @@ namespace ProjetInfrocean.ORM
     {
         public static PlageViewModel getPlage(int idPlage)
         {
-            PlageDAO pDAO = PlageDAO.getPlage(idPlage);
+            PlageDAO plDAO = PlageDAO.getPlage(idPlage);
             PlageViewModel pl = new PlageViewModel(plDAO.idPlageDAO, plDAO.nomPlageDAO, plDAO.departementPlageDAO, plDAO.communePlageDAO);
             return pl;
         }
@@ -32,9 +32,9 @@ namespace ProjetInfrocean.ORM
 
 
         
-        public static void updatePlage(PersonneViewModel pl)
+        public static void updatePlage(PlageViewModel pl)
         {
-            PlageDAO.updatePlage(new PlageDAO(pl.idPlageProperty, pl.nomPlageProperty, pl.communePlageProperty, pl.departementPlageProperty));
+            PlageDAO.updatePlage(new PlageDAO(pl.idPlageProperty, pl.nomPlageProperty, pl.departementPlageProperty, pl.communePlageProperty));
         }
 
         public static void supprimerPlage(int id)
@@ -42,9 +42,9 @@ namespace ProjetInfrocean.ORM
             PlageDAO.supprimerPlage(id);
         } 
 
-        public static void insertPlage(PersonneViewModel pl)
+        public static void insertPlage(PlageViewModel pl)
         {
-            PlageDAO.insertPlage(new PlageDAO(pl.idPlageProperty, pl.nomPlageProperty, pl.communePlageProperty, pl.departementPlageProperty));
+            PlageDAO.insertPlage(new PlageDAO(pl.idPlageProperty, pl.nomPlageProperty, pl.departementPlageProperty, pl.communePlageProperty));
         }
     }
 }
