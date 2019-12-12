@@ -38,7 +38,7 @@ namespace ProjetInfrocean
             InitializeComponent();
             DalConnexion.OpenConnection();
 
-            // Initialisation de la liste des personnes via la BDD.
+            //CREATION DE LA LISTE A PARTIR DE LA BDD VIA LE FICHIER ORM
             lp = PersonneORM.listePersonnes();
             le = EtudeORM.listeEtudes();
             lpl = PlageORM.listePlages();
@@ -61,29 +61,48 @@ namespace ProjetInfrocean
         {
             myDataObjectEtude.titreEtudeProperty = titre.Text;
         }
-        
 
-        private void supprimerButton_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        //UPDATE
+        private void updatePersonneButton_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            myDataObjectPersonne = new PersonneViewModel();
+            myDataObjectPersonne.nomPersonneProperty = nom.Text;
+            myDataObjectPersonne.prenomPersonneProperty = prenom.Text;
+
+
+            PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObjectPersonne.nomPersonneProperty, myDataObjectPersonne.prenomPersonneProperty, myDataObjectPersonne.etudePersonneProperty, myDataObjectPersonne.isAdminPersonneProperty);
+            lp.Add(nouveau);
+            PersonneORM.updatePersonne(nouveau);
+            listePersonnes.Items.Refresh();
+            MessageBox.Show("==>update");
+
+        }
+
+        //FONCTIONS SUPPRIMER AU DOUBLE CLICK
+        private void supprimerPersonneButton_Click(object sender, RoutedEventArgs e)
         {
             PersonneViewModel toRemove = (PersonneViewModel)listePersonnes.SelectedItem;
             lp.Remove(toRemove);
             listePersonnes.Items.Refresh();
             PersonneORM.supprimerPersonne(selectedPersonneId);
         }
+        private void supprimerPlageButton_Click(object sender, RoutedEventArgs e)
+        {
+            PlageViewModel toRemove = (PlageViewModel)listePlages.SelectedItem;
+            lpl.Remove(toRemove);
+            listePlages.Items.Refresh();
+            PlageORM.supprimerPlage(selectedPlageId);
+        }
+        private void supprimerEtudeButton_Click(object sender, RoutedEventArgs e)
+        {
+            EtudeViewModel toRemove = (EtudeViewModel)listeEtudes.SelectedItem;
+            le.Remove(toRemove);
+            listeEtudes.Items.Refresh();
+            EtudeORM.supprimerEtude(selectedEtudeId);
+        }
 
-        private void VClick(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Blue !");
-        }
-        private void RClick(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Red !");
-        }
-        private void BClick(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Blue !");
-        }
-
+        
+        //FONCTIONS LISTES DES DONNEES
         private void listePersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if ((listePersonnes.SelectedIndex < lp.Count) && (listePersonnes.SelectedIndex >= 0))
@@ -106,7 +125,8 @@ namespace ProjetInfrocean
             }
         }
 
-        private void nomPrenomButton_Click(object sender, RoutedEventArgs e)
+        //FONCTIONS AJOUTER AU CLICK
+        private void ajoutPersonneButton_Click(object sender, RoutedEventArgs e)
         {
             myDataObjectPersonne = new PersonneViewModel();
             myDataObjectPersonne.nomPersonneProperty = nom.Text;

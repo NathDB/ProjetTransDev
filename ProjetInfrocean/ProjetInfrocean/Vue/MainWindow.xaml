@@ -15,11 +15,7 @@
                 <Separator />
                 <MenuItem Header="_Exit" />
             </MenuItem>
-            <MenuItem Header="_Options">
-                <MenuItem Header="_Blue"  Click="BClick" />
-                <MenuItem Header="_Red" Click="RClick" />
-                <MenuItem Header="_Green" Click="VClick"/>
-            </MenuItem>
+            
         </Menu>
         <TextBox AcceptsReturn="True" />
         <StackPanel >
@@ -39,7 +35,7 @@
                             <Label Content="Prénom"></Label>
                             <!-- <TextBox Name="prenomTextBox" TextChanged="prenomChanged"/> -->
                             <TextBox Name="prenom" Height="20" Margin="0,0,0.300,0" />
-                            <Button x:Name="nomPrenomButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="nomPrenomButton_Click" >
+                            <Button x:Name="ajoutPersonneButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="ajoutPersonneButton_Click" >
 
                             </Button>
                         </StackPanel>
@@ -55,15 +51,13 @@
 
                             <Label Content="Titre"></Label>
                             <TextBox Name="titre" Height="20"/>
-                            
+
                             <Label Content="Date Création"></Label>
                             <TextBox Name="dateCrea" Height="20" Margin="0,0,0.300,0" />
-                            
+
                             <Label Content="Date de Fin"></Label>
                             <TextBox Name="dateFin" Height="20" Margin="0,0,0.300,0" />
-                            <Button x:Name="ajoutEtudeButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="ajoutEtudeButton_Click" >
-
-                            </Button>
+                            <Button x:Name="ajoutEtudeButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,261,0" HorizontalAlignment="Right" Width="275" RenderTransformOrigin="0.5,2.31" Click="ajoutEtudeButton_Click" />
                         </StackPanel>
                     </Grid>
                 </TabItem>
@@ -77,7 +71,7 @@
 
                             <Label Content="Nom"></Label>
                             <TextBox Name="nomPlage" Height="20"/>
-                            
+
                             <Label Content="Nom Plage"></Label>
                             <TextBox Name="departement" Height="20" Margin="0,0,0.300,0" />
 
@@ -99,15 +93,7 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
-                        <Button x:Name="supprimerButton" Content="Supprimer" MouseDoubleClick="supprimerButton_MouseDoubleClick" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200">
-                            <Button.Background>
-                                <RadialGradientBrush>
-                                    <GradientStop Color="#FFF26A66" Offset="0.279"/>
-                                    <GradientStop Color="#FFFFE10A" Offset="0.779"/>
-                                    <GradientStop Color="#FFD3B220" Offset="0.986"/>
-                                </RadialGradientBrush>
-                            </Button.Background>
-                        </Button>
+                        <Button x:Name="supprimerEtudeButton" Content="Supprimer" Click="supprimerEtudeButton_Click" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>
                     </StackPanel>
                 </TabItem>
 
@@ -122,13 +108,14 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
-                        
+                        <Button x:Name="supprimerPersonneButton" Content="Supprimer" Click="supprimerPersonneButton_Click" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>
+                        <Button x:Name="updatePersonneButton" Content="Modifier" MouseDoubleClick="updatePersonneButton_DoubleClick" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Liste des Plages">
                     <StackPanel>
                         <Grid Margin="10">
-                            <DataGrid Name="listePlages" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listePlages_SelectionChanged">
+                            <DataGrid Name="listePlages" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="56,0,0,0" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listePlages_SelectionChanged" Width="621">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="id" Binding="{Binding idPlageProperty, Mode=OneWay}" />
                                     <DataGridTextColumn Header="nomPlage" Binding="{Binding nomPlageProperty}" />
@@ -136,7 +123,7 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
-
+                        <Button x:Name="supprimerPlageButton" Content="Supprimer" Click="supprimerPlageButton_Click" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>
                     </StackPanel>
                 </TabItem>
 
