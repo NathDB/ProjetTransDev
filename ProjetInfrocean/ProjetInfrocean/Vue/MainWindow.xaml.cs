@@ -22,14 +22,20 @@ namespace ProjetInfrocean
         int selectedPersonneId;
         int selectedEtudeId;
         int selectedPlageId;
+        int selectedCommuneId;
+        int selectedZoneId;
 
         PersonneViewModel myDataObjectPersonne; // Objet de liaison
         EtudeViewModel myDataObjectEtude; // Objet de liaison
         PlageViewModel myDataObjectPlage; // Objet de liaison
+        CommuneViewModel myDataObjectCommune; // Objet de liaison
+        ZoneViewModel myDataObjectZone; // Objet de liaison
 
         ObservableCollection<PersonneViewModel> lp;
         ObservableCollection<EtudeViewModel> le;
+        ObservableCollection<CommuneViewModel> lc;
         ObservableCollection<PlageViewModel> lpl;
+        ObservableCollection<ZoneViewModel> lz;
 
         int compteur = 0;
 
@@ -41,12 +47,15 @@ namespace ProjetInfrocean
             //CREATION DE LA LISTE A PARTIR DE LA BDD VIA LE FICHIER ORM
             lp = PersonneORM.listePersonnes();
             le = EtudeORM.listeEtudes();
+            lc = CommuneORM.listeCommunes();
             lpl = PlageORM.listePlages();
+            lz = ZoneORM.listeZones();
 
             //LIEN AVEC la VIEW
             listePersonnes.ItemsSource = lp; // bind de la liste avec la source, permettant le binding.
             listeEtudes.ItemsSource = le;
             listePlages.ItemsSource = lpl;
+            listeZones.ItemsSource = lz;
             // this.DataContext = lp; // bind de la liste avec la source, permettant le binding mais de façon globale sur toute la fenetre
         }
         public void prenomChanged(object sender, TextChangedEventArgs e)
@@ -100,8 +109,14 @@ namespace ProjetInfrocean
             listeEtudes.Items.Refresh();
             EtudeORM.supprimerEtude(selectedEtudeId);
         }
+        private void supprimerCommuneButton_Click(object sender, RoutedEventArgs e)
+        {
+            CommuneViewModel toRemove = (CommuneViewModel)listeCommunes.SelectedItem;
+            lc.Remove(toRemove);
+            listeCommunes.Items.Refresh();
+            CommuneORM.supprimerCommune(selectedCommuneId);
+        }
 
-        
         //FONCTIONS LISTES DES DONNEES
         private void listePersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -122,6 +137,20 @@ namespace ProjetInfrocean
             if ((listePlages.SelectedIndex < lp.Count) && (listePlages.SelectedIndex >= 0))
             {
                 selectedPlageId = (lpl.ElementAt<PlageViewModel>(listePlages.SelectedIndex)).idPlageProperty;
+            }
+        }
+        private void listeZones_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((listeZones.SelectedIndex < lp.Count) && (listeZones.SelectedIndex >= 0))
+            {
+                selectedZoneId = (lz.ElementAt<ZoneViewModel>(listeZones.SelectedIndex)).idZoneProperty;
+            }
+        }
+        private void listeCommunes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((listeCommunes.SelectedIndex < lc.Count) && (listeCommunes.SelectedIndex >= 0))
+            {
+                selectedCommuneId = (lc.ElementAt<CommuneViewModel>(listeCommunes.SelectedIndex)).idCommuneProperty;
             }
         }
 
@@ -163,6 +192,33 @@ namespace ProjetInfrocean
             lpl.Add(nouveau);
             PlageORM.insertPlage(nouveau);
             listePlages.Items.Refresh();
+            MessageBox.Show("==>insert");
+        }
+        private void ajoutZoneButton_Click(object sender, RoutedEventArgs e)
+        {
+            myDataObjectZone = new ZoneViewModel();
+            myDataObjectZone.pointAProperty = pointA.Text;
+            myDataObjectZone.pointBProperty = pointB.Text;
+            myDataObjectZone.pointCProperty = pointC.Text;
+            myDataObjectZone.pointDProperty = pointD.Text;
+            //myDataObjectZone.superficieZoneProperty = superficie.Text;
+
+
+            ZoneViewModel nouveau = new ZoneViewModel(+1, myDataObjectZone.pointAProperty, myDataObjectZone.pointBProperty, myDataObjectZone.pointCProperty, myDataObjectZone.pointDProperty, myDataObjectZone.superficieZoneProperty, +1, +1, +1);
+            lz.Add(nouveau);
+            ZoneORM.insertZone(nouveau);
+            listeZones.Items.Refresh();
+            MessageBox.Show("==>insert");
+        }
+        private void ajoutCommuneButton_Click(object sender, RoutedEventArgs e)
+        {
+            myDataObjectCommune = new CommuneViewModel();
+            myDataObjectCommune.nomCommuneProperty = nomCommune.Text;
+
+            CommuneViewModel nouveau = new CommuneViewModel(+1, myDataObjectCommune.nomCommuneProperty);
+            lc.Add(nouveau);
+            CommuneORM.insertCommune(nouveau);
+            listeCommunes.Items.Refresh();
             MessageBox.Show("==>insert");
         }
 

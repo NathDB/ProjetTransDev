@@ -1,0 +1,95 @@
+﻿using MySql.Data.MySqlClient;
+using ProjetInfrocean.DAO;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace ProjetInfrocean.DAL
+{
+    public class ComptageDAL
+    {
+        private static MySqlConnection connection;
+        public ComptageDAL()
+        {
+            //  si la connexion est déjà ouverte, il ne la refera pas (voir code dans DALConnection)
+            connection = DalConnexion.connection;
+        }
+        public static ObservableCollection<ComptageDAO> selectComptages()
+        {
+            ObservableCollection<ComptageDAO> l = new ObservableCollection<ComptageDAO>();
+            string query = "SELECT * FROM comptage;";
+            MySqlCommand cmd = new MySqlCommand(query, DalConnexion.OpenConnection());
+            try
+            {
+                cmd.ExecuteNonQuery();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ComptageDAO cp = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2));
+                    l.Add(cp);
+                }
+                reader.Close();
+            }
+            catch (Exception cp)
+            {
+                MessageBox.Show("La base de données n'est pas connectée");
+            }
+            return l;
+        }
+        public static void insertComptage(ComptageDAO cp)
+        {
+            int id = getMaxIdComptage() + 1;
+            string query = "INSERT INTO comptage VALUES (\"" + id + "\",\"" + cp.idZoneComptageDAO + "\",\"" + cp.idEtudeComptageDAO + "\",\"" + cp.populationComptageDAO + "\");";
+            MySqlCommand cmd2Comp = new MySqlCommand(query, DalConnexion.connection);
+            MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmd2Comp);
+            cmd2Comp.ExecuteNonQuery();
+        }
+
+        public static void updateComptage(ComptageDAO cp)
+        {
+            string query = "UPDATE Comptage set populationComptage=\"" + cp.populationComptageDAO;
+            MySqlCommand cmdComp = new MySqlCommand(query, connection);
+            MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdComp);
+            cmdComp.ExecuteNonQuery();
+        }
+
+        public static void supprimerComptage(int id)
+        {
+            string query = "DELETE FROM Comptage WHERE idComptage = \"" + id + "\";";
+            MySqlCommand cmdComp = new MySqlCommand(query, DalConnexion.connection);
+            MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdComp);
+            cmdComp.ExecuteNonQuery();
+        }
+        public static int getMaxIdComptage()
+        {
+            string query = "SELECT MAX(idComptage) FROM Comptage;";
+            MySqlCommand cmdComp = new MySqlCommand(query, DalConnexion.connection);
+            cmdComp.ExecuteNonQuery();
+
+            MySqlDataReader reader = cmdComp.ExecuteReader();
+            reader.Read();
+            int maxIdComptage = reader.GetInt32(0);
+            reader.Close();
+            return maxIdComptage;
+        }
+
+        public static ComptageDAO getComptage(int idComptage)
+        {
+            string query = "SELECT * FROM Comptage WHERE id="+idComptage+";";
+            MySqlCommand cmdComp = new MySqlCommand(query, connection);
+            cmdComp.ExecuteNonQuery();
+            MySqlDataReader reader = cmdComp.ExecuteReader();
+            reader.Read();
+            ComptageDAO comptage = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2));
+            reader.Close();
+            return comptage;
+        }
+
+      
+    }
+}

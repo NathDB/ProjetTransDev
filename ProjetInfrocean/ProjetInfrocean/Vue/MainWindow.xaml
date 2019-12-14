@@ -30,14 +30,12 @@
                         <StackPanel Grid.ColumnSpan="2" Margin="0,0,-0.3,0">
 
                             <Label Content="Nom"></Label>
-                            <!--            <TextBox Name="nomTextBox" TextChanged="nomChanged"/> -->
                             <TextBox Name="nom" Height="20"/>
+                            
                             <Label Content="Prénom"></Label>
-                            <!-- <TextBox Name="prenomTextBox" TextChanged="prenomChanged"/> -->
                             <TextBox Name="prenom" Height="20" Margin="0,0,0.300,0" />
-                            <Button x:Name="ajoutPersonneButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="ajoutPersonneButton_Click" >
 
-                            </Button>
+                            <Button x:Name="ajoutPersonneButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="ajoutPersonneButton_Click" ></Button>
                         </StackPanel>
                     </Grid>
                 </TabItem>
@@ -78,6 +76,46 @@
                             <Button x:Name="ajoutPlageButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="ajoutPlageButton_Click" >
 
                             </Button>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Ajouter une zone">
+                    <Grid Name ="gridAjoutZone" Height="300" Margin="0,0,0.300,0" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="27*"/>
+                            <ColumnDefinition Width="233*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.ColumnSpan="2" Margin="0,0,-0.3,0">
+
+                            <Label Content="Point A"></Label>
+                            <TextBox Name="pointA" Height="20"/>
+                            <Label Content="Point B"></Label>
+                            <TextBox Name="pointB" Height="20"/>
+                            <Label Content="Point C"></Label>
+                            <TextBox Name="pointC" Height="20"/>
+                            <Label Content="Point D"></Label>
+                            <TextBox Name="pointD" Height="20"/>
+                            
+                            <Label Content="Superficie Zone"></Label>
+                            <!--<TextBlock Name="superficie" Height="20" Margin="0,0,0.300,0" /> -->
+
+                            <Button x:Name="ajoutZoneButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="ajoutZoneButton_Click" >
+
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Ajouter une commune">
+                    <Grid Name ="gridAjoutCommune" Height="300" Margin="0,0,0.300,0" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="27*"/>
+                            <ColumnDefinition Width="233*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.ColumnSpan="2" Margin="0,0,-0.3,0">
+
+                            <Label Content="Nom"></Label>
+                            <TextBox Name="nomCommune" Height="20"/>
+                            <Button x:Name="ajoutCommuneButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="ajoutCommuneButton_Click" ></Button>
                         </StackPanel>
                     </Grid>
                 </TabItem>
@@ -126,7 +164,37 @@
                         <Button x:Name="supprimerPlageButton" Content="Supprimer" Click="supprimerPlageButton_Click" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>
                     </StackPanel>
                 </TabItem>
+                <TabItem Header="Liste des Zones">
+                    <StackPanel>
+                        <Grid Margin="10">
+                            <DataGrid Name="listeZones" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listeZones_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="id" Binding="{Binding idZoneProperty, Mode=OneWay}" />
+                                    <DataGridTextColumn Header="pointA" Binding="{Binding pointAProperty}" />
+                                    <DataGridTextColumn Header="pointB" Binding="{Binding pointAProperty}" />
+                                    <DataGridTextColumn Header="pointC" Binding="{Binding pointAProperty}" />
+                                    <DataGridTextColumn Header="pointD" Binding="{Binding pointAProperty}" />
+                                    <DataGridTextColumn Header="superficie" Binding="{Binding superficieZoneProperty}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
 
+                <TabItem Header="Liste des Communes">
+                    <StackPanel>
+                        <Grid Margin="10">
+                            <DataGrid Name="listeCommunes" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listeCommunes_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="id" Binding="{Binding idCommuneProperty, Mode=OneWay}" />
+                                    <DataGridTextColumn Header="nom" Binding="{Binding nomCommuneProperty}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                        <!--<Button x:Name="supprimerCommuneButton" Content="Supprimer" Click="supprimerCommuneButton_Click" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>
+                        <Button x:Name="updateCommuneButton" Content="Modifier" MouseDoubleClick="updateCommuneButton_DoubleClick" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>-->
+                    </StackPanel>
+                </TabItem>
             </TabControl>
         </StackPanel>
     </DockPanel>
