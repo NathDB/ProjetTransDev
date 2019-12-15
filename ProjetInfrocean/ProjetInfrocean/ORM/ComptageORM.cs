@@ -9,7 +9,7 @@ namespace ProjetInfrocean.ORM
         public static ComptageViewModel getComptage(int idComptage)
         {
             ComptageDAO cpDAO = ComptageDAO.getComptage(idComptage);
-            ComptageViewModel cp = new ComptageViewModel(+1, cpDAO.idZoneComptageDAO, cpDAO.idEspeceComptageDAO, cpDAO.populationComptageDAO);
+            ComptageViewModel cp = new ComptageViewModel(cpDAO.idZoneComptageDAO, cpDAO.idEspeceComptageDAO, cpDAO.populationComptageDAO);
             return cp;
         }
 
@@ -19,7 +19,7 @@ namespace ProjetInfrocean.ORM
             ObservableCollection<ComptageViewModel> l = new ObservableCollection<ComptageViewModel>();
             foreach (ComptageDAO element in lDAO)
             {                
-                ComptageViewModel cp = new ComptageViewModel(+1, element.idZoneComptageDAO, element.idEspeceComptageDAO, element.populationComptageDAO);
+                ComptageViewModel cp = new ComptageViewModel(element.idZoneComptageDAO, element.idEspeceComptageDAO, element.populationComptageDAO);
                 l.Add(cp);
             }
             return l;
@@ -29,7 +29,7 @@ namespace ProjetInfrocean.ORM
         
         public static void updateComptage(ComptageViewModel cp)
         {
-            ComptageDAO.updateComptage(new ComptageDAO(cpDAO.idZoneComptageDAO, cpDAO.idEspeceComptageDAO, cpDAO.populationComptageDAO));
+            ComptageDAO.updateComptage(new ComptageDAO(cp.idZoneComptageProperty, cp.idEspeceComptageProperty, cp.populationComptageProperty));
         }
 
         public static void supprimerComptage(int id)

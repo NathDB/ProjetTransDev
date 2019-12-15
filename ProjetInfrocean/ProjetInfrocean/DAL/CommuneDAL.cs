@@ -67,7 +67,7 @@ namespace ProjetInfrocean.DAL
         public static int getMaxIdCommune()
         {
             string query = "SELECT MAX(idCommune) FROM commune;";
-            MySqlCommand cmdCom = new MySqlCommand(query, connection);
+            MySqlCommand cmdCom = new MySqlCommand(query, DalConnexion.connection);
             cmdCom.ExecuteNonQuery();
 
             MySqlDataReader reader = cmdCom.ExecuteReader();

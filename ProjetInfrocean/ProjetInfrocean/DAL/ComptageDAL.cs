@@ -30,7 +30,7 @@ namespace ProjetInfrocean.DAL
 
                 while (reader.Read())
                 {
-                    ComptageDAO cp = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2));
+                    ComptageDAO cp = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
                     l.Add(cp);
                 }
                 reader.Close();
@@ -44,7 +44,7 @@ namespace ProjetInfrocean.DAL
         public static void insertComptage(ComptageDAO cp)
         {
             int id = getMaxIdComptage() + 1;
-            string query = "INSERT INTO comptage VALUES (\"" + id + "\",\"" + cp.idZoneComptageDAO + "\",\"" + cp.idEtudeComptageDAO + "\",\"" + cp.populationComptageDAO + "\");";
+            string query = "INSERT INTO comptage VALUES (\"" + id + "\",\"" + cp.idZoneComptageDAO + "\",\"" + cp.idEspeceComptageDAO + "\",\"" + cp.populationComptageDAO + "\");";
             MySqlCommand cmd2Comp = new MySqlCommand(query, DalConnexion.connection);
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmd2Comp);
             cmd2Comp.ExecuteNonQuery();
@@ -52,7 +52,7 @@ namespace ProjetInfrocean.DAL
 
         public static void updateComptage(ComptageDAO cp)
         {
-            string query = "UPDATE Comptage set populationComptage=\"" + cp.populationComptageDAO;
+            string query = "UPDATE comptage set populationComptage=\"" + cp.populationComptageDAO;
             MySqlCommand cmdComp = new MySqlCommand(query, connection);
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdComp);
             cmdComp.ExecuteNonQuery();
@@ -60,14 +60,14 @@ namespace ProjetInfrocean.DAL
 
         public static void supprimerComptage(int id)
         {
-            string query = "DELETE FROM Comptage WHERE idComptage = \"" + id + "\";";
+            string query = "DELETE FROM comptage WHERE idComptage = \"" + id + "\";";
             MySqlCommand cmdComp = new MySqlCommand(query, DalConnexion.connection);
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdComp);
             cmdComp.ExecuteNonQuery();
         }
         public static int getMaxIdComptage()
         {
-            string query = "SELECT MAX(idComptage) FROM Comptage;";
+            string query = "SELECT MAX(idComptage) FROM comptage;";
             MySqlCommand cmdComp = new MySqlCommand(query, DalConnexion.connection);
             cmdComp.ExecuteNonQuery();
 
@@ -80,12 +80,12 @@ namespace ProjetInfrocean.DAL
 
         public static ComptageDAO getComptage(int idComptage)
         {
-            string query = "SELECT * FROM Comptage WHERE id="+idComptage+";";
+            string query = "SELECT * FROM comptage WHERE id="+idComptage+";";
             MySqlCommand cmdComp = new MySqlCommand(query, connection);
             cmdComp.ExecuteNonQuery();
             MySqlDataReader reader = cmdComp.ExecuteReader();
             reader.Read();
-            ComptageDAO comptage = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2));
+            ComptageDAO comptage = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
             reader.Close();
             return comptage;
         }

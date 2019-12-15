@@ -12,10 +12,10 @@ namespace ProjetInfrocean.DAO
     {
         public int idEtudeDAO;
         public string titreEtudeDAO;
-        public string dateCreationEtudeDAO;
-        public string dateFinEtudeDAO;
+        public DateTime dateCreationEtudeDAO;
+        public DateTime dateFinEtudeDAO;
 
-        public EtudeDAO(int idEtudeDAO, string titreEtudeDAO, string dateCreationEtudeDAO, string dateFinEtudeDAO)
+        public EtudeDAO(int idEtudeDAO, string titreEtudeDAO, DateTime dateCreationEtudeDAO, DateTime dateFinEtudeDAO)
         {
             this.idEtudeDAO = idEtudeDAO;
             this.titreEtudeDAO = titreEtudeDAO;

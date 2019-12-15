@@ -11,6 +11,8 @@ using System.Collections.ObjectModel;
 using ProjetInfrocean.DAL;
 using ProjetInfrocean.ORM;
 using ProjetInfrocean.Ctrl;
+using System.Globalization;
+using System.Threading;
 
 namespace ProjetInfrocean
 {
@@ -50,6 +52,12 @@ namespace ProjetInfrocean
             lc = CommuneORM.listeCommunes();
             lpl = PlageORM.listePlages();
             lz = ZoneORM.listeZones();
+
+            //Conversion dateTime
+            CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+            culture.DateTimeFormat.ShortDatePattern = "yyyy-MM-dd";
+            culture.DateTimeFormat.LongTimePattern = "";
+            Thread.CurrentThread.CurrentCulture = culture;
 
             //LIEN AVEC la VIEW
             listePersonnes.ItemsSource = lp; // bind de la liste avec la source, permettant le binding.
@@ -160,6 +168,8 @@ namespace ProjetInfrocean
             myDataObjectPersonne = new PersonneViewModel();
             myDataObjectPersonne.nomPersonneProperty = nom.Text;
             myDataObjectPersonne.prenomPersonneProperty = prenom.Text;
+            myDataObjectPersonne.etudePersonneProperty = idEtude.SelectedItem;
+            myDataObjectPersonne.isAdminPersonneProperty = isAdmin.IsChecked;
 
            
             PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObjectPersonne.nomPersonneProperty, myDataObjectPersonne.prenomPersonneProperty, myDataObjectPersonne.etudePersonneProperty, myDataObjectPersonne.isAdminPersonneProperty);
@@ -172,8 +182,8 @@ namespace ProjetInfrocean
         {
             myDataObjectEtude = new EtudeViewModel();
             myDataObjectEtude.titreEtudeProperty = titre.Text;
-            myDataObjectEtude.dateCreationEtudeProperty = dateCrea.Text;
-            myDataObjectEtude.dateFinEtudeProperty = dateFin.Text;
+            myDataObjectEtude.dateCreationEtudeProperty = (DateTime)dateCrea.SelectedDate;
+            myDataObjectEtude.dateFinEtudeProperty = (DateTime)dateFin.SelectedDate;
 
 
             EtudeViewModel nouveau = new EtudeViewModel(+1, myDataObjectEtude.titreEtudeProperty, myDataObjectEtude.dateCreationEtudeProperty, myDataObjectEtude.dateFinEtudeProperty);
@@ -182,6 +192,15 @@ namespace ProjetInfrocean
             listeEtudes.Items.Refresh();
             MessageBox.Show("==>insert");
         }
+        //            dataPlage.Superficie = Convert.ToInt32(PlageSuperficie_Input.Text);
+
+        private string DateConvert(DateTime dateBrute)
+        {
+            string dateConvertie = dateBrute.Year + "-" + dateBrute.Month + "-" + dateBrute.Day;
+
+            return dateConvertie;
+        }
+
         private void ajoutPlageButton_Click(object sender, RoutedEventArgs e)
         {
             myDataObjectPlage = new PlageViewModel();

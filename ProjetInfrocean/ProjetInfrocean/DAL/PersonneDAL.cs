@@ -78,6 +78,7 @@ namespace ProjetInfrocean.DAL
             return maxIdPersonne;
         }
 
+
         public static PersonneDAO getPersonne(int idPersonne)
         {
             string query = "SELECT * FROM personne WHERE id="+idPersonne+";";

@@ -12,14 +12,15 @@ namespace ProjetInfrocean.Ctrl
     {
         private int idEtude;
         private string titreEtude;
-        private string dateCreationEtude;
-        private string dateFinEtude;
+        private DateTime dateCreationEtude;
+        private DateTime dateFinEtude;
 
+       
         public EtudeViewModel()
         {
 
         }
-        public EtudeViewModel(int idEtude, string titre, string dateCrea, string dateFin)
+        public EtudeViewModel(int idEtude, string titre, DateTime dateCrea, DateTime dateFin)
         {
             this.idEtude = idEtude;
             this.titreEtudeProperty = titre;
@@ -41,7 +42,7 @@ namespace ProjetInfrocean.Ctrl
             }
         }
 
-        public string dateCreationEtudeProperty
+        public DateTime dateCreationEtudeProperty
         {
             get { return dateCreationEtude; }
             set
@@ -50,7 +51,7 @@ namespace ProjetInfrocean.Ctrl
                 OnPropertyChanged("dateCreationEtudeProperty");
             }
         }
-        public string dateFinEtudeProperty
+        public DateTime dateFinEtudeProperty
         {
             get { return dateFinEtude; }
             set

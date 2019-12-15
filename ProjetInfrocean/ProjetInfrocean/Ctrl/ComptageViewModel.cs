@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjetInfrocean.Ctrl
 {
-    class ComptageViewModel
+    public class ComptageViewModel
     {
         
         private int idZoneComptage;
@@ -19,11 +19,11 @@ namespace ProjetInfrocean.Ctrl
 
         public ComptageViewModel() { }
 
-        public ComptageViewModel(int id, int Zone_idEtude, int Espece_idEspece, string population)
+        public ComptageViewModel(int Zone_idEtude, int Espece_idEspece, string population)
         {
             this.idZoneComptage = Zone_idEtude;
             this.idEspeceComptage = Espece_idEspece;
-            this.populationComptage = population;
+            this.populationComptageProperty = population;
             
         }
         public int idZoneComptageProperty

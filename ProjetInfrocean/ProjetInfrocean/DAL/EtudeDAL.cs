@@ -30,7 +30,7 @@ namespace ProjetInfrocean.DAL
 
                 while (reader.Read())
                 {
-                    EtudeDAO e = new EtudeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    EtudeDAO e = new EtudeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2), reader.GetDateTime(3));
                     liste.Add(e);
                 }
                 reader.Close();
@@ -67,7 +67,7 @@ namespace ProjetInfrocean.DAL
         public static int getMaxIdEtude()
         {
             string query = "SELECT MAX(idEtude) FROM etude;";
-            MySqlCommand cmdEtu = new MySqlCommand(query, connection);
+            MySqlCommand cmdEtu = new MySqlCommand(query, DalConnexion.connection);
             cmdEtu.ExecuteNonQuery();
 
             MySqlDataReader reader = cmdEtu.ExecuteReader();
@@ -84,7 +84,7 @@ namespace ProjetInfrocean.DAL
             cmdEtu.ExecuteNonQuery();
             MySqlDataReader reader = cmdEtu.ExecuteReader();
             reader.Read();
-            EtudeDAO etu = new EtudeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+            EtudeDAO etu = new EtudeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2), reader.GetDateTime(3));
             reader.Close();
             return etu;
         }

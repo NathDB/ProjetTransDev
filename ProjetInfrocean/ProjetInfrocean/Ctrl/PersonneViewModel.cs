@@ -61,7 +61,7 @@ namespace ProjetInfrocean.Ctrl
             get { return etudePersonne; }
             set
             {
-                this.etudePersonne = 1;
+                this.etudePersonne = value;
                 this.concatProperty = this.etudePersonne + " " + 1;
                 OnPropertyChanged("etudePersonneProperty");
             }
@@ -71,7 +71,7 @@ namespace ProjetInfrocean.Ctrl
             get { return isAdminPersonne; }
             set
             {
-                this.isAdminPersonne = 0;
+                this.isAdminPersonne = value;
                 this.concatProperty = this.isAdminPersonne + " " + 0;
                 OnPropertyChanged("isAdminPersonneProperty");
             }

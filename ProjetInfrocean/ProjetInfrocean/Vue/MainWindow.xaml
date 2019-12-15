@@ -34,7 +34,13 @@
                             
                             <Label Content="Prénom"></Label>
                             <TextBox Name="prenom" Height="20" Margin="0,0,0.300,0" />
-
+                            <Label Content="Etude :">
+                            </Label>
+                            <CheckBox IsChecked="True" Name="idEtude" Height="20" Margin="0,0,0.300,0" />
+                            
+                            <Label Content="Est administrateur :"></Label>
+                            <CheckBox Name="isAdmin" Height="20" Margin="0,0,0.300,0" />
+                            
                             <Button x:Name="ajoutPersonneButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0.5,2.31" Click="ajoutPersonneButton_Click" ></Button>
                         </StackPanel>
                     </Grid>
@@ -51,10 +57,10 @@
                             <TextBox Name="titre" Height="20"/>
 
                             <Label Content="Date Création"></Label>
-                            <TextBox Name="dateCrea" Height="20" Margin="0,0,0.300,0" />
+                            <DatePicker Name="dateCrea" Height="20" Margin="0,0,0.300,0" />
 
                             <Label Content="Date de Fin"></Label>
-                            <TextBox Name="dateFin" Height="20" Margin="0,0,0.300,0" />
+                            <DatePicker Name="dateFin" Height="20" Margin="0,0,0.300,0" />
                             <Button x:Name="ajoutEtudeButton" Content="Créer" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Margin="0,5,261,0" HorizontalAlignment="Right" Width="275" RenderTransformOrigin="0.5,2.31" Click="ajoutEtudeButton_Click" />
                         </StackPanel>
                     </Grid>
