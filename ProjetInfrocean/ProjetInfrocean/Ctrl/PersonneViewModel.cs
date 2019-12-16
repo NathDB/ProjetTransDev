@@ -14,21 +14,20 @@ namespace ProjetInfrocean.Ctrl
         private int idPersonne;
         private string nomPersonne;
         private string prenomPersonne;
-        private int etudePersonne;
+        private EtudeViewModel etudePersonne;
         private int isAdminPersonne;
         //private string concat;
         
 
         public PersonneViewModel() { }
 
-        public PersonneViewModel(int id, string nom, string prenom, int Etude_idEtude, int isAdmin)
+        public PersonneViewModel(int id, string nom, string prenom, int isAdmin, EtudeViewModel etudePersonneProperty)
         {
             this.idPersonne = id;
             this.nomPersonneProperty = nom;
             this.prenomPersonneProperty = prenom;
-            this.etudePersonneProperty = Etude_idEtude;
             this.isAdminPersonneProperty = isAdmin;
-            
+            this.etudePersonneProperty = etudePersonneProperty;
         }
         public int idPersonneProperty
         {
@@ -56,13 +55,12 @@ namespace ProjetInfrocean.Ctrl
                 OnPropertyChanged("prenomPersonneProperty");
             }
         }
-        public int etudePersonneProperty
+        public EtudeViewModel etudePersonneProperty
         {
             get { return etudePersonne; }
             set
             {
                 this.etudePersonne = value;
-                this.concatProperty = this.etudePersonne + " " + 1;
                 OnPropertyChanged("etudePersonneProperty");
             }
         }
@@ -71,8 +69,7 @@ namespace ProjetInfrocean.Ctrl
             get { return isAdminPersonne; }
             set
             {
-                this.isAdminPersonne = value;
-                this.concatProperty = this.isAdminPersonne + " " + 0;
+                this.isAdminPersonne =value;
                 OnPropertyChanged("isAdminPersonneProperty");
             }
         }

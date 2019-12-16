@@ -10,28 +10,32 @@ namespace ProjetInfrocean.Ctrl
 {
     public class ComptageViewModel
     {
-        
-        private int idZoneComptage;
-        private int idEspeceComptage;
+        private int idComptage;
+        private ZoneViewModel idZoneComptage;
+        private EspeceViewModel idEspeceComptage;
         private string populationComptage;
-        
-        
 
         public ComptageViewModel() { }
 
-        public ComptageViewModel(int Zone_idEtude, int Espece_idEspece, string population)
+        public ComptageViewModel(int id, ZoneViewModel idZoneProperty, EspeceViewModel idEspeceProperty, string population)
         {
-            this.idZoneComptage = Zone_idEtude;
-            this.idEspeceComptage = Espece_idEspece;
+            this.idComptage = id;
+            this.idZoneComptage = idZoneProperty;
+            this.idEspeceComptage = idEspeceProperty;
             this.populationComptageProperty = population;
             
         }
-        public int idZoneComptageProperty
+        public int idComptageProperty
+        {
+            get { return idComptage; }
+        }
+
+        public ZoneViewModel idZoneProperty
         {
             get { return idZoneComptage; }
         }
 
-        public int idEspeceComptageProperty
+        public EspeceViewModel idEspeceProperty
         {
             get { return idEspeceComptage; }
             

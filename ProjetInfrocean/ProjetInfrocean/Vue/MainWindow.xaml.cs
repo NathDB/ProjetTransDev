@@ -26,18 +26,21 @@ namespace ProjetInfrocean
         int selectedPlageId;
         int selectedCommuneId;
         int selectedZoneId;
+        int selectedComptageId;
 
         PersonneViewModel myDataObjectPersonne; // Objet de liaison
         EtudeViewModel myDataObjectEtude; // Objet de liaison
         PlageViewModel myDataObjectPlage; // Objet de liaison
         CommuneViewModel myDataObjectCommune; // Objet de liaison
         ZoneViewModel myDataObjectZone; // Objet de liaison
+        ComptageViewModel myDataObjectComptage; // Objet de liaison
 
         ObservableCollection<PersonneViewModel> lp;
         ObservableCollection<EtudeViewModel> le;
         ObservableCollection<CommuneViewModel> lc;
         ObservableCollection<PlageViewModel> lpl;
         ObservableCollection<ZoneViewModel> lz;
+        ObservableCollection<ComptageViewModel> lcomp;
 
         int compteur = 0;
 
@@ -52,18 +55,29 @@ namespace ProjetInfrocean
             lc = CommuneORM.listeCommunes();
             lpl = PlageORM.listePlages();
             lz = ZoneORM.listeZones();
+            lcomp = ComptageORM.listeComptages();
 
             //Conversion dateTime
             CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
             culture.DateTimeFormat.ShortDatePattern = "yyyy-MM-dd";
             culture.DateTimeFormat.LongTimePattern = "";
             Thread.CurrentThread.CurrentCulture = culture;
-
+            //MessageBox.Show()
             //LIEN AVEC la VIEW
             listePersonnes.ItemsSource = lp; // bind de la liste avec la source, permettant le binding.
             listeEtudes.ItemsSource = le;
             listePlages.ItemsSource = lpl;
             listeZones.ItemsSource = lz;
+            listeComptages.ItemsSource = lcomp;
+
+            choixEtudesZones.ItemsSource = le;
+            choixComptages.ItemsSource = lcomp;
+            choixPlages.ItemsSource = lpl;
+
+
+            //Récupération titre étude avec requete
+            
+
             // this.DataContext = lp; // bind de la liste avec la source, permettant le binding mais de façon globale sur toute la fenetre
         }
         public void prenomChanged(object sender, TextChangedEventArgs e)
@@ -87,7 +101,7 @@ namespace ProjetInfrocean
             myDataObjectPersonne.prenomPersonneProperty = prenom.Text;
 
 
-            PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObjectPersonne.nomPersonneProperty, myDataObjectPersonne.prenomPersonneProperty, myDataObjectPersonne.etudePersonneProperty, myDataObjectPersonne.isAdminPersonneProperty);
+            PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObjectPersonne.nomPersonneProperty, myDataObjectPersonne.prenomPersonneProperty, myDataObjectPersonne.isAdminPersonneProperty, myDataObjectPersonne.etudePersonneProperty);
             lp.Add(nouveau);
             PersonneORM.updatePersonne(nouveau);
             listePersonnes.Items.Refresh();
@@ -135,11 +149,19 @@ namespace ProjetInfrocean
         }
         private void listeEtudes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if ((listeEtudes.SelectedIndex < lp.Count) && (listeEtudes.SelectedIndex >= 0))
+            if ((listeEtudes.SelectedIndex < le.Count) && (listeEtudes.SelectedIndex >= 0))
             {
                 selectedEtudeId = (le.ElementAt<EtudeViewModel>(listeEtudes.SelectedIndex)).idEtudeProperty;
             }
         }
+        private void listeComptages_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((listeComptages.SelectedIndex < lcomp.Count) && (listeComptages.SelectedIndex >= 0))
+            {
+                selectedComptageId = (lcomp.ElementAt<ComptageViewModel>(listeComptages.SelectedIndex)).idComptageProperty;
+            }
+        }
+
         private void listePlages_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if ((listePlages.SelectedIndex < lp.Count) && (listePlages.SelectedIndex >= 0))
@@ -165,19 +187,43 @@ namespace ProjetInfrocean
         //FONCTIONS AJOUTER AU CLICK
         private void ajoutPersonneButton_Click(object sender, RoutedEventArgs e)
         {
+            //Sélection isAdmin
+            int check;
+            if(isAdmin.IsChecked == true)
+            {
+                check = 0;
+
+            }
+            else
+            {
+                check = 1;
+            }
+
+            /*Sélection idEtude
+            int selected;
+            if (isAdmin.IsChecked == true)
+            {
+                selected = 0;
+
+            }
+            else
+            {
+                selected = 1;
+            }*/
             myDataObjectPersonne = new PersonneViewModel();
             myDataObjectPersonne.nomPersonneProperty = nom.Text;
             myDataObjectPersonne.prenomPersonneProperty = prenom.Text;
-            myDataObjectPersonne.etudePersonneProperty = idEtude.SelectedItem;
-            myDataObjectPersonne.isAdminPersonneProperty = isAdmin.IsChecked;
+            myDataObjectPersonne.etudePersonneProperty = (EtudeViewModel)choixEtudes.SelectedItem;
+            myDataObjectPersonne.isAdminPersonneProperty = check;
 
-           
-            PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObjectPersonne.nomPersonneProperty, myDataObjectPersonne.prenomPersonneProperty, myDataObjectPersonne.etudePersonneProperty, myDataObjectPersonne.isAdminPersonneProperty);
+            
+            PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObjectPersonne.nomPersonneProperty, myDataObjectPersonne.prenomPersonneProperty, myDataObjectPersonne.isAdminPersonneProperty, myDataObjectPersonne.etudePersonneProperty);
             lp.Add(nouveau);
             PersonneORM.insertPersonne(nouveau);
             listePersonnes.Items.Refresh();
             MessageBox.Show("==>insert");
         }
+        
         private void ajoutEtudeButton_Click(object sender, RoutedEventArgs e)
         {
             myDataObjectEtude = new EtudeViewModel();
@@ -220,10 +266,14 @@ namespace ProjetInfrocean
             myDataObjectZone.pointBProperty = pointB.Text;
             myDataObjectZone.pointCProperty = pointC.Text;
             myDataObjectZone.pointDProperty = pointD.Text;
+            myDataObjectZone.PlageProperty = (PlageViewModel)choixPlages.SelectedItem;
+            myDataObjectZone.idComptageProperty = (ComptageViewModel)choixComptages.SelectedItem;
+            myDataObjectZone.idEtudeProperty = (EtudeViewModel)choixEtudesZones.SelectedItem;
+
             //myDataObjectZone.superficieZoneProperty = superficie.Text;
 
 
-            ZoneViewModel nouveau = new ZoneViewModel(+1, myDataObjectZone.pointAProperty, myDataObjectZone.pointBProperty, myDataObjectZone.pointCProperty, myDataObjectZone.pointDProperty, myDataObjectZone.superficieZoneProperty, +1, +1, +1);
+            ZoneViewModel nouveau = new ZoneViewModel(+1, myDataObjectZone.pointAProperty, myDataObjectZone.pointBProperty, myDataObjectZone.pointCProperty, myDataObjectZone.pointDProperty, myDataObjectZone.superficieZoneProperty, myDataObjectZone.PlageProperty, myDataObjectZone.idComptageProperty, myDataObjectZone.idEtudeProperty);
             lz.Add(nouveau);
             ZoneORM.insertZone(nouveau);
             listeZones.Items.Refresh();
@@ -241,5 +291,6 @@ namespace ProjetInfrocean
             MessageBox.Show("==>insert");
         }
 
+       
     }
 }

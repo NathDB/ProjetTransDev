@@ -79,8 +79,8 @@ namespace ProjetInfrocean.DAL
 
         public static EtudeDAO getEtude(int idEtude)
         {
-            string query = "SELECT * FROM etude WHERE id=" + idEtude + ";";
-            MySqlCommand cmdEtu = new MySqlCommand(query, connection);
+            string query = "SELECT * FROM etude WHERE idEtude=" + idEtude + ";";
+            MySqlCommand cmdEtu = new MySqlCommand(query, DalConnexion.connection);
             cmdEtu.ExecuteNonQuery();
             MySqlDataReader reader = cmdEtu.ExecuteReader();
             reader.Read();

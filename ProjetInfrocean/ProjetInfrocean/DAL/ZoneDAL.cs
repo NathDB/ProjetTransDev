@@ -79,8 +79,8 @@ namespace ProjetInfrocean.DAL
 
         public static ZoneDAO getZone(int idZone)
         {
-            string query = "SELECT * FROM zone WHERE id=" + idZone + ";";
-            MySqlCommand cmdZone = new MySqlCommand(query, connection);
+            string query = "SELECT * FROM zone WHERE idZone=" + idZone + ";";
+            MySqlCommand cmdZone = new MySqlCommand(query, DalConnexion.connection);
             cmdZone.ExecuteNonQuery();
             MySqlDataReader reader = cmdZone.ExecuteReader();
             reader.Read();

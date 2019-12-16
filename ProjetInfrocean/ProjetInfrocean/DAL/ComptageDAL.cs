@@ -30,7 +30,7 @@ namespace ProjetInfrocean.DAL
 
                 while (reader.Read())
                 {
-                    ComptageDAO cp = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
+                    ComptageDAO cp = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3));
                     l.Add(cp);
                 }
                 reader.Close();
@@ -81,11 +81,11 @@ namespace ProjetInfrocean.DAL
         public static ComptageDAO getComptage(int idComptage)
         {
             string query = "SELECT * FROM comptage WHERE id="+idComptage+";";
-            MySqlCommand cmdComp = new MySqlCommand(query, connection);
+            MySqlCommand cmdComp = new MySqlCommand(query, DalConnexion.connection);
             cmdComp.ExecuteNonQuery();
             MySqlDataReader reader = cmdComp.ExecuteReader();
             reader.Read();
-            ComptageDAO comptage = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
+            ComptageDAO comptage = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3));
             reader.Close();
             return comptage;
         }

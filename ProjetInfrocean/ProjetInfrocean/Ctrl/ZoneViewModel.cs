@@ -16,13 +16,13 @@ namespace ProjetInfrocean.Ctrl
         private string pointC;
         private string pointD;
         private int superficieZone;
-        private int idPlageZone;
-        private int idComptageZone;
-        private int idEtudeZone;
+        private PlageViewModel idPlageZone;
+        private ComptageViewModel idComptageZone;
+        private EtudeViewModel idEtudeZone;
 
         public ZoneViewModel(){}
 
-        public ZoneViewModel(int idZone, string pointA, string pointB, string pointC, string pointD, int superficie, int Plage_idPlage, int Comptage_idComptage, int Etude_idEtude1)
+        public ZoneViewModel(int idZone, string pointA, string pointB, string pointC, string pointD, int superficie, PlageViewModel idPlageProperty, ComptageViewModel idComptageProperty, EtudeViewModel idEtudeProperty)
         {
             this.idZone = idZone;
             this.pointA = pointA;
@@ -30,9 +30,9 @@ namespace ProjetInfrocean.Ctrl
             this.pointC = pointC;
             this.pointD = pointD;
             this.superficieZone = superficie;
-            this.idPlageZone = Plage_idPlage;
-            this.idComptageZone = Comptage_idComptage;
-            this.idEtudeZone = Etude_idEtude1;
+            this.idPlageZone = idPlageProperty;
+            this.idComptageZone = idComptageProperty;
+            this.idEtudeZone = idEtudeProperty;
             
         }
 
@@ -86,7 +86,7 @@ namespace ProjetInfrocean.Ctrl
                 OnPropertyChanged("superficieZoneProperty");
             }
         }
-        public int idPlageZoneProperty
+        public PlageViewModel PlageProperty
         {
             get { return idPlageZone; }
             set
@@ -95,7 +95,7 @@ namespace ProjetInfrocean.Ctrl
                 OnPropertyChanged("idPlageZoneProperty");
             }
         }
-        public int idComptageZoneProperty
+        public ComptageViewModel idComptageProperty
         {
             get { return idComptageZone; }
             set
@@ -104,7 +104,7 @@ namespace ProjetInfrocean.Ctrl
                 OnPropertyChanged("idComptageProperty");
             }
         }
-        public int idEtudeZoneProperty
+        public EtudeViewModel idEtudeProperty
         {
             get { return idEtudeZone; }
             set

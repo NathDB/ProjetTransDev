@@ -104,6 +104,9 @@
     <Compile Include="ORM\EtudeORM.cs" />
     <Compile Include="ORM\PlageORM.cs" />
     <Compile Include="ORM\PersonneORM.cs" />
+    <Compile Include="Vue\PersonneWindow.xaml.cs">
+      <DependentUpon>PersonneWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vue\WindowUpdate.xaml.cs">
       <DependentUpon>WindowUpdate.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Vue\PersonneWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vue\WindowUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -10,12 +10,14 @@ namespace ProjetInfrocean.DAO
 {
     public class ComptageDAO
     {
+        public int idComptageDAO;
         public int idZoneComptageDAO;
         public int idEspeceComptageDAO;
         public string populationComptageDAO;
         
-        public ComptageDAO(int idZoneComptageDAO, int idEspeceComptageDAO, string populationComptageDAO)
+        public ComptageDAO(int idComptageDAO, int idZoneComptageDAO, int idEspeceComptageDAO, string populationComptageDAO)
         {
+            this.idZoneComptageDAO = idComptageDAO;
             this.idZoneComptageDAO = idZoneComptageDAO;
             this.idEspeceComptageDAO = idEspeceComptageDAO;
             this.populationComptageDAO = populationComptageDAO;

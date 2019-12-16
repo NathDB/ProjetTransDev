@@ -82,8 +82,8 @@ namespace ProjetInfrocean.DAL
 
         public static PlageDAO getPlage(int idPlage)
         {
-            string query = "SELECT * FROM plage WHERE id="+idPlage+";";
-            MySqlCommand cmdPlage = new MySqlCommand(query, connection);
+            string query = "SELECT * FROM plage WHERE idPlage="+idPlage+";";
+            MySqlCommand cmdPlage = new MySqlCommand(query, DalConnexion.connection);
             cmdPlage.ExecuteNonQuery();
             MySqlDataReader reader = cmdPlage.ExecuteReader();
             reader.Read();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjetInfrocean.Ctrl
 {
-    class PlageViewModel
+    public class PlageViewModel
     {
         
         private int idPlage;

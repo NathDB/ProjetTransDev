@@ -41,6 +41,13 @@ namespace ProjetInfrocean.DAL
             }
             return l;
         }
+        public static void getEtudeFaite(PersonneDAO p)
+        { 
+            string query = "SELECT titre FROM etude e join personne p on p.idEtude=e.id";
+            MySqlCommand cmd2Pers = new MySqlCommand(query, DalConnexion.connection);
+            MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmd2Pers);
+            cmd2Pers.ExecuteNonQuery();
+        }
         public static void insertPersonne(PersonneDAO p)
         {
             int id = getMaxIdPersonne() + 1;

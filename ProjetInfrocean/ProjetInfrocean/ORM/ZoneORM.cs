@@ -14,7 +14,7 @@ namespace ProjetInfrocean.ORM
         public static ZoneViewModel getZone(int idZone)
         {
             ZoneDAO zDAO = ZoneDAO.getZone(idZone);
-            ZoneViewModel z = new ZoneViewModel(zDAO.idZoneDAO, zDAO.pointADAO, zDAO.pointBDAO, zDAO.pointCDAO, zDAO.pointDDAO, zDAO.superficieZoneDAO, zDAO.idPlageZoneDAO, zDAO.idComptageZoneDAO, zDAO.idEtudeZoneDAO);
+            ZoneViewModel z = new ZoneViewModel(zDAO.idZoneDAO, zDAO.pointADAO, zDAO.pointBDAO, zDAO.pointCDAO, zDAO.pointDDAO, zDAO.superficieZoneDAO, PlageORM.getPlage(zDAO.idPlageZoneDAO), ComptageORM.getComptage(zDAO.idComptageZoneDAO), EtudeORM.getEtude(zDAO.idEtudeZoneDAO));
             return z;
         }
 
@@ -24,7 +24,7 @@ namespace ProjetInfrocean.ORM
             ObservableCollection<ZoneViewModel> liste = new ObservableCollection<ZoneViewModel>();
             foreach(ZoneDAO element in listeDAO)
             {
-                ZoneViewModel z = new ZoneViewModel(element.idZoneDAO, element.pointADAO, element.pointBDAO, element.pointCDAO, element.pointDDAO, element.superficieZoneDAO, element.idPlageZoneDAO, element.idComptageZoneDAO, element.idEtudeZoneDAO);
+                ZoneViewModel z = new ZoneViewModel(element.idZoneDAO, element.pointADAO, element.pointBDAO, element.pointCDAO, element.pointDDAO, element.superficieZoneDAO, PlageORM.getPlage(element.idPlageZoneDAO), ComptageORM.getComptage(element.idComptageZoneDAO), EtudeORM.getEtude(element.idEtudeZoneDAO));
                 liste.Add(z);
             }
             return liste;
@@ -32,7 +32,7 @@ namespace ProjetInfrocean.ORM
 
         public static void updateZone(ZoneViewModel z)
         {
-            ZoneDAO.updateEtude(new ZoneDAO(z.idZoneProperty, z.pointAProperty, z.pointBProperty, z.pointCProperty, z.pointDProperty, z.superficieZoneProperty, z.idPlageZoneProperty, z.idComptageZoneProperty, z.idEtudeZoneProperty));
+            ZoneDAO.updateEtude(new ZoneDAO(z.idZoneProperty, z.pointAProperty, z.pointBProperty, z.pointCProperty, z.pointDProperty, z.superficieZoneProperty, z.PlageProperty.idPlageProperty, z.idComptageProperty.idComptageProperty, z.idEtudeProperty.idEtudeProperty));
         }
         public static void supprimerZone(int id)
         {
@@ -40,7 +40,8 @@ namespace ProjetInfrocean.ORM
         }
         public static void insertZone(ZoneViewModel z)
         {
-            ZoneDAO.insertEtude(new ZoneDAO(z.idZoneProperty, z.pointAProperty, z.pointBProperty, z.pointCProperty, z.pointDProperty, z.superficieZoneProperty, z.idPlageZoneProperty, z.idComptageZoneProperty, z.idEtudeZoneProperty));
+            ZoneDAO.insertEtude(new ZoneDAO(z.idZoneProperty, z.pointAProperty, z.pointBProperty,
+                z.pointCProperty, z.pointDProperty, z.superficieZoneProperty, z.PlageProperty.idPlageProperty,z.idComptageProperty.idComptageProperty, z.idEtudeProperty.idEtudeProperty));
         }
     }
 }
