@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetInfrocean"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -20,7 +20,7 @@
         <TextBox AcceptsReturn="True" />
         <StackPanel >
 
-            <TabControl Margin="0,0,0,0" Height="394">
+            <TabControl Margin="0,0,0,0" Height="500">
                 <TabItem Header="Ajouter une personne">
                     <Grid Name ="gridAjoutPersonne" Height="300" Margin="0,0,0.300,0" VerticalAlignment="Top">
                         <Grid.ColumnDefinitions>
@@ -127,6 +127,20 @@
                                     <DataTemplate>
                                         <StackPanel>
                                             <TextBlock Text="{Binding nomPlageProperty}"></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Label Content="Comptage :"></Label>
+                            <ComboBox Name="choixComptagesZones" ItemsSource="{Binding}" HorizontalAlignment="Left" 
+                                Grid.ColumnSpan="2" 
+                                Margin="150,5,206.333,0" Width="400"
+                                BorderBrush="Black"
+                                Background="#FFA4A4A4">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding idComptageProperty}"></TextBlock>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>

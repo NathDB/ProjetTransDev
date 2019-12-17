@@ -15,7 +15,7 @@ namespace ProjetInfrocean.DAL
         private static MySqlConnection connection;
         public PersonneDAL()
         {
-            //  si la connexion est déjà ouverte, il ne la refera pas (voir code dans DALConnection)
+            DalConnexion.OpenConnection();
             connection = DalConnexion.connection;
         }
         public static ObservableCollection<PersonneDAO> selectPersonnes()
@@ -41,13 +41,13 @@ namespace ProjetInfrocean.DAL
             }
             return l;
         }
-        public static void getEtudeFaite(PersonneDAO p)
+        /*public static void getEtudeFaite(PersonneDAO p)
         { 
             string query = "SELECT titre FROM etude e join personne p on p.idEtude=e.id";
             MySqlCommand cmd2Pers = new MySqlCommand(query, DalConnexion.connection);
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmd2Pers);
             cmd2Pers.ExecuteNonQuery();
-        }
+        }*/
         public static void insertPersonne(PersonneDAO p)
         {
             int id = getMaxIdPersonne() + 1;
@@ -60,7 +60,7 @@ namespace ProjetInfrocean.DAL
         public static void updatePersonne(PersonneDAO p)
         {
             string query = "UPDATE personne set nomPersonne=\"" + p.nomPersonneDAO + "\", prenomPersonne=\"" + p.prenomPersonneDAO;
-            MySqlCommand cmdPers = new MySqlCommand(query, connection);
+            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.connection);
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPers);
             cmdPers.ExecuteNonQuery();
         }
@@ -89,7 +89,7 @@ namespace ProjetInfrocean.DAL
         public static PersonneDAO getPersonne(int idPersonne)
         {
             string query = "SELECT * FROM personne WHERE id="+idPersonne+";";
-            MySqlCommand cmdPers = new MySqlCommand(query, connection);
+            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.connection);
             cmdPers.ExecuteNonQuery();
             MySqlDataReader reader = cmdPers.ExecuteReader();
             reader.Read();

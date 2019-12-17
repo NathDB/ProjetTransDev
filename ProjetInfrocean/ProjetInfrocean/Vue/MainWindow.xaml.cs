@@ -70,8 +70,9 @@ namespace ProjetInfrocean
             listeZones.ItemsSource = lz;
             listeComptages.ItemsSource = lcomp;
 
+            choixEtudes.ItemsSource = le;
             choixEtudesZones.ItemsSource = le;
-            choixComptages.ItemsSource = lcomp;
+            choixComptagesZones.ItemsSource = lcomp;
             choixPlages.ItemsSource = lpl;
 
 
@@ -267,7 +268,7 @@ namespace ProjetInfrocean
             myDataObjectZone.pointCProperty = pointC.Text;
             myDataObjectZone.pointDProperty = pointD.Text;
             myDataObjectZone.PlageProperty = (PlageViewModel)choixPlages.SelectedItem;
-            myDataObjectZone.idComptageProperty = (ComptageViewModel)choixComptages.SelectedItem;
+            myDataObjectZone.idComptageProperty = (ComptageViewModel)choixComptagesZones.SelectedItem;
             myDataObjectZone.idEtudeProperty = (EtudeViewModel)choixEtudesZones.SelectedItem;
 
             //myDataObjectZone.superficieZoneProperty = superficie.Text;

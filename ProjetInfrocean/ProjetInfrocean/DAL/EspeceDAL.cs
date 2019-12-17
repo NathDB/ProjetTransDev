@@ -35,7 +35,7 @@ namespace ProjetInfrocean.DAL
                 }
                 reader.Close();
             }
-            catch (Exception es)
+            catch (Exception e)
             {
                 MessageBox.Show("La base de données n'est pas connectée");
             }
