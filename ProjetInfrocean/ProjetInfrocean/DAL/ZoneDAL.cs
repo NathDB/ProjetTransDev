@@ -12,39 +12,38 @@ namespace ProjetInfrocean.DAL
 {
     public class ZoneDAL
     {
-        private static MySqlConnection connection;
 
         public ZoneDAL()
-        {
-            connection = DalConnexion.connection;
-        }
+        {}
         public static ObservableCollection<ZoneDAO> selectZones()
         {
             ObservableCollection<ZoneDAO> liste = new ObservableCollection<ZoneDAO>();
             string query = "SELECT * from zone;";
             MySqlCommand cmdEtu = new MySqlCommand(query, DalConnexion.OpenConnection());
+            MySqlDataReader reader=null;
             try
             {
                 cmdEtu.ExecuteNonQuery();
-                MySqlDataReader reader = cmdEtu.ExecuteReader();
+                reader = cmdEtu.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    ZoneDAO z = new ZoneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7), reader.GetInt32(8));
+                    ZoneDAO z = new ZoneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7));
                     liste.Add(z);
                 }
-                reader.Close();
             }
             catch (Exception e)
             {
-                MessageBox.Show("La base de données n'est pas connectée");
+                MessageBox.Show("zone : La base de données n'est pas connectée"+e.Message);
             }
+            reader.Close();
+
             return liste;
         }
         public static void updateZone(ZoneDAO z)
         {
             string query = "UPDATE zone set pointA=\"" + z.pointADAO + "\",  pointB = \"" + z.pointBDAO + "\",   pointC = \"" + z.pointCDAO + "\",   pointD = \"" + z.pointDDAO + "\",  superficieZone = \"" + z.superficieZoneDAO + ";";
-            MySqlCommand cmdZone = new MySqlCommand(query, connection);
+            MySqlCommand cmdZone = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdZone);
             cmdZone.ExecuteNonQuery();
         }
@@ -52,7 +51,7 @@ namespace ProjetInfrocean.DAL
         {
             int id = getMaxIdZone() + 1;
             string query = "INSERT INTO zone VALUES (\"" + id + "\",\"" + z.pointADAO + "\",\"" + z.pointBDAO + "\",\"" + z.pointCDAO + "\",\"" + z.pointDDAO + "\",\"" + z.superficieZoneDAO + "\");";
-            MySqlCommand cmd2Zone = new MySqlCommand(query, DalConnexion.connection);
+            MySqlCommand cmd2Zone = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmd2Zone);
             cmd2Zone.ExecuteNonQuery();
         }
@@ -60,14 +59,14 @@ namespace ProjetInfrocean.DAL
         public static void supprimerZone(int id)
         {
             string query = "DELETE FROM zone WHERE idZone = \"" + id + "\";";
-            MySqlCommand cmdZone = new MySqlCommand(query, DalConnexion.connection);
+            MySqlCommand cmdZone = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdZone);
             cmdZone.ExecuteNonQuery();
         }
         public static int getMaxIdZone()
         {
             string query = "SELECT MAX(idZone) FROM zone;";
-            MySqlCommand cmdZone = new MySqlCommand(query, connection);
+            MySqlCommand cmdZone = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdZone.ExecuteNonQuery();
 
             MySqlDataReader reader = cmdZone.ExecuteReader();
@@ -80,13 +79,13 @@ namespace ProjetInfrocean.DAL
         public static ZoneDAO getZone(int idZone)
         {
             string query = "SELECT * FROM zone WHERE idZone=" + idZone + ";";
-            MySqlCommand cmdZone = new MySqlCommand(query, DalConnexion.connection);
+            MySqlCommand cmdZone = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdZone.ExecuteNonQuery();
             MySqlDataReader reader = cmdZone.ExecuteReader();
             reader.Read();
-            ZoneDAO etu = new ZoneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7), reader.GetInt32(8));
+            ZoneDAO zone = new ZoneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7));
             reader.Close();
-            return etu;
+            return zone;
         }
     }
 }

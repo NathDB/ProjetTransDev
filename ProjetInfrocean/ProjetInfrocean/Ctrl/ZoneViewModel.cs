@@ -17,12 +17,11 @@ namespace ProjetInfrocean.Ctrl
         private string pointD;
         private int superficieZone;
         private PlageViewModel idPlageZone;
-        private ComptageViewModel idComptageZone;
         private EtudeViewModel idEtudeZone;
 
         public ZoneViewModel(){}
 
-        public ZoneViewModel(int idZone, string pointA, string pointB, string pointC, string pointD, int superficie, PlageViewModel idPlageProperty, ComptageViewModel idComptageProperty, EtudeViewModel idEtudeProperty)
+        public ZoneViewModel(int idZone, string pointA, string pointB, string pointC, string pointD, int superficie, PlageViewModel idPlageProperty, EtudeViewModel idEtudeProperty)
         {
             this.idZone = idZone;
             this.pointA = pointA;
@@ -31,7 +30,6 @@ namespace ProjetInfrocean.Ctrl
             this.pointD = pointD;
             this.superficieZone = superficie;
             this.idPlageZone = idPlageProperty;
-            this.idComptageZone = idComptageProperty;
             this.idEtudeZone = idEtudeProperty;
             
         }
@@ -95,15 +93,7 @@ namespace ProjetInfrocean.Ctrl
                 OnPropertyChanged("idPlageZoneProperty");
             }
         }
-        public ComptageViewModel idComptageProperty
-        {
-            get { return idComptageZone; }
-            set
-            {
-                idComptageZone = value;
-                OnPropertyChanged("idComptageProperty");
-            }
-        }
+        
         public EtudeViewModel idEtudeProperty
         {
             get { return idEtudeZone; }

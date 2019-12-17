@@ -12,11 +12,9 @@ namespace ProjetInfrocean.DAL
 {
     public class EspeceDAL
     {
-        private static MySqlConnection connection;
 
         public EspeceDAL()
         {
-            connection = DalConnexion.connection;
         }
         public static ObservableCollection<EspeceDAO> selectEspeces()
         {
@@ -37,14 +35,14 @@ namespace ProjetInfrocean.DAL
             }
             catch (Exception e)
             {
-                MessageBox.Show("La base de données n'est pas connectée");
+                MessageBox.Show("ESpece : La base de données n'est pas connectée" + e.Message);
             }
             return liste;
         }
         public static void updateEspece(EspeceDAO es)
         {
             string query = "UPDATE espece set nomEspece=\"" + es.nomEspeceDAO + "\",  quantiteEspece = \"" + es.quantiteEspeceDAO + ";";
-            MySqlCommand cmdEs = new MySqlCommand(query, connection);
+            MySqlCommand cmdEs = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdEs);
             cmdEs.ExecuteNonQuery();
         }
@@ -52,7 +50,7 @@ namespace ProjetInfrocean.DAL
         {
             int id = getMaxIdEspece() + 1;
             string query = "INSERT INTO espece VALUES (\"" + id + "\",\"" + es.nomEspeceDAO + "\",\"" + es.quantiteEspeceDAO + "\");";
-            MySqlCommand cmd2Es = new MySqlCommand(query, DalConnexion.connection);
+            MySqlCommand cmd2Es = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmd2Es);
             cmd2Es.ExecuteNonQuery();
         }
@@ -60,14 +58,14 @@ namespace ProjetInfrocean.DAL
         public static void supprimerEspece(int id)
         {
             string query = "DELETE FROM espece WHERE idEspece = \"" + id + "\";";
-            MySqlCommand cmdEs = new MySqlCommand(query, DalConnexion.connection);
+            MySqlCommand cmdEs = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdEs);
             cmdEs.ExecuteNonQuery();
         }
         public static int getMaxIdEspece()
         {
             string query = "SELECT MAX(idEspece) FROM espece;";
-            MySqlCommand cmdEs = new MySqlCommand(query, connection);
+            MySqlCommand cmdEs = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdEs.ExecuteNonQuery();
 
             MySqlDataReader reader = cmdEs.ExecuteReader();
@@ -79,8 +77,8 @@ namespace ProjetInfrocean.DAL
 
         public static EspeceDAO getEspece(int idEspece)
         {
-            string query = "SELECT * FROM espece WHERE id=" + idEspece + ";";
-            MySqlCommand cmdEs = new MySqlCommand(query, connection);
+            string query = "SELECT * FROM espece WHERE idEspece=" + idEspece + ";";
+            MySqlCommand cmdEs = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdEs.ExecuteNonQuery();
             MySqlDataReader reader = cmdEs.ExecuteReader();
             reader.Read();

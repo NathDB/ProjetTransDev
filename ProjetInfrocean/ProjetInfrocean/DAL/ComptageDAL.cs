@@ -12,11 +12,9 @@ namespace ProjetInfrocean.DAL
 {
     public class ComptageDAL
     {
-        private static MySqlConnection connection;
         public ComptageDAL()
         {
             //  si la connexion est déjà ouverte, il ne la refera pas (voir code dans DALConnection)
-            connection = DalConnexion.connection;
         }
         public static ObservableCollection<ComptageDAO> selectComptages()
         {
@@ -37,7 +35,7 @@ namespace ProjetInfrocean.DAL
             }
             catch (Exception e)
             {
-                MessageBox.Show("La base de données n'est pas connectée");
+                MessageBox.Show("comptage La base de données n'est pas connectée" + e.Message);
             }
             return l;
         }
@@ -53,7 +51,7 @@ namespace ProjetInfrocean.DAL
         public static void updateComptage(ComptageDAO cp)
         {
             string query = "UPDATE comptage set populationComptage=\"" + cp.populationComptageDAO;
-            MySqlCommand cmdComp = new MySqlCommand(query, connection);
+            MySqlCommand cmdComp = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdComp);
             cmdComp.ExecuteNonQuery();
         }

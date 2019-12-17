@@ -12,11 +12,8 @@ namespace ProjetInfrocean.DAL
 {
     public class PersonneDAL
     {
-        private static MySqlConnection connection;
         public PersonneDAL()
         {
-            DalConnexion.OpenConnection();
-            connection = DalConnexion.connection;
         }
         public static ObservableCollection<PersonneDAO> selectPersonnes()
         {
@@ -37,7 +34,7 @@ namespace ProjetInfrocean.DAL
             }
             catch (Exception e)
             {
-                MessageBox.Show("La base de données n'est pas connectée");
+                MessageBox.Show("Personne La base de données n'est pas connectée" + e.Message);
             }
             return l;
         }
@@ -52,7 +49,7 @@ namespace ProjetInfrocean.DAL
         {
             int id = getMaxIdPersonne() + 1;
             string query = "INSERT INTO personne VALUES (\"" + id + "\",\"" + p.nomPersonneDAO + "\",\"" + p.prenomPersonneDAO + "\",\"" + p.etudePersonneDAO + "\",\"" + p.isAdminPersonneDAO + "\");";
-            MySqlCommand cmd2Pers = new MySqlCommand(query, DalConnexion.connection);
+            MySqlCommand cmd2Pers = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmd2Pers);
             cmd2Pers.ExecuteNonQuery();
         }
@@ -60,7 +57,7 @@ namespace ProjetInfrocean.DAL
         public static void updatePersonne(PersonneDAO p)
         {
             string query = "UPDATE personne set nomPersonne=\"" + p.nomPersonneDAO + "\", prenomPersonne=\"" + p.prenomPersonneDAO;
-            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.connection);
+            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPers);
             cmdPers.ExecuteNonQuery();
         }
@@ -68,14 +65,14 @@ namespace ProjetInfrocean.DAL
         public static void supprimerPersonne(int id)
         {
             string query = "DELETE FROM personne WHERE idPersonne = \"" + id + "\";";
-            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.connection);
+            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPers);
             cmdPers.ExecuteNonQuery();
         }
         public static int getMaxIdPersonne()
         {
             string query = "SELECT MAX(idPersonne) FROM personne;";
-            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.connection);
+            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdPers.ExecuteNonQuery();
 
             MySqlDataReader reader = cmdPers.ExecuteReader();
@@ -89,7 +86,7 @@ namespace ProjetInfrocean.DAL
         public static PersonneDAO getPersonne(int idPersonne)
         {
             string query = "SELECT * FROM personne WHERE id="+idPersonne+";";
-            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.connection);
+            MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdPers.ExecuteNonQuery();
             MySqlDataReader reader = cmdPers.ExecuteReader();
             reader.Read();

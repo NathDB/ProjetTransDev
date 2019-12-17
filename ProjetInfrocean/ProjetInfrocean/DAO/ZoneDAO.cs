@@ -17,10 +17,9 @@ namespace ProjetInfrocean.DAO
         public string pointDDAO;
         public int superficieZoneDAO;
         public int idPlageZoneDAO;
-        public int idComptageZoneDAO;
         public int idEtudeZoneDAO;
 
-        public ZoneDAO(int idZoneDAO, string pointADAO, string pointBDAO, string pointCDAO, string pointDDAO, int superficieZoneDAO, int idPlageZoneDAO, int idComptageZoneDAO, int idEtudeZoneDAO)
+        public ZoneDAO(int idZoneDAO, string pointADAO, string pointBDAO, string pointCDAO, string pointDDAO, int superficieZoneDAO, int idPlageZoneDAO, int idEtudeZoneDAO)
         {
             this.idZoneDAO = idZoneDAO;
             this.pointADAO = pointADAO;
@@ -29,7 +28,6 @@ namespace ProjetInfrocean.DAO
             this.pointDDAO = pointDDAO;
             this.superficieZoneDAO = superficieZoneDAO;
             this.idPlageZoneDAO = idPlageZoneDAO;
-            this.idComptageZoneDAO = idComptageZoneDAO;
             this.idEtudeZoneDAO = idEtudeZoneDAO;
 
             

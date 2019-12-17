@@ -268,13 +268,12 @@ namespace ProjetInfrocean
             myDataObjectZone.pointCProperty = pointC.Text;
             myDataObjectZone.pointDProperty = pointD.Text;
             myDataObjectZone.PlageProperty = (PlageViewModel)choixPlages.SelectedItem;
-            myDataObjectZone.idComptageProperty = (ComptageViewModel)choixComptagesZones.SelectedItem;
             myDataObjectZone.idEtudeProperty = (EtudeViewModel)choixEtudesZones.SelectedItem;
 
             //myDataObjectZone.superficieZoneProperty = superficie.Text;
 
 
-            ZoneViewModel nouveau = new ZoneViewModel(+1, myDataObjectZone.pointAProperty, myDataObjectZone.pointBProperty, myDataObjectZone.pointCProperty, myDataObjectZone.pointDProperty, myDataObjectZone.superficieZoneProperty, myDataObjectZone.PlageProperty, myDataObjectZone.idComptageProperty, myDataObjectZone.idEtudeProperty);
+            ZoneViewModel nouveau = new ZoneViewModel(+1, myDataObjectZone.pointAProperty, myDataObjectZone.pointBProperty, myDataObjectZone.pointCProperty, myDataObjectZone.pointDProperty, myDataObjectZone.superficieZoneProperty, myDataObjectZone.PlageProperty, myDataObjectZone.idEtudeProperty);
             lz.Add(nouveau);
             ZoneORM.insertZone(nouveau);
             listeZones.Items.Refresh();
