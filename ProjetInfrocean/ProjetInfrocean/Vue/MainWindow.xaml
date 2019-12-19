@@ -13,7 +13,7 @@
             FontFamily="{DynamicResource MaterialDesignFont}"
             xmlns:local="clr-namespace:ProjetInfrocean"
             mc:Ignorable="d"
-            Title="MainWindow" Height="600" Width="800">
+            Title="MainWindow" Height="1500" Width="1500">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -173,9 +173,9 @@
                     </materialDesign:Card>
                 </TabItem>
                 <TabItem Header="COMMUNE">
-                    <materialDesign:Card Name ="cardAjoutCommune" Width="600" Height="400" Padding="19" Margin="0 20 0 0">
+                    <materialDesign:Card Name ="cardAjoutCommune" Width="800" Height="1500" Padding="19" Margin="0 20 0 0">
                         <StackPanel>
-                            <TextBlock Margin="16 2 12 2" FontSize="16"> LISTE DES PLAGES</TextBlock>
+                            <TextBlock Margin="16 2 12 2" FontSize="16"> LISTE DES COMMUNES</TextBlock>
                             <Separator Style="{StaticResource MaterialDesignLightSeparator}" Background="LightGray" />
                             <Grid Margin="10">
                                 <DataGrid  Style="{StaticResource MaterialDesignDataGrid}" Name="listeCommunes" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="164,0,0,0" BorderBrush="Black" Background="AliceBlue" SelectionChanged="listeCommunes_SelectionChanged" Width="176" RenderTransformOrigin="0.483,0.489">
@@ -185,7 +185,7 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
-                            <TextBlock Margin="16 20 12 2" FontSize="16"><Run Text="AJOUTER UNE PLAGE"/></TextBlock>
+                            <TextBlock Margin="16 20 12 2" FontSize="16"><Run Text="AJOUTER UNE COMMUNE"/></TextBlock>
                             <Separator Style="{StaticResource MaterialDesignLightSeparator}" Background="LightGray" />
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -265,12 +265,12 @@
                                 <TextBlock Margin="10,0,0,0" Text="Supprimer l'étude"/>
                             </StackPanel>
                         </Button>
-                        <Button x:Name="updateEtudeButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updateEtudeButton_DoubleClick" Height="35" Width="200">
+                        <!--<Button x:Name="updateEtudeButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updateEtudeButton_DoubleClick" Height="35" Width="200">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Edit"/>
                                 <TextBlock Margin="10,0,0,0" Text="Modifier l'étude"/>
                             </StackPanel>
-                        </Button>
+                        </Button>-->
 
                     </StackPanel>
                 </TabItem>
@@ -293,12 +293,12 @@
                                 <TextBlock Margin="10,0,0,0" Text="Supprimer l'utilisateur"/>
                             </StackPanel>
                         </Button>
-                        <Button x:Name="updatePersonneButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updatePersonneButton_DoubleClick" Height="35" Width="200">
+                        <!--<Button x:Name="updatePersonneButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updatePersonneButton_DoubleClick" Height="35" Width="200">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Edit"/>
                                 <TextBlock Margin="10,0,0,0" Text="Modifier l'utilisateur"/>
                             </StackPanel>
-                        </Button>
+                        </Button>-->
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Liste des Plages">
@@ -318,15 +318,34 @@
                                 <TextBlock Margin="10,0,0,0" Text="Supprimer la plage"/>
                             </StackPanel>
                         </Button>
-                        <Button x:Name="updatePlageButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updatePersonneButton_DoubleClick" Height="35" Width="200">
+                        <!--<Button x:Name="updatePlageButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updatePersonneButton_DoubleClick" Height="35" Width="200">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Edit"/>
                                 <TextBlock Margin="10,0,0,0" Text="Modifier la plage"/>
                             </StackPanel>
-                        </Button>
+                        </Button>-->
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Liste des Zones">
+                    <StackPanel>
+                        <Grid Margin="10">
+                            <DataGrid Name="listeZonesComplete" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="53,0,0,0" BorderBrush="Black" Background="AliceBlue" SelectionChanged="listeZones_SelectionChanged" Width="665">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="id" Binding="{Binding idZoneProperty, Mode=OneWay}" />
+                                    <DataGridTextColumn Header="pointA" Binding="{Binding pointAProperty}" />
+                                    <DataGridTextColumn Header="pointB" Binding="{Binding pointAProperty}" />
+                                    <DataGridTextColumn Header="pointC" Binding="{Binding pointAProperty}" />
+                                    <DataGridTextColumn Header="pointD" Binding="{Binding pointAProperty}" />
+                                    <DataGridTextColumn Header="superficie" Binding="{Binding superficieZoneProperty}" />
+                                    <DataGridTextColumn Header="plage" Binding="{Binding nomPlageProperty}" />
+                                    <DataGridTextColumn Header="etude" Binding="{Binding titreEtudeProperty}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                        
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Liste">
                     <StackPanel>
                         <Grid Margin="10">
                             <DataGrid Name="listeZones" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="53,0,0,0" BorderBrush="Black" Background="AliceBlue" SelectionChanged="listeZones_SelectionChanged" Width="665">
@@ -337,8 +356,7 @@
                                     <DataGridTextColumn Header="pointC" Binding="{Binding pointAProperty}" />
                                     <DataGridTextColumn Header="pointD" Binding="{Binding pointAProperty}" />
                                     <DataGridTextColumn Header="superficie" Binding="{Binding superficieZoneProperty}" />
-                                    <DataGridTextColumn Header="plage" Binding="{Binding PlageProperty}" />
-                                    <DataGridTextColumn Header="etude" Binding="{Binding idEtudeProperty}" />
+                                    
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -348,15 +366,28 @@
                                 <TextBlock Margin="10,0,0,0" Text="Supprimer la zone"/>
                             </StackPanel>
                         </Button>
-                        <Button x:Name="updateZoneButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updatePersonneButton_DoubleClick" Height="35" Width="200">
+                        <!--<Button x:Name="updateZoneButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updatePersonneButton_DoubleClick" Height="35" Width="200">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Edit"/>
                                 <TextBlock Margin="10,0,0,0" Text="Modifier la zone"/>
                             </StackPanel>
-                        </Button>
+                        </Button>-->
                     </StackPanel>
                 </TabItem>
-
+                <TabItem Header="Liste des Comptes des zones">
+                    <StackPanel>
+                        <Grid Margin="10">
+                            <DataGrid Name="listeCompteurZone" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="56,0,0,0" BorderBrush="Black" Background="AliceBlue" SelectionChanged="listeZones_SelectionChanged" Width="621">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="idPlage" Binding="{Binding idPlageProperty, Mode=OneWay}" />
+                                    <DataGridTextColumn Header="nomPlage" Binding="{Binding nomPlageProperty}" />
+                                    <DataGridTextColumn Header="Nb de zone" Binding="{Binding idZoneProperty}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                      
+                    </StackPanel>
+                </TabItem>
                 <TabItem Header="Liste des Communes">
                     <StackPanel>
 

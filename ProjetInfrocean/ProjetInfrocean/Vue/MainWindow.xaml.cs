@@ -41,7 +41,10 @@ namespace ProjetInfrocean
         ObservableCollection<CommuneViewModel> lc;
         ObservableCollection<PlageViewModel> lpl;
         ObservableCollection<ZoneViewModel> lz;
+        ObservableCollection<ZoneViewModel> lCompteurZone;
         ObservableCollection<ComptageViewModel> lcomp;
+        ObservableCollection<CommuneViewModel> lcom;
+        ObservableCollection<ZoneViewModel> listeAllZones;
 
         int compteur = 0;
 
@@ -58,6 +61,9 @@ namespace ProjetInfrocean
             lz = ZoneORM.listeZones();
             lcomp = ComptageORM.listeComptages();
             lEtudePlage = EtudeORM.requeteEtudePlage();
+            lCompteurZone = ZoneORM.compteurZone();
+            listeAllZones = ZoneORM.listeAllZones();
+            lcom = CommuneORM.listeCommunes();
 
             //Conversion dateTime
             CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
@@ -72,6 +78,9 @@ namespace ProjetInfrocean
             listeZones.ItemsSource = lz;
             listeComptages.ItemsSource = lcomp;
             listeEtudePlage.ItemsSource = lEtudePlage;
+            listeCompteurZone.ItemsSource = lCompteurZone;
+            listeCommunes.ItemsSource = lcom;
+            listeZonesComplete.ItemsSource = listeAllZones;
 
             choixEtudes.ItemsSource = le;
             choixEtudesZones.ItemsSource = le;
@@ -129,29 +138,33 @@ namespace ProjetInfrocean
         {
             myDataObjectEtude = new EtudeViewModel();
             myDataObjectEtude.titreEtudeProperty = nom.Text;
+            myDataObjectEtude.dateCreationEtudeProperty = (DateTime)dateCrea.SelectedDate;
             myDataObjectEtude.dateFinEtudeProperty = (DateTime)dateFin.SelectedDate;
 
-            EtudeViewModel nouveau = new EtudeViewModel(+1, myDataObjectEtude.titreEtudeProperty, +1, myDataObjectEtude.dateFinEtudeProperty);
+            EtudeViewModel nouveau = new EtudeViewModel(+1, myDataObjectEtude.titreEtudeProperty, myDataObjectEtude.dateFinEtudeProperty,  myDataObjectEtude.dateFinEtudeProperty);
             le.Add(nouveau);
             EtudeORM.updateEtude(nouveau);
             listeEtudes.Items.Refresh();
             MessageBox.Show("==>update");
 
         }
-        private void updateZoneButton_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        /*private void updateZoneButton_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            myDataObjectPersonne = new PersonneViewModel();
-            myDataObjectPersonne.nomPersonneProperty = nom.Text;
-            myDataObjectPersonne.prenomPersonneProperty = prenom.Text;
+            myDataObjectZone = new ZoneViewModel();
+            myDataObjectZone.pointAProperty = pointA.Text;
+            myDataObjectZone.pointBProperty = pointB.Text;
+            myDataObjectZone.pointCProperty = pointC.Text;
+            myDataObjectZone.pointDProperty = pointD.Text;
+            myDataObjectZone.superficieZoneProperty = superficie.Text;
 
 
-            PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObjectPersonne.nomPersonneProperty, myDataObjectPersonne.prenomPersonneProperty, myDataObjectPersonne.isAdminPersonneProperty, myDataObjectPersonne.etudePersonneProperty);
-            lp.Add(nouveau);
-            PersonneORM.updatePersonne(nouveau);
+            ZoneViewModel nouveau = new ZoneViewModel(+1, myDataObjectZone.pointAProperty, myDataObjectZone.pointBProperty, myDataObjectZone.pointCProperty, myDataObjectZone.pointDProperty, myDataObjectZone.superficieZoneProperty);
+            lz.Add(nouveau);
+            ZoneORM.updateZone(nouveau);
             listePersonnes.Items.Refresh();
             MessageBox.Show("==>update");
 
-        }
+        }*/
 
         //FONCTIONS SUPPRIMER AU DOUBLE CLICK
         private void supprimerPersonneButton_Click(object sender, RoutedEventArgs e)
@@ -284,12 +297,7 @@ namespace ProjetInfrocean
         }
         //            dataPlage.Superficie = Convert.ToInt32(PlageSuperficie_Input.Text);
 
-        private string DateConvert(DateTime dateBrute)
-        {
-            string dateConvertie = dateBrute.Year + "-" + dateBrute.Month + "-" + dateBrute.Day;
-
-            return dateConvertie;
-        }
+      
 
         private void ajoutPlageButton_Click(object sender, RoutedEventArgs e)
         {

@@ -29,6 +29,28 @@ namespace ProjetInfrocean.ORM
             }
             return liste;
         }
+        public static ObservableCollection<ZoneViewModel> listeAllZones()
+        {
+            ObservableCollection<ZoneDAO> listeDAO = ZoneDAO.listeAllZones();
+            ObservableCollection<ZoneViewModel> liste = new ObservableCollection<ZoneViewModel>();
+            foreach (ZoneDAO element in listeDAO)
+            {
+                ZoneViewModel z = new ZoneViewModel(element.idZoneDAO, element.pointADAO, element.pointBDAO, element.pointCDAO, element.pointDDAO, element.superficieZoneDAO, element.nomPlageDAO, element.titreEtudeDAO);
+                liste.Add(z);
+            }
+            return liste;
+        }
+        public static ObservableCollection<ZoneViewModel> compteurZone()
+        {
+            ObservableCollection<ZoneDAO> listeDAO = ZoneDAO.compteurZone();
+            ObservableCollection<ZoneViewModel> liste = new ObservableCollection<ZoneViewModel>();
+            foreach (ZoneDAO element in listeDAO)
+            {
+                ZoneViewModel z = new ZoneViewModel(element.idPlageDAO, element.nomPlageDAO, element.idZoneDAO);
+                liste.Add(z);
+            }
+            return liste;
+        }
 
         public static void updateZone(ZoneViewModel z)
         {

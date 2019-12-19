@@ -15,6 +15,34 @@ namespace ProjetInfrocean.DAL
 
         public ZoneDAL()
         {}
+        public static ObservableCollection<ZoneDAO> listeAllZones()
+        {
+            ObservableCollection<ZoneDAO> liste = new ObservableCollection<ZoneDAO>();
+            string query = "select zone.idZone, zone.pointA, zone.pointB, zone.pointC, zone.pointD, zone.superfie, plage.nom, etude.titre " +
+                "FROM zone " +
+                "join plage on plage.idPlage = zone.Plage_idPlage " +
+                "join etude on etude.idEtude = zone.Etude_idEtude1;";
+            MySqlCommand cmdZone = new MySqlCommand(query, DalConnexion.OpenConnection());
+            MySqlDataReader reader = null;
+            try
+            {
+                cmdZone.ExecuteNonQuery();
+                reader = cmdZone.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ZoneDAO z = new ZoneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetString(6), reader.GetString(7));
+                    liste.Add(z);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("zone : La base de données n'est pas connectée" + e.Message);
+            }
+            reader.Close();
+
+            return liste;
+        }
         public static ObservableCollection<ZoneDAO> selectZones()
         {
             ObservableCollection<ZoneDAO> liste = new ObservableCollection<ZoneDAO>();
@@ -35,6 +63,34 @@ namespace ProjetInfrocean.DAL
             catch (Exception e)
             {
                 MessageBox.Show("zone : La base de données n'est pas connectée"+e.Message);
+            }
+            reader.Close();
+
+            return liste;
+        }
+        public static ObservableCollection<ZoneDAO> compteurZone()
+        {
+            ObservableCollection<ZoneDAO> liste = new ObservableCollection<ZoneDAO>();
+            string query = "SELECT plage.idPlage, plage.nom, COUNT(zone.idZone)" +
+                "FROM zone " +
+                "JOIN plage on plage.idPlage=zone.Plage_idPlage " +
+                "GROUP BY plage.idPlage, plage.nom;";
+            MySqlCommand cmdCompteurZone = new MySqlCommand(query, DalConnexion.OpenConnection());
+            MySqlDataReader reader = null;
+            try
+            {
+                cmdCompteurZone.ExecuteNonQuery();
+                reader = cmdCompteurZone.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ZoneDAO z = new ZoneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2));
+                    liste.Add(z);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("zone : La base de données n'est pas connectée" + e.Message);
             }
             reader.Close();
 

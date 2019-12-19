@@ -18,9 +18,29 @@ namespace ProjetInfrocean.Ctrl
         private int superficieZone;
         private PlageViewModel idPlageZone;
         private EtudeViewModel idEtudeZone;
+        private int idPlage;
+        private string nomPlage;
+        private string titreEtude;
 
         public ZoneViewModel(){}
+        public ZoneViewModel(int idPlage, string nomPlage, int idZone)
+        {
+            this.idPlage = idPlage;
+            this.nomPlage = nomPlage;
+            this.idZone = idZone;
 
+        }
+        public ZoneViewModel(int idZone, string pointA, string pointB, string pointC, string pointD, int superficie, string nomPlage, string titreEtude)
+        {
+            this.idZone = idZone;
+            this.pointA = pointA;
+            this.pointB = pointB;
+            this.pointC = pointC;
+            this.pointD = pointD;
+            this.superficieZone = superficie;
+            this.nomPlage = nomPlage;
+            this.titreEtude = titreEtude;
+        }
         public ZoneViewModel(int idZone, string pointA, string pointB, string pointC, string pointD, int superficie, PlageViewModel idPlageProperty, EtudeViewModel idEtudeProperty)
         {
             this.idZone = idZone;
@@ -102,6 +122,28 @@ namespace ProjetInfrocean.Ctrl
                 idEtudeZone = value;
                 OnPropertyChanged("idEtudeZoneProperty");
             }
+        }
+        public string nomPlageProperty
+        {
+            get { return nomPlage; }
+            set
+            {
+                pointA = value;
+                OnPropertyChanged("nomPlageProperty");
+            }
+        }
+        public string titreEtudeProperty
+        {
+            get { return titreEtude; }
+            set
+            {
+                pointA = value;
+                OnPropertyChanged("titreEtudeProperty");
+            }
+        }
+        public int idPlageProperty
+        {
+            get { return idPlage; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
