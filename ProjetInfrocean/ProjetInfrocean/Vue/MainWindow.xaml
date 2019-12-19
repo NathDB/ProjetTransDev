@@ -148,21 +148,6 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <ComboBox
-                                        materialDesign:HintAssist.Hint="Comptages"
-                                        Name="choixComptagesZones"
-                                        ItemsSource="{Binding}"
-                                        Margin="0 10 0 0"
-                                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                        BorderBrush="Black">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding idComptageProperty}"></TextBlock>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox
                                         materialDesign:HintAssist.Hint="Etude"
                                         Name="choixEtudesZones"
                                         ItemsSource="{Binding}"
@@ -193,7 +178,7 @@
                             <TextBlock Margin="16 2 12 2" FontSize="16"> LISTE DES PLAGES</TextBlock>
                             <Separator Style="{StaticResource MaterialDesignLightSeparator}" Background="LightGray" />
                             <Grid Margin="10">
-                                <DataGrid  Style="{StaticResource MaterialDesignDataGrid}" Name="listeCommunes" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="164,0,0,0" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listeCommunes_SelectionChanged" Width="201">
+                                <DataGrid  Style="{StaticResource MaterialDesignDataGrid}" Name="listeCommunes" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="164,0,0,0" BorderBrush="Black" Background="AliceBlue" SelectionChanged="listeCommunes_SelectionChanged" Width="176" RenderTransformOrigin="0.483,0.489">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="id" Binding="{Binding idCommuneProperty, Mode=OneWay}" />
                                         <DataGridTextColumn Header="nom" Binding="{Binding nomCommuneProperty}" />
@@ -247,23 +232,53 @@
                 <TabItem Header="Liste des Etudes">
                     <StackPanel>
                         <Grid Margin="10">
-                            <DataGrid Name="listeEtudes" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listeEtudes_SelectionChanged">
+                            <DataGrid Name="listeEtudePlage" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="143,0,0,0" BorderBrush="Black" Background="AliceBlue" SelectionChanged="listeEtudes_SelectionChanged" Width="525">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="id" Binding="{Binding idEtudeProperty, Mode=OneWay}" />
                                     <DataGridTextColumn Header="titre" Binding="{Binding titreEtudeProperty}" />
                                     <DataGridTextColumn Header="dateCrea" Binding="{Binding dateCreationEtudeProperty}" />
                                     <DataGridTextColumn Header="dateFin" Binding="{Binding dateFinEtudeProperty}" />
+                                    <DataGridTextColumn Header="Plage" Binding="{Binding nomPlageProperty}" />
+                                    <DataGridTextColumn Header="Departement" Binding="{Binding departementPlageProperty}" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
-                        <Button x:Name="supprimerEtudeButton" Content="Supprimer" Click="supprimerEtudeButton_Click" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Liste des Etudes">
+                    <StackPanel>
+                        <Grid Margin="10">
+                            <DataGrid Name="listeEtudes" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="143,0,0,0" BorderBrush="Black" Background="AliceBlue" SelectionChanged="listeEtudes_SelectionChanged" Width="525">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="id" Binding="{Binding idEtudeProperty, Mode=OneWay}" />
+                                    <DataGridTextColumn Header="titre" Binding="{Binding titreEtudeProperty}" />
+                                    <DataGridTextColumn Header="dateCrea" Binding="{Binding dateCreationEtudeProperty}" />
+                                    <DataGridTextColumn Header="dateFin" Binding="{Binding dateFinEtudeProperty}" />
+                                    <DataGridTextColumn Header="Plage" Binding="{Binding nomPlageProperty}" />
+                                    <DataGridTextColumn Header="Departement" Binding="{Binding departementPlageProperty}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                        <Button x:Name="supprimerEtudeButton"  Margin="0,15,0,0" BorderBrush="Red" Foreground="Red" Click="supprimerEtudeButton_Click" Height="35" Width="200">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Trash"/>
+                                <TextBlock Margin="10,0,0,0" Text="Supprimer l'étude"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="updateEtudeButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updateEtudeButton_DoubleClick" Height="35" Width="200">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Edit"/>
+                                <TextBlock Margin="10,0,0,0" Text="Modifier l'étude"/>
+                            </StackPanel>
+                        </Button>
+
                     </StackPanel>
                 </TabItem>
 
                 <TabItem Header="Liste des Personnes">
                     <StackPanel>
                         <Grid Margin="10">
-                            <DataGrid Name="listePersonnes" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listePersonnes_SelectionChanged">
+                            <DataGrid Name="listePersonnes" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="AliceBlue" SelectionChanged="listePersonnes_SelectionChanged">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="id" Binding="{Binding idPersonneProperty, Mode=OneWay}" />
                                     <DataGridTextColumn Header="nom" Binding="{Binding nomPersonneProperty}" />
@@ -272,14 +287,24 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
-                        <Button x:Name="supprimerPersonneButton" Content="Supprimer" Click="supprimerPersonneButton_Click" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>
-                        <Button x:Name="updatePersonneButton" Content="Modifier" MouseDoubleClick="updatePersonneButton_DoubleClick" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>
+                        <Button x:Name="supprimerPersonneButton"  Margin="0,15,0,0" BorderBrush="Red" Foreground="Red" Click="supprimerPersonneButton_Click" Height="35" Width="200">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Trash"/>
+                                <TextBlock Margin="10,0,0,0" Text="Supprimer l'utilisateur"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="updatePersonneButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updatePersonneButton_DoubleClick" Height="35" Width="200">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Edit"/>
+                                <TextBlock Margin="10,0,0,0" Text="Modifier l'utilisateur"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Liste des Plages">
                     <StackPanel>
                         <Grid Margin="10">
-                            <DataGrid Name="listePlages" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="56,0,0,0" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listePlages_SelectionChanged" Width="621">
+                            <DataGrid Name="listePlages" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="56,0,0,0" BorderBrush="Black" Background="AliceBlue" SelectionChanged="listePlages_SelectionChanged" Width="621">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="id" Binding="{Binding idPlageProperty, Mode=OneWay}" />
                                     <DataGridTextColumn Header="nomPlage" Binding="{Binding nomPlageProperty}" />
@@ -287,13 +312,24 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
-                        <Button x:Name="supprimerPlageButton" Content="Supprimer" Click="supprimerPlageButton_Click" BorderBrush="#FF545454" BorderThickness="5,5,5,1" Height="35" Width="200"></Button>
+                        <Button x:Name="supprimerPlageButton"  Margin="0,15,0,0" BorderBrush="Red" Foreground="Red" Click="supprimerPersonneButton_Click" Height="35" Width="200">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Trash"/>
+                                <TextBlock Margin="10,0,0,0" Text="Supprimer la plage"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="updatePlageButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updatePersonneButton_DoubleClick" Height="35" Width="200">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Edit"/>
+                                <TextBlock Margin="10,0,0,0" Text="Modifier la plage"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Liste des Zones">
                     <StackPanel>
                         <Grid Margin="10">
-                            <DataGrid Name="listeZones" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listeZones_SelectionChanged">
+                            <DataGrid Name="listeZones" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="53,0,0,0" BorderBrush="Black" Background="AliceBlue" SelectionChanged="listeZones_SelectionChanged" Width="665">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="id" Binding="{Binding idZoneProperty, Mode=OneWay}" />
                                     <DataGridTextColumn Header="pointA" Binding="{Binding pointAProperty}" />
@@ -301,9 +337,23 @@
                                     <DataGridTextColumn Header="pointC" Binding="{Binding pointAProperty}" />
                                     <DataGridTextColumn Header="pointD" Binding="{Binding pointAProperty}" />
                                     <DataGridTextColumn Header="superficie" Binding="{Binding superficieZoneProperty}" />
+                                    <DataGridTextColumn Header="plage" Binding="{Binding PlageProperty}" />
+                                    <DataGridTextColumn Header="etude" Binding="{Binding idEtudeProperty}" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
+                        <Button x:Name="supprimerZoneButton"  Margin="0,15,0,0" BorderBrush="Red" Foreground="Red" Click="supprimerPersonneButton_Click" Height="35" Width="200">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Trash"/>
+                                <TextBlock Margin="10,0,0,0" Text="Supprimer la zone"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="updateZoneButton"  Margin="0,15,0,0" BorderBrush="Orange" Foreground="Orange" Click="updatePersonneButton_DoubleClick" Height="35" Width="200">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Edit"/>
+                                <TextBlock Margin="10,0,0,0" Text="Modifier la zone"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </TabItem>
 

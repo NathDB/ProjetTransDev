@@ -37,6 +37,7 @@ namespace ProjetInfrocean
 
         ObservableCollection<PersonneViewModel> lp;
         ObservableCollection<EtudeViewModel> le;
+        ObservableCollection<EtudeViewModel> lEtudePlage;
         ObservableCollection<CommuneViewModel> lc;
         ObservableCollection<PlageViewModel> lpl;
         ObservableCollection<ZoneViewModel> lz;
@@ -56,6 +57,7 @@ namespace ProjetInfrocean
             lpl = PlageORM.listePlages();
             lz = ZoneORM.listeZones();
             lcomp = ComptageORM.listeComptages();
+            lEtudePlage = EtudeORM.requeteEtudePlage();
 
             //Conversion dateTime
             CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
@@ -69,10 +71,10 @@ namespace ProjetInfrocean
             listePlages.ItemsSource = lpl;
             listeZones.ItemsSource = lz;
             listeComptages.ItemsSource = lcomp;
+            listeEtudePlage.ItemsSource = lEtudePlage;
 
             choixEtudes.ItemsSource = le;
             choixEtudesZones.ItemsSource = le;
-            choixComptagesZones.ItemsSource = lcomp;
             choixPlages.ItemsSource = lpl;
 
 
@@ -96,6 +98,47 @@ namespace ProjetInfrocean
 
         //UPDATE
         private void updatePersonneButton_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            myDataObjectPersonne = new PersonneViewModel();
+            myDataObjectPersonne.nomPersonneProperty = nom.Text;
+            myDataObjectPersonne.prenomPersonneProperty = prenom.Text;
+
+
+            PersonneViewModel nouveau = new PersonneViewModel(+1, myDataObjectPersonne.nomPersonneProperty, myDataObjectPersonne.prenomPersonneProperty, myDataObjectPersonne.isAdminPersonneProperty, myDataObjectPersonne.etudePersonneProperty);
+            lp.Add(nouveau);
+            PersonneORM.updatePersonne(nouveau);
+            listePersonnes.Items.Refresh();
+            MessageBox.Show("==>update");
+
+        }
+        private void updatePlageButton_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            myDataObjectPlage = new PlageViewModel();
+            myDataObjectPlage.nomPlageProperty = nomPlage.Text;
+            myDataObjectPlage.departementPlageProperty = departement.Text;
+
+
+            PlageViewModel nouveau = new PlageViewModel(+1, myDataObjectPlage.nomPlageProperty, myDataObjectPlage.departementPlageProperty, +1);
+            lpl.Add(nouveau);
+            PlageORM.updatePlage(nouveau);
+            listePlages.Items.Refresh();
+            MessageBox.Show("==>update");
+
+        }
+        private void updateEtudeButton_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            myDataObjectEtude = new EtudeViewModel();
+            myDataObjectEtude.titreEtudeProperty = nom.Text;
+            myDataObjectEtude.dateFinEtudeProperty = (DateTime)dateFin.SelectedDate;
+
+            EtudeViewModel nouveau = new EtudeViewModel(+1, myDataObjectEtude.titreEtudeProperty, +1, myDataObjectEtude.dateFinEtudeProperty);
+            le.Add(nouveau);
+            EtudeORM.updateEtude(nouveau);
+            listeEtudes.Items.Refresh();
+            MessageBox.Show("==>update");
+
+        }
+        private void updateZoneButton_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             myDataObjectPersonne = new PersonneViewModel();
             myDataObjectPersonne.nomPersonneProperty = nom.Text;

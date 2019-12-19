@@ -14,11 +14,19 @@ namespace ProjetInfrocean.Ctrl
         private string titreEtude;
         private DateTime dateCreationEtude;
         private DateTime dateFinEtude;
+        private string nomPlage;
+        private string departementPlage;
 
        
-        public EtudeViewModel()
+        public EtudeViewModel(){}
+        public EtudeViewModel(int idEtude, string titre, DateTime dateCrea, DateTime dateFin, string nomPlage, string departementPlage)
         {
-
+            this.idEtude = idEtude;
+            this.titreEtudeProperty = titre;
+            this.dateCreationEtudeProperty = dateCrea;
+            this.dateFinEtudeProperty = dateFin;
+            this.nomPlageProperty = nomPlage;
+            this.departementPlage = departementPlage;
         }
         public EtudeViewModel(int idEtude, string titre, DateTime dateCrea, DateTime dateFin)
         {
@@ -60,7 +68,25 @@ namespace ProjetInfrocean.Ctrl
                 OnPropertyChanged("dateFinEtudeProperty");
             }
         }
-       
+        public string nomPlageProperty
+        {
+            get { return nomPlage; }
+            set
+            {
+                nomPlage = value;
+                OnPropertyChanged("nomPlageProperty");
+            }
+        }
+        public string departementPlageProperty
+        {
+            get { return departementPlage; }
+            set
+            {
+                departementPlage = value;
+                OnPropertyChanged("departementPlageProperty");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public String concatProperty

@@ -14,7 +14,18 @@ namespace ProjetInfrocean.DAO
         public string titreEtudeDAO;
         public DateTime dateCreationEtudeDAO;
         public DateTime dateFinEtudeDAO;
+        public string nomPlageDAO;
+        public string departementPlageDAO;
 
+        public EtudeDAO(int idEtudeDAO, string titreEtudeDAO, DateTime dateCreationEtudeDAO, DateTime dateFinEtudeDAO, string nomPlageDAO, string departementPlageDAO)
+        {
+            this.idEtudeDAO = idEtudeDAO;
+            this.titreEtudeDAO = titreEtudeDAO;
+            this.dateCreationEtudeDAO = dateCreationEtudeDAO;
+            this.dateFinEtudeDAO = dateFinEtudeDAO;
+            this.nomPlageDAO = nomPlageDAO;
+            this.departementPlageDAO = departementPlageDAO;
+        }
         public EtudeDAO(int idEtudeDAO, string titreEtudeDAO, DateTime dateCreationEtudeDAO, DateTime dateFinEtudeDAO)
         {
             this.idEtudeDAO = idEtudeDAO;
@@ -26,6 +37,11 @@ namespace ProjetInfrocean.DAO
         public static ObservableCollection<EtudeDAO> listeEtudes(){
             ObservableCollection<EtudeDAO> liste = EtudeDAL.selectEtudes();
             return liste;
+        }
+        public static ObservableCollection<EtudeDAO> requeteEtudePlage()
+        {
+            ObservableCollection<EtudeDAO> requeteEtudePlage = EtudeDAL.requeteEtudePlage();
+            return requeteEtudePlage;
         }
         public static EtudeDAO getEtude(int idEtude)
         {

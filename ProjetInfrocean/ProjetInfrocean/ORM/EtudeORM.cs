@@ -29,6 +29,17 @@ namespace ProjetInfrocean.ORM
             }
             return liste;
         }
+        public static ObservableCollection<EtudeViewModel> requeteEtudePlage()
+        {
+            ObservableCollection<EtudeDAO> listeDAO = EtudeDAO.requeteEtudePlage();
+            ObservableCollection<EtudeViewModel> liste = new ObservableCollection<EtudeViewModel>();
+            foreach (EtudeDAO element in listeDAO)
+            {
+                EtudeViewModel e = new EtudeViewModel(element.idEtudeDAO, element.titreEtudeDAO, element.dateCreationEtudeDAO, element.dateFinEtudeDAO, element.nomPlageDAO, element.departementPlageDAO);
+                liste.Add(e);
+            }
+            return liste;
+        }
 
         public static void updateEtude(EtudeViewModel e)
         {

@@ -39,6 +39,33 @@ namespace ProjetInfrocean.DAL
             }
             return liste;
         }
+        public static ObservableCollection<EtudeDAO> requeteEtudePlage()
+        {
+            ObservableCollection<EtudeDAO> requeteEtudePlage = new ObservableCollection<EtudeDAO>();
+            string query = "SELECT etude.idEtude, etude.titre, etude.dateCrea, etude.dateFin, plage.nom, plage.departement " +
+                "FROM etude " +
+                "JOIN zone on zone.Etude_idEtude1=etude.idEtude " +
+                "JOIN plage on plage.idPlage=zone.Plage_idPlage;";
+            MySqlCommand cmdRequetePlage = new MySqlCommand(query, DalConnexion.OpenConnection());
+            try
+            {
+                cmdRequetePlage.ExecuteNonQuery();
+                MySqlDataReader reader = cmdRequetePlage.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    EtudeDAO e = new EtudeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2), reader.GetDateTime(3), reader.GetString(4), reader.GetString(5));
+                    requeteEtudePlage.Add(e);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Etude La base de données n'est pas connectée" + e.Message);
+            }
+            return requeteEtudePlage;
+        }
+
         public static void updateEtude(EtudeDAO e)
         {
             string query = "UPDATE etude set titreEtude=\"" + e.titreEtudeDAO + "\",  dateCreationEtude = \"" + e.dateCreationEtudeDAO + "\", dateFinEtude = \"" + e.dateFinEtudeDAO + ";";
@@ -74,8 +101,8 @@ namespace ProjetInfrocean.DAL
             reader.Close();
             return maxIdEtude;
         }
-
-        public static EtudeDAO getEtude(int idEtude)
+        
+            public static EtudeDAO getEtude(int idEtude)
         {
             string query = "SELECT * FROM etude WHERE idEtude=" + idEtude + ";";
             MySqlCommand cmdEtu = new MySqlCommand(query, DalConnexion.OpenConnection());
