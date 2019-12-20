@@ -76,7 +76,6 @@ namespace ProjetInfrocean
             listeEtudes.ItemsSource = le;
             listePlages.ItemsSource = lpl;
             listeZones.ItemsSource = lz;
-            listeComptages.ItemsSource = lcomp;
             listeEtudePlage.ItemsSource = lEtudePlage;
             listeCompteurZone.ItemsSource = lCompteurZone;
             listeCommunes.ItemsSource = lcom;
@@ -211,14 +210,7 @@ namespace ProjetInfrocean
                 selectedEtudeId = (le.ElementAt<EtudeViewModel>(listeEtudes.SelectedIndex)).idEtudeProperty;
             }
         }
-        private void listeComptages_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if ((listeComptages.SelectedIndex < lcomp.Count) && (listeComptages.SelectedIndex >= 0))
-            {
-                selectedComptageId = (lcomp.ElementAt<ComptageViewModel>(listeComptages.SelectedIndex)).idComptageProperty;
-            }
-        }
-
+       
         private void listePlages_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if ((listePlages.SelectedIndex < lp.Count) && (listePlages.SelectedIndex >= 0))
