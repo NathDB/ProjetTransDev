@@ -13,6 +13,7 @@ using ProjetInfrocean.ORM;
 using ProjetInfrocean.Ctrl;
 using System.Globalization;
 using System.Threading;
+using ProjetInfrocean.Vue;
 
 namespace ProjetInfrocean
 {
@@ -21,7 +22,7 @@ namespace ProjetInfrocean
     /// </summary>
     public partial class MainWindow : Window
     {
-        int selectedPersonneId;
+        /*int selectedPersonneId;
         int selectedEtudeId;
         int selectedPlageId;
         int selectedCommuneId;
@@ -46,13 +47,14 @@ namespace ProjetInfrocean
         ObservableCollection<CommuneViewModel> lcom;
         ObservableCollection<ZoneViewModel> listeAllZones;
 
-        int compteur = 0;
+        int compteur = 0;*/
 
         public MainWindow()
         {
             InitializeComponent();
-            DalConnexion.OpenConnection();
-
+            
+            /*DalConnexion.OpenConnection();
+            
             //CREATION DE LA LISTE A PARTIR DE LA BDD VIA LE FICHIER ORM
             lp = PersonneORM.listePersonnes();
             le = EtudeORM.listeEtudes();
@@ -83,7 +85,7 @@ namespace ProjetInfrocean
 
             choixEtudes.ItemsSource = le;
             choixEtudesZones.ItemsSource = le;
-            choixPlages.ItemsSource = lpl;
+            choixPlages.ItemsSource = lpl;*/
 
 
             //Récupération titre étude avec requete
@@ -91,6 +93,33 @@ namespace ProjetInfrocean
 
             // this.DataContext = lp; // bind de la liste avec la source, permettant le binding mais de façon globale sur toute la fenetre
         }
+        private void openWindowEtude(object sender, RoutedEventArgs e)
+        {
+            WindowEtude objet = new WindowEtude();
+            this.Visibility = Visibility.Hidden;
+            objet.Show();
+        }
+
+
+        /*private void openWindowPlage(object sender, RoutedEventArgs e)
+        {
+            WindowPlage objet = new WindowPlage();
+            this.Visibility = Visibility.Hidden;
+            objet.Show();
+        }
+        private void openWindowListePlages(object sender, RoutedEventArgs e)
+        {
+            WindowEtude objet = new WindowEtude();
+            this.Visibility = Visibility.Hidden;
+            objet.Show();
+        }
+        private void openWindowGestion(object sender, RoutedEventArgs e)
+        {
+            WindowEtude objet = new WindowEtude();
+            this.Visibility = Visibility.Hidden;
+            objet.Show();
+        }
+
         public void prenomChanged(object sender, TextChangedEventArgs e)
         {
             myDataObjectPersonne.prenomPersonneProperty = prenom.Text;
@@ -147,7 +176,7 @@ namespace ProjetInfrocean
             MessageBox.Show("==>update");
 
         }
-        /*private void updateZoneButton_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void updateZoneButton_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             myDataObjectZone = new ZoneViewModel();
             myDataObjectZone.pointAProperty = pointA.Text;
@@ -163,7 +192,7 @@ namespace ProjetInfrocean
             listePersonnes.Items.Refresh();
             MessageBox.Show("==>update");
 
-        }*/
+        }
 
         //FONCTIONS SUPPRIMER AU DOUBLE CLICK
         private void supprimerPersonneButton_Click(object sender, RoutedEventArgs e)
@@ -258,7 +287,7 @@ namespace ProjetInfrocean
             else
             {
                 selected = 1;
-            }*/
+            }
             myDataObjectPersonne = new PersonneViewModel();
             myDataObjectPersonne.nomPersonneProperty = nom.Text;
             myDataObjectPersonne.prenomPersonneProperty = prenom.Text;
@@ -332,7 +361,7 @@ namespace ProjetInfrocean
             CommuneORM.insertCommune(nouveau);
             listeCommunes.Items.Refresh();
             MessageBox.Show("==>insert");
-        }
+        }*/
 
        
     }
