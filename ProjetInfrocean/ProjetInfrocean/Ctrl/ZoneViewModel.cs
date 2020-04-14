@@ -128,7 +128,7 @@ namespace ProjetInfrocean.Ctrl
             get { return nomPlage; }
             set
             {
-                pointA = value;
+                nomPlage = value;
                 OnPropertyChanged("nomPlageProperty");
             }
         }
@@ -137,7 +137,7 @@ namespace ProjetInfrocean.Ctrl
             get { return titreEtude; }
             set
             {
-                pointA = value;
+                titreEtude = value;
                 OnPropertyChanged("titreEtudeProperty");
             }
         }

@@ -97,6 +97,7 @@
     </ApplicationDefinition>
     <Compile Include="Ctrl\CommuneViewModel.cs" />
     <Compile Include="Ctrl\ComptageViewModel.cs" />
+    <Compile Include="Ctrl\EquipeViewModel.cs" />
     <Compile Include="Ctrl\ZoneViewModel.cs" />
     <Compile Include="Ctrl\EspeceViewModel.cs" />
     <Compile Include="Ctrl\EtudeViewModel.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="DAL\DalConnexion.cs" />
     <Compile Include="DAL\EspeceDAL.cs" />
     <Compile Include="DAL\ComptageDAL.cs" />
+    <Compile Include="DAL\EquipeDAL.cs" />
     <Compile Include="DAL\ZoneDAL.cs" />
     <Compile Include="DAL\CommuneDAL.cs" />
     <Compile Include="DAL\EtudeDAL.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="DAL\PersonneDAL.cs" />
     <Compile Include="DAO\EspeceDAO.cs" />
     <Compile Include="DAO\ComptageDAO.cs" />
+    <Compile Include="DAO\EquipeDAO.cs" />
     <Compile Include="DAO\ZoneDAO.cs" />
     <Compile Include="DAO\CommuneDAO.cs" />
     <Compile Include="DAO\EtudeDAO.cs" />
@@ -119,6 +122,7 @@
     <Compile Include="DAO\PersonneDAO.cs" />
     <Compile Include="ORM\CommuneORM.cs" />
     <Compile Include="ORM\ComptageORM.cs" />
+    <Compile Include="ORM\EquipeORM.cs" />
     <Compile Include="ORM\ZoneORM.cs" />
     <Compile Include="ORM\EspeceORM.cs" />
     <Compile Include="ORM\EtudeORM.cs" />

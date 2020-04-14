@@ -85,7 +85,7 @@ namespace ProjetInfrocean.DAL
 
         public static PersonneDAO getPersonne(int idPersonne)
         {
-            string query = "SELECT * FROM personne WHERE id="+idPersonne+";";
+            string query = "SELECT * FROM personne WHERE idPersonne="+idPersonne+";";
             MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdPers.ExecuteNonQuery();
             MySqlDataReader reader = cmdPers.ExecuteReader();

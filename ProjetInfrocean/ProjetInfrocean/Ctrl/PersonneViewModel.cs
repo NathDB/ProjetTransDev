@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjetInfrocean.Ctrl
 {
-    class PersonneViewModel
+    public class PersonneViewModel
     {
         
         private int idPersonne;

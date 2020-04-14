@@ -30,6 +30,7 @@ namespace ProjetInfrocean.Vue
         EtudeViewModel myDataObjectEtude; // Objet de liaison
 
         ObservableCollection<EtudeViewModel> le;
+        ObservableCollection<EquipeViewModel> leq;
         ObservableCollection<EtudeViewModel> lEtudePlage;
         
         public WindowEtude()
@@ -38,6 +39,7 @@ namespace ProjetInfrocean.Vue
             DalConnexion.OpenConnection();
 
             le = EtudeORM.listeEtudes();
+            leq = EquipeORM.listeEquipes();
             lEtudePlage = EtudeORM.requeteEtudePlage();
 
             //Conversion dateTime
@@ -47,6 +49,7 @@ namespace ProjetInfrocean.Vue
             Thread.CurrentThread.CurrentCulture = culture;
 
             listeEtudes.ItemsSource = le;
+            choixEquipe.ItemsSource = leq;
             //listeEtudePlage.ItemsSource = lEtudePlage;
             //choixEtudes.ItemsSource = le;
 

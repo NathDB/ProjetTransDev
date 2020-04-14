@@ -54,6 +54,21 @@
                 <DatePicker x:Name="dateCrea" Style="{StaticResource MaterialDesignDatePicker}"/>
                 <Label Content="Date de Fin"/>
                 <DatePicker x:Name="dateFin" Style="{StaticResource MaterialDesignDatePicker}"/>
+                <ComboBox
+                                        materialDesign:HintAssist.Hint="Etude"
+                                        Name="choixEquipe"
+                                        ItemsSource="{Binding}"
+                                        Margin="0 10 0 0"
+                                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                        BorderBrush="Black">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding nomEquipeProperty}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <Button x:Name="ajoutEtudeButton"  Margin="0,15,0,0" BorderBrush="Black" Foreground="Black" Click="ajoutEtudeButton_Click" Height="35" Width="200">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="BookPlusMultiple"/>
