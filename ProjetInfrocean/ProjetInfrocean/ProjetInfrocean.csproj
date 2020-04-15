@@ -95,6 +95,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Ctrl\RoleViewModel.cs" />
+    <Compile Include="Ctrl\DepartementViewModel.cs" />
+    <Compile Include="Ctrl\SaisonViewModel.cs" />
+    <Compile Include="Ctrl\GenreViewModel.cs" />
+    <Compile Include="Ctrl\FamilleViewModel.cs" />
+    <Compile Include="Ctrl\ClasseViewModel.cs" />
+    <Compile Include="Ctrl\OrdreViewModel.cs" />
     <Compile Include="Ctrl\CommuneViewModel.cs" />
     <Compile Include="Ctrl\ComptageViewModel.cs" />
     <Compile Include="Ctrl\EquipeViewModel.cs" />
@@ -103,6 +110,13 @@
     <Compile Include="Ctrl\EtudeViewModel.cs" />
     <Compile Include="Ctrl\PlageViewModel.cs" />
     <Compile Include="Ctrl\PersonneViewModel.cs" />
+    <Compile Include="DAL\RoleDAL.cs" />
+    <Compile Include="DAL\DepartementDAL.cs" />
+    <Compile Include="DAL\SaisonDAL.cs" />
+    <Compile Include="DAL\GenreDAL.cs" />
+    <Compile Include="DAL\FamilleDAL.cs" />
+    <Compile Include="DAL\ClasseDAL.cs" />
+    <Compile Include="DAL\OrdreDAL.cs" />
     <Compile Include="DAL\DalConnexion.cs" />
     <Compile Include="DAL\EspeceDAL.cs" />
     <Compile Include="DAL\ComptageDAL.cs" />
@@ -112,6 +126,13 @@
     <Compile Include="DAL\EtudeDAL.cs" />
     <Compile Include="DAL\PlageDAL.cs" />
     <Compile Include="DAL\PersonneDAL.cs" />
+    <Compile Include="DAO\RoleDAO.cs" />
+    <Compile Include="DAO\DepartementDAO.cs" />
+    <Compile Include="DAO\SaisonDAO.cs" />
+    <Compile Include="DAO\GenreDAO.cs" />
+    <Compile Include="DAO\FamilleDAO.cs" />
+    <Compile Include="DAO\ClasseDAO.cs" />
+    <Compile Include="DAO\OrdreDAO.cs" />
     <Compile Include="DAO\EspeceDAO.cs" />
     <Compile Include="DAO\ComptageDAO.cs" />
     <Compile Include="DAO\EquipeDAO.cs" />
@@ -120,6 +141,13 @@
     <Compile Include="DAO\EtudeDAO.cs" />
     <Compile Include="DAO\PlageDAO.cs" />
     <Compile Include="DAO\PersonneDAO.cs" />
+    <Compile Include="ORM\RoleORM.cs" />
+    <Compile Include="ORM\DepartementORM.cs" />
+    <Compile Include="ORM\SaisonORM.cs" />
+    <Compile Include="ORM\GenreORM.cs" />
+    <Compile Include="ORM\FamilleORM.cs" />
+    <Compile Include="ORM\ClasseORM.cs" />
+    <Compile Include="ORM\OrdreORM.cs" />
     <Compile Include="ORM\CommuneORM.cs" />
     <Compile Include="ORM\ComptageORM.cs" />
     <Compile Include="ORM\EquipeORM.cs" />
