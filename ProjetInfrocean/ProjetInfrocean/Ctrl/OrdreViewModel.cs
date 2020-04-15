@@ -12,16 +12,18 @@ namespace ProjetInfrocean.Ctrl
     {
         private int id;
         private string nom;
+        private int idClasseOrdre;
      
 
         public OrdreViewModel()
         {
 
         }
-        public OrdreViewModel(int id, string nom)
+        public OrdreViewModel(int id, string nom, int idClasseOrdre)
         {
             this.id = id;
             this.nomProperty = nom;
+            this.idClassOrdreProperty = idClasseOrdre;
         }
 
         public int idProperty
@@ -36,6 +38,16 @@ namespace ProjetInfrocean.Ctrl
             {
                 nom = value;
                 OnPropertyChanged("nomProperty");
+            }
+        }
+        
+        public string idClassOrdreProperty
+        {
+            get { return idClasseOrdre; }
+            set
+            {
+                idClasseOrdre = value;
+                OnPropertyChanged("idClassOrdreProperty");
             }
         }
 

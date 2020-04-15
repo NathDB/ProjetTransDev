@@ -19,7 +19,7 @@ namespace ProjetInfrocean.DAL
         public static ObservableCollection<OrdreDAO> selectOrdre()
         {
             ObservableCollection<OrdreDAO> liste = new ObservableCollection<OrdreDAO>();
-            string query = "SELECT * from ordres;";
+            string query = "SELECT * from ordre;";
             MySqlCommand cmdOrd = new MySqlCommand(query, DalConnexion.OpenConnection());
             try
             {
@@ -41,7 +41,7 @@ namespace ProjetInfrocean.DAL
         }
         public static void updateOrdre(OrdreDAO o)
         {
-            string query = "UPDATE ordres set nom=\"" + o.nomDAO + ";";
+            string query = "UPDATE ordre set nom=\"" + o.nomDAO + ";";
             MySqlCommand cmdOrd = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdOrd);
             cmdOrd.ExecuteNonQuery();
@@ -49,7 +49,7 @@ namespace ProjetInfrocean.DAL
         public static void insertOrdre(OrdreDAO o)
         {
             int id = getMaxIdOrdre() + 1;
-            string query = "INSERT INTO ordres VALUES (\"" + id + "\",\"" + o.nomDAO + "\");";
+            string query = "INSERT INTO ordre VALUES (\"" + id + "\",\"" + o.nomDAO + "\",\"" + o.idClassOrdreDAO + "\");";
             MySqlCommand cmd2Ord = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmd2Ord);
             cmd2Ord.ExecuteNonQuery();
@@ -57,14 +57,14 @@ namespace ProjetInfrocean.DAL
 
         public static void supprimerOrdre(int id)
         {
-            string query = "DELETE FROM ordres WHERE id = \"" + id + "\";";
+            string query = "DELETE FROM ordre WHERE id = \"" + id + "\";";
             MySqlCommand cmdOrd = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdOrd);
             cmdOrd.ExecuteNonQuery();
         }
         public static int getMaxIdOrdre()
         {
-            string query = "SELECT MAX(id) FROM ordres;";
+            string query = "SELECT MAX(id) FROM ordre;";
             MySqlCommand cmdOrd = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdOrd.ExecuteNonQuery();
 
@@ -77,7 +77,7 @@ namespace ProjetInfrocean.DAL
 
         public static OrdreDAO getOrdre(int id)
         {
-            string query = "SELECT * FROM ordres WHERE id=" + id + ";";
+            string query = "SELECT * FROM ordre WHERE id=" + id + ";";
             MySqlCommand cmdOrd = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdOrd.ExecuteNonQuery();
             MySqlDataReader reader = cmdOrd.ExecuteReader();
