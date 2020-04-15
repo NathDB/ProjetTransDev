@@ -95,6 +95,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Ctrl\HistoriqueViewModel.cs" />
     <Compile Include="Ctrl\CommuneViewModel.cs" />
     <Compile Include="Ctrl\ComptageEspeceViewModel.cs" />
     <Compile Include="Ctrl\ComptageViewModel.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Ctrl\EtudeViewModel.cs" />
     <Compile Include="Ctrl\PlageViewModel.cs" />
     <Compile Include="Ctrl\PersonneViewModel.cs" />
+    <Compile Include="DAL\HistoriqueDAL.cs" />
     <Compile Include="DAL\ComptageEspeceDAL.cs" />
     <Compile Include="DAL\DalConnexion.cs" />
     <Compile Include="DAL\EspeceDAL.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="DAL\EtudeDAL.cs" />
     <Compile Include="DAL\PlageDAL.cs" />
     <Compile Include="DAL\PersonneDAL.cs" />
+    <Compile Include="DAO\HistoriqueDAO.cs" />
     <Compile Include="DAO\ComptageEspeceDAO.cs" />
     <Compile Include="DAO\EspeceDAO.cs" />
     <Compile Include="DAO\ComptageDAO.cs" />
@@ -123,6 +126,7 @@
     <Compile Include="DAO\EtudeDAO.cs" />
     <Compile Include="DAO\PlageDAO.cs" />
     <Compile Include="DAO\PersonneDAO.cs" />
+    <Compile Include="ORM\HistoriqueORM.cs" />
     <Compile Include="ORM\CommuneORM.cs" />
     <Compile Include="ORM\ComptageEspeceORM.cs" />
     <Compile Include="ORM\ComptageORM.cs" />

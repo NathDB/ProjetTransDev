@@ -20,11 +20,11 @@ namespace ProjetInfrocean.DAL
         {
             ObservableCollection<CommuneDAO> liste = new ObservableCollection<CommuneDAO>();
             string query = "SELECT * from commune;";
-            MySqlCommand cmdEtu = new MySqlCommand(query, DalConnexion.OpenConnection());
+            MySqlCommand cmdCom = new MySqlCommand(query, DalConnexion.OpenConnection());
             try
             {
-                cmdEtu.ExecuteNonQuery();
-                MySqlDataReader reader = cmdEtu.ExecuteReader();
+                cmdCom.ExecuteNonQuery();
+                MySqlDataReader reader = cmdCom.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -64,7 +64,7 @@ namespace ProjetInfrocean.DAL
         }
         public static int getMaxIdCommune()
         {
-            string query = "SELECT MAX(idCommune) FROM communes;";
+            string query = "SELECT MAX(idCommune) FROM commune;";
             MySqlCommand cmdCom = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdCom.ExecuteNonQuery();
 
