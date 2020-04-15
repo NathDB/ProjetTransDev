@@ -12,21 +12,20 @@ namespace ProjetInfrocean.Ctrl
     {
         
         private int idPlage;
-        private string nomPlage;
-        private string departementPlage;
-        private int communePlage;
+        private string nom;
+        private int idCommunePlage;
+        private decimal superficiePlage;
 
         //private string concat;
-        
 
         public PlageViewModel() { }
 
-        public PlageViewModel(int id, string nom, string departement, int Commune_idCommune)
+        public PlageViewModel(int id, string nom, int idCommunePlage, decimal superficiePlage)
         {
             this.idPlage = id;
-            this.nomPlageProperty = nom;
-            this.departementPlageProperty = departement;
-            this.communePlageProperty = Commune_idCommune;
+            this.nomProperty = nom;
+            this.idCommunePlageProperty = idCommunePlage;
+            this.superficiePlageProperty = superficiePlage;
             
         }
         public int idPlageProperty
@@ -34,33 +33,33 @@ namespace ProjetInfrocean.Ctrl
             get { return idPlage; }
         }
 
-        public String nomPlageProperty
+        public String nomProperty
         {
-            get { return nomPlage; }
+            get { return nom; }
             set
             {
-                nomPlage = value;
-                OnPropertyChanged("nomPlageProperty");
+                nom = value;
+                OnPropertyChanged("nomProperty");
             }
 
         }
-        public String departementPlageProperty
+        public int idCommunePlageProperty
         {
-            get { return departementPlage; }
+            get { return idCommunePlage; }
             set
             {
-                this.departementPlage = value;
-                OnPropertyChanged("prenomPersonneProperty");
+                this.idCommunePlage = value;
+                OnPropertyChanged("idCommunePlageProperty");
             }
         }
-        public int communePlageProperty
+        public decimal superficiePlageProperty
         {
-            get { return communePlage; }
+            get { return superficiePlage; }
             set
             {
-                this.communePlage = 1;
-                this.concatProperty = this.communePlage + " " + 1;
-                OnPropertyChanged("communePlageProperty");
+                this.superficiePlage = value;
+                this.concatProperty = this.superficiePlage + " " + 1;
+                OnPropertyChanged("superficiePlageProperty");
             }
         }
 

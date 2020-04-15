@@ -10,14 +10,14 @@ namespace ProjetInfrocean.DAO
 {
     public class CommuneDAO
     {
-        public int idDAO;
+        public int idCommuneDAO;
         public int idDepartementDAO;
         public string codePostalDAO;
         public string nomDAO;
 
-        public CommuneDAO(int idDAO, int idDepartementDAO, string codePostalDAO, string nomDAO)
+        public CommuneDAO(int idCommuneDAO, int idDepartementDAO, string codePostalDAO, string nomDAO)
         {
-            this.idDAO = idDAO;
+            this.idCommuneDAO = idCommuneDAO;
             this.idDepartementDAO = idDepartementDAO;
             this.codePostalDAO = codePostalDAO;
             this.nomDAO = nomDAO;
@@ -27,9 +27,9 @@ namespace ProjetInfrocean.DAO
             ObservableCollection<CommuneDAO> liste = CommuneDAL.selectCommunes();
             return liste;
         }
-        public static CommuneDAO getCommune(int id)
+        public static CommuneDAO getCommune(int idCommune)
         {
-            CommuneDAO c = CommuneDAL.getCommune(id);
+            CommuneDAO c = CommuneDAL.getCommune(idCommune);
             return c;
         }
         public static void updateCommune(CommuneDAO c)
@@ -37,9 +37,9 @@ namespace ProjetInfrocean.DAO
             CommuneDAL.updateCommune(c);
             
         }
-        public static void supprimerCommune(int id)
+        public static void supprimerCommune(int idCommune)
         {
-            CommuneDAL.supprimerCommune(id);
+            CommuneDAL.supprimerCommune(idCommune);
 
         }
         public static void insertCommune(CommuneDAO c)

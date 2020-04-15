@@ -12,21 +12,24 @@ namespace ProjetInfrocean.Ctrl
     {
         
         private int idPersonne;
-        private string nomPersonne;
-        private string prenomPersonne;
-        private EtudeViewModel etudePersonne;
-        private int isAdminPersonne;
+        private string nom;
+        private string prenom;
+        private string email;
+        private string mdp;
+        private RoleViewModel idRolePersonne;
+        private EquipeViewModel idEquipePersonne;
         //private string concat;
         
-
         public PersonneViewModel() { }
 
-        public PersonneViewModel(int id, string nom, string prenom, int isAdmin, EtudeViewModel etudePersonneProperty)
+        public PersonneViewModel(int idPersonne, string nom, string prenom, string email, string mdp, RoleViewModel rolePersonneProperty, EtudeViewModel etudePersonneProperty)
         {
-            this.idPersonne = id;
-            this.nomPersonneProperty = nom;
-            this.prenomPersonneProperty = prenom;
-            this.isAdminPersonneProperty = isAdmin;
+            this.idPersonne = idPersonne;
+            this.nomProperty = nom;
+            this.prenomProperty = prenom;
+            this.emailProperty = email;
+            this.mdpProperty = mdp;
+            this.rolePersonneProperty = rolePersonneProperty;
             this.etudePersonneProperty = etudePersonneProperty;
         }
         public int idPersonneProperty
@@ -34,20 +37,20 @@ namespace ProjetInfrocean.Ctrl
             get { return idPersonne; }
         }
 
-        public String nomPersonneProperty
+        public String nomProperty
         {
-            get { return nomPersonne; }
+            get { return nom; }
             set
             {
-                nomPersonne = value.ToUpper();
+                nom = value.ToUpper();
                 //this.concatProperty = value.ToUpper() + " " + prenomPersonne;
-                OnPropertyChanged("nomPersonneProperty");
+                OnPropertyChanged("nomProperty");
             }
 
         }
-        public String prenomPersonneProperty
+        public String prenomProperty
         {
-            get { return prenomPersonne; }
+            get { return prenom; }
             set
             {
                 this.prenomPersonne = value;

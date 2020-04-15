@@ -10,7 +10,7 @@ namespace ProjetInfrocean.Ctrl
 {
     public class CommuneViewModel : INotifyPropertyChanged
     {
-        private int id;
+        private int idCommune;
         private int idDepartement;
         private string codePostal;
         private string nom;
@@ -20,17 +20,17 @@ namespace ProjetInfrocean.Ctrl
         {
 
         }
-        public CommuneViewModel(int id, int idDepartement, string codePostal, string nom)
+        public CommuneViewModel(int idCommune, int idDepartement, string codePostal, string nom)
         {
-            this.id = id;
+            this.idCommune = idCommune;
             this.idDepartement = idDepartement;
             this.codePostalProperty = codePostal;
             this.nomProperty = nom;
         }
 
-        public int idProperty
+        public int idCommuneProperty
         {
-            get { return id; }
+            get { return idCommune; }
         }
         public int idDepartementProperty
         {

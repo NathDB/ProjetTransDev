@@ -14,7 +14,7 @@ namespace ProjetInfrocean.ORM
         public static PlageViewModel getPlage(int idPlage)
         {
             PlageDAO plDAO = PlageDAO.getPlage(idPlage);
-            PlageViewModel pl = new PlageViewModel(plDAO.idPlageDAO, plDAO.nomPlageDAO, plDAO.departementPlageDAO, plDAO.communePlageDAO);
+            PlageViewModel pl = new PlageViewModel(plDAO.idPlageDAO, plDAO.nomDAO, plDAO.idCommunePlageDAO, plDAO.superficiePlageDAO);
             return pl;
         }
 
@@ -24,7 +24,7 @@ namespace ProjetInfrocean.ORM
             ObservableCollection<PlageViewModel> l = new ObservableCollection<PlageViewModel>();
             foreach (PlageDAO element in lDAO)
             {                
-                PlageViewModel pl = new PlageViewModel(element.idPlageDAO, element.nomPlageDAO, element.departementPlageDAO, element.communePlageDAO);
+                PlageViewModel pl = new PlageViewModel(element.idPlageDAO, element.nomDAO, element.idCommunePlageDAO, element.superficiePlageDAO);
                 l.Add(pl);
             }
             return l;
@@ -34,7 +34,7 @@ namespace ProjetInfrocean.ORM
         
         public static void updatePlage(PlageViewModel pl)
         {
-            PlageDAO.updatePlage(new PlageDAO(pl.idPlageProperty, pl.nomPlageProperty, pl.departementPlageProperty, pl.communePlageProperty));
+            PlageDAO.updatePlage(new PlageDAO(pl.idPlageProperty, pl.nomProperty, pl.idCommunePlageProperty, pl.superficiePlageProperty));
         }
 
         public static void supprimerPlage(int id)
@@ -44,7 +44,7 @@ namespace ProjetInfrocean.ORM
 
         public static void insertPlage(PlageViewModel pl)
         {
-            PlageDAO.insertPlage(new PlageDAO(pl.idPlageProperty, pl.nomPlageProperty, pl.departementPlageProperty, pl.communePlageProperty));
+            PlageDAO.insertPlage(new PlageDAO(pl.idPlageProperty, pl.nomProperty, pl.idCommunePlageProperty, pl.superficiePlageProperty));
         }
     }
 }

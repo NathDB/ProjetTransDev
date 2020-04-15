@@ -11,16 +11,16 @@ namespace ProjetInfrocean.DAO
     public class PlageDAO
     {
         public int idPlageDAO;
-        public string nomPlageDAO;
-        public string departementPlageDAO;
-        public int communePlageDAO;
+        public string nomDAO;
+        public int idCommunePlageDAO;
+        public decimal superficiePlageDAO;
 
-        public PlageDAO(int idPlageDAO, string nomPlageDAO, string departementPlageDAO, int communePlageDAO)
+        public PlageDAO(int idPlageDAO, string nomDAO, int idCommunePlageDAO, decimal superficiePlageDAO)
         {
             this.idPlageDAO = idPlageDAO;
-            this.nomPlageDAO = nomPlageDAO;
-            this.departementPlageDAO = departementPlageDAO;
-            this.communePlageDAO = communePlageDAO;
+            this.nomDAO = nomDAO;
+            this.idCommunePlageDAO = idCommunePlageDAO;
+            this.superficiePlageDAO = superficiePlageDAO;
         }
 
         public static ObservableCollection<PlageDAO> listePlages()

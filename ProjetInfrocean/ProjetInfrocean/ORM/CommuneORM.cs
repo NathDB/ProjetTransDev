@@ -11,10 +11,10 @@ namespace ProjetInfrocean.ORM
 {
     public class CommuneORM
     {
-        public static CommuneViewModel getCommune(int id)
+        public static CommuneViewModel getCommune(int idCommune)
         {
-            CommuneDAO cDAO = CommuneDAO.getCommune(id);
-            CommuneViewModel c = new CommuneViewModel(cDAO.idDAO, cDAO.idDepartementDAO, cDAO.codePostalDAO, cDAO.nomDAO);
+            CommuneDAO cDAO = CommuneDAO.getCommune(idCommune);
+            CommuneViewModel c = new CommuneViewModel(cDAO.idCommuneDAO, cDAO.idDepartementDAO, cDAO.codePostalDAO, cDAO.nomDAO);
             return c;
         }
 
@@ -24,7 +24,7 @@ namespace ProjetInfrocean.ORM
             ObservableCollection<CommuneViewModel> liste = new ObservableCollection<CommuneViewModel>();
             foreach(CommuneDAO element in listeDAO)
             {
-                CommuneViewModel c = new CommuneViewModel(element.idDAO, element.idDepartementDAO, element.codePostalDAO, element.nomDAO);
+                CommuneViewModel c = new CommuneViewModel(element.idCommuneDAO, element.idDepartementDAO, element.codePostalDAO, element.nomDAO);
                 liste.Add(c);
             }
             return liste;
@@ -32,15 +32,15 @@ namespace ProjetInfrocean.ORM
 
         public static void updateCommune(CommuneViewModel c)
         {
-            CommuneDAO.updateCommune(new CommuneDAO(c.idProperty, c.idDepartementProperty, c.codePostalProperty, c.nomProperty));
+            CommuneDAO.updateCommune(new CommuneDAO(c.idCommuneProperty, c.idDepartementProperty, c.codePostalProperty, c.nomProperty));
         }
-        public static void supprimerCommune(int id)
+        public static void supprimerCommune(int idCommune)
         {
-            CommuneDAO.supprimerCommune(id);
+            CommuneDAO.supprimerCommune(idCommune);
         }
         public static void insertCommune(CommuneViewModel c)
         {
-            CommuneDAO.insertCommune(new CommuneDAO(c.idProperty, c.idDepartementProperty, c.codePostalProperty, c.nomProperty));
+            CommuneDAO.insertCommune(new CommuneDAO(c.idCommuneProperty, c.idDepartementProperty, c.codePostalProperty, c.nomProperty));
         }
     }
 }
