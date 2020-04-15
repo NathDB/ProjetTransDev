@@ -12,26 +12,17 @@ namespace ProjetInfrocean.Ctrl
     {
         private int idEquipe;
         private string nom;
-        private PersonneViewModel idPersonneEquipe;
-        private EtudeViewModel idEtudeEquipe;
-        private string titreEtude;
-        private string nomPersonne;
+        private string description;
+        private Boolean complete;
 
         public EquipeViewModel(){}
 
-        public EquipeViewModel(int idEquipe, string nom, PersonneViewModel idPersonneProperty, EtudeViewModel idEtudeProperty)
+        public EquipeViewModel(int idEquipe, string nom, string description, Boolean complete)
         {
             this.idEquipe = idEquipe;
             this.nom = nom;
-            this.idPersonneEquipe = idPersonneProperty;
-            this.idEtudeEquipe = idEtudeProperty;
-        }
-        public EquipeViewModel(int idEquipe, string nom, string titreEtude, string nomPersonne)
-        {
-            this.idEquipe = idEquipe;
-            this.nom = nom;
-            this.titreEtude = titreEtude;
-            this.nomPersonne = nomPersonne;
+            this.description = description;
+            this.complete = complete;
         }
 
         public int idEquipeProperty
@@ -39,52 +30,34 @@ namespace ProjetInfrocean.Ctrl
             get { return idEquipe; }
         }        
 
-        public string nomEquipeProperty
+        public string nomProperty
         {
             get { return nom; }
             set
             {
-                nomEquipeProperty = value;
-                OnPropertyChanged("nomEquipeProperty");
+                nomProperty = value;
+                OnPropertyChanged("nomProperty");
             }
         }
-        public PersonneViewModel idPersonneProperty
+        public string descriptionProperty
         {
-            get { return idPersonneEquipe; }
+            get { return description; }
             set
             {
-                idPersonneEquipe = value;
-                OnPropertyChanged("idPersonneEquipeEquipe");
+                descriptionProperty = value;
+                OnPropertyChanged("descriptionProperty");
             }
         }
-        
-        public EtudeViewModel idEtudeProperty
+        public Boolean completeProperty
         {
-            get { return idEtudeEquipe; }
+            get { return complete; }
             set
             {
-                idEtudeEquipe = value;
-                OnPropertyChanged("idEtudeEquipeProperty");
+                completeProperty = value;
+                OnPropertyChanged("completeProperty");
             }
         }
-        public string nomPersonneProperty
-        {
-            get { return nomPersonne; }
-            set
-            {
-                nomPersonne = value;
-                OnPropertyChanged("titreEtudeProperty");
-            }
-        }
-        public string titreEtudeProperty
-        {
-            get { return titreEtude; }
-            set
-            {
-                titreEtude = value;
-                OnPropertyChanged("titreEtudeProperty");
-            }
-        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public String concatProperty

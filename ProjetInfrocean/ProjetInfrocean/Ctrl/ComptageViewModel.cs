@@ -11,46 +11,58 @@ namespace ProjetInfrocean.Ctrl
     public class ComptageViewModel
     {
         private int idComptage;
+        private DateTime dateDebut;
+        private DateTime dateFin;
+        private Boolean statut;
         private ZoneViewModel idZoneComptage;
-        private EspeceViewModel idEspeceComptage;
-        private string populationComptage;
 
         public ComptageViewModel() { }
 
-        public ComptageViewModel(int id, ZoneViewModel idZoneProperty, EspeceViewModel idEspeceProperty, string population)
+        public ComptageViewModel(int idComptage, DateTime dateDebut, DateTime dateFin, Boolean statut, ZoneViewModel idZoneProperty)
         {
-            this.idComptage = id;
+            this.idComptage = idComptage;
+            this.dateDebutProperty = dateDebut;
+            this.dateFinProperty = dateFin;
+            this.statutProperty = statut;
             this.idZoneComptage = idZoneProperty;
-            this.idEspeceComptage = idEspeceProperty;
-            this.populationComptageProperty = population;
             
         }
         public int idComptageProperty
         {
             get { return idComptage; }
         }
-
+        public DateTime dateDebutProperty
+        {
+            get { return dateDebut; }
+            set
+            {
+                this.dateDebut = value;
+                OnPropertyChanged("dateDebutProperty");
+            }
+        }
+        public DateTime dateFinProperty
+        {
+            get { return dateFin; }
+            set
+            {
+                this.dateFin = value;
+                OnPropertyChanged("dateFinProperty");
+            }
+        }
+        public Boolean statutProperty
+        {
+            get { return statut; }
+            set
+            {
+                this.statut = value;
+                OnPropertyChanged("statutProperty");
+            }
+        }
         public ZoneViewModel idZoneProperty
         {
             get { return idZoneComptage; }
         }
 
-        public EspeceViewModel idEspeceProperty
-        {
-            get { return idEspeceComptage; }
-            
-
-        }
-        public String populationComptageProperty
-        {
-            get { return populationComptage; }
-            set
-            {
-                this.populationComptage = value;
-                OnPropertyChanged("populationComptageProperty");
-            }
-        }
-        
         public String concatProperty
         {
             get { return ""; }

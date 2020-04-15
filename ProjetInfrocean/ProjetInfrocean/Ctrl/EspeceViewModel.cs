@@ -11,41 +11,38 @@ namespace ProjetInfrocean.Ctrl
     public class EspeceViewModel : INotifyPropertyChanged
     {
         private int idEspece;
-        private string nomEspece;
-        private int quantiteEspece;
+        private string nom;
+        private int quantite;
 
-        public EspeceViewModel()
-        {
-
-        }
+        public EspeceViewModel(){}
         public EspeceViewModel(int idEspece, string nom, int quantite)
         {
             this.idEspece = idEspece;
-            this.nomEspece = nom;
-            this.quantiteEspece = quantite;
+            this.nomProperty = nom;
+            this.quantite = quantite;
         }
 
         public int idEspeceProperty
         {
             get { return idEspece; }
         }
-        public string nomEspeceProperty
+        public string nomProperty
         {
-            get { return nomEspece; }
+            get { return nom; }
             set
             {
-                nomEspece = value;
-                OnPropertyChanged("nomEspeceProperty");
+                nom = value;
+                OnPropertyChanged("nomProperty");
             }
         }
 
-        public int quantiteEspeceProperty
+        public int quantiteProperty
         {
-            get { return quantiteEspece; }
+            get { return quantite; }
             set
             {
-                quantiteEspece = value;
-                OnPropertyChanged("quantiteEspeceProperty");
+                quantite = value;
+                OnPropertyChanged("quantiteProperty");
             }
         }
        

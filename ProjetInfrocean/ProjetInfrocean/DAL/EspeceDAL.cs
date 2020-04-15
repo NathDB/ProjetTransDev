@@ -41,7 +41,7 @@ namespace ProjetInfrocean.DAL
         }
         public static void updateEspece(EspeceDAO es)
         {
-            string query = "UPDATE espece set nomEspece=\"" + es.nomEspeceDAO + "\",  quantiteEspece = \"" + es.quantiteEspeceDAO + ";";
+            string query = "UPDATE espece set nom=\"" + es.nomDAO + "\",  quantite = \"" + es.quantiteDAO + ";";
             MySqlCommand cmdEs = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdEs);
             cmdEs.ExecuteNonQuery();
@@ -49,7 +49,7 @@ namespace ProjetInfrocean.DAL
         public static void insertEspece(EspeceDAO es)
         {
             int id = getMaxIdEspece() + 1;
-            string query = "INSERT INTO espece VALUES (\"" + id + "\",\"" + es.nomEspeceDAO + "\",\"" + es.quantiteEspeceDAO + "\");";
+            string query = "INSERT INTO espece VALUES (\"" + id + "\",\"" + es.nomDAO + "\",\"" + es.quantiteDAO + "\");";
             MySqlCommand cmd2Es = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmd2Es);
             cmd2Es.ExecuteNonQuery();

@@ -27,7 +27,7 @@ namespace ProjetInfrocean.DAL
 
                 while (reader.Read())
                 {
-                    PersonneDAO p = new PersonneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                    PersonneDAO p = new PersonneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetInt32(6));
                     l.Add(p);
                 }
                 reader.Close();
@@ -48,7 +48,7 @@ namespace ProjetInfrocean.DAL
         public static void insertPersonne(PersonneDAO p)
         {
             int id = getMaxIdPersonne() + 1;
-            string query = "INSERT INTO personne VALUES (\"" + id + "\",\"" + p.nomPersonneDAO + "\",\"" + p.prenomPersonneDAO + "\",\"" + p.etudePersonneDAO + "\",\"" + p.isAdminPersonneDAO + "\");";
+            string query = "INSERT INTO personne VALUES (\"" + id + "\",\"" + p.nomDAO + "\",\"" + p.prenomDAO + "\",\"" + p.emailDAO + "\",\"" + p.mdpDAO + "\",\"" + p.rolePersonneDAO + "\",\"" + p.equipePersonneDAO + "\");";
             MySqlCommand cmd2Pers = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmd2Pers);
             cmd2Pers.ExecuteNonQuery();
@@ -56,7 +56,7 @@ namespace ProjetInfrocean.DAL
 
         public static void updatePersonne(PersonneDAO p)
         {
-            string query = "UPDATE personne set nomPersonne=\"" + p.nomPersonneDAO + "\", prenomPersonne=\"" + p.prenomPersonneDAO;
+            string query = "UPDATE personne set nom=\"" + p.nomDAO + "\", prenom=\"" + p.prenomDAO;
             MySqlCommand cmdPers = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdPers);
             cmdPers.ExecuteNonQuery();
@@ -90,7 +90,7 @@ namespace ProjetInfrocean.DAL
             cmdPers.ExecuteNonQuery();
             MySqlDataReader reader = cmdPers.ExecuteReader();
             reader.Read();
-            PersonneDAO pers = new PersonneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+            PersonneDAO pers = new PersonneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetInt32(6));
             reader.Close();
             return pers;
         }

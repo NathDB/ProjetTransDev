@@ -23,7 +23,7 @@ namespace ProjetInfrocean.Ctrl
         public CommuneViewModel(int idCommune, int idDepartement, string codePostal, string nom)
         {
             this.idCommune = idCommune;
-            this.idDepartement = idDepartement;
+            this.idDepartement= idDepartement;
             this.codePostalProperty = codePostal;
             this.nomProperty = nom;
         }

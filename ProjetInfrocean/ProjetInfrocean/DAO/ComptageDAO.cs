@@ -11,17 +11,18 @@ namespace ProjetInfrocean.DAO
     public class ComptageDAO
     {
         public int idComptageDAO;
+        public DateTime dateDebutDAO;
+        public DateTime dateFinDAO;
+        public Boolean statutDAO;
         public int idZoneComptageDAO;
-        public int idEspeceComptageDAO;
-        public string populationComptageDAO;
         
-        public ComptageDAO(int idComptageDAO, int idZoneComptageDAO, int idEspeceComptageDAO, string populationComptageDAO)
+        public ComptageDAO(int idComptageDAO, DateTime dateDebutDAO, DateTime dateFinDAO, Boolean statutDAO, int idZoneComptageDAO)
         {
             this.idZoneComptageDAO = idComptageDAO;
+            this.dateDebutDAO = dateDebutDAO;
+            this.dateFinDAO = dateFinDAO;
+            this.statutDAO = statutDAO;
             this.idZoneComptageDAO = idZoneComptageDAO;
-            this.idEspeceComptageDAO = idEspeceComptageDAO;
-            this.populationComptageDAO = populationComptageDAO;
-            
         }
 
         public static ObservableCollection<ComptageDAO> listeComptages()

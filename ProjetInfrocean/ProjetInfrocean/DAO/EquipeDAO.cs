@@ -11,26 +11,24 @@ namespace ProjetInfrocean.DAO
     public class EquipeDAO
     {
         public int idEquipeDAO;
-        public string nomEquipeDAO;
-        public int idPersonneEquipeDAO;
-        public int idEtudeEquipeDAO;
-        public string titreEtudeDAO;
-        public string nomPersonneDAO;
+        public string nomDAO;
+        public string descriptionDAO;
+        public Boolean completeDAO;
 
-        public EquipeDAO(int idEquipeDAO, string nomEquipeDAO, string nomPersonneDAO, string titreEtudeDAO)
+        public EquipeDAO(int idEquipeDAO, string nomDAO, string descriptionDAO, Boolean completeDAO)
         {
             this.idEquipeDAO = idEquipeDAO;
-            this.nomEquipeDAO = nomEquipeDAO;
-            this.nomPersonneDAO = nomPersonneDAO;
-            this.titreEtudeDAO = titreEtudeDAO;
+            this.nomDAO = nomDAO;
+            this.descriptionDAO = descriptionDAO;
+            this.completeDAO = completeDAO;
         }
-        public EquipeDAO(int idEquipeDAO, string nomEquipeDAO, int idPersonneEquipeDAO, int idEtudeEquipeDAO)
+        /*public EquipeDAO(int idEquipeDAO, string nomDAO, string descriptionDAO, Boolean statutDAO)
         {
             this.idEquipeDAO = idEquipeDAO;
-            this.nomEquipeDAO = nomEquipeDAO;
-            this.idPersonneEquipeDAO = idPersonneEquipeDAO;
-            this.idEtudeEquipeDAO = idEtudeEquipeDAO;
-        }
+            this.nomDAO = nomDAO;
+            this.descriptionDAO = descriptionDAO;
+            this.statut = statutDAO;
+        }*/
 
         public static ObservableCollection<EquipeDAO> listeEquipes(){
             ObservableCollection<EquipeDAO> liste = EquipeDAL.selectEquipes();
@@ -40,12 +38,12 @@ namespace ProjetInfrocean.DAO
         {
             ObservableCollection<EquipeDAO> liste = EquipeDAL.compteurEquipe();
             return liste;
-        }*/
+        }
         public static ObservableCollection<EquipeDAO> listeAllEquipes()
         {
             ObservableCollection<EquipeDAO> liste = EquipeDAL.listeAllEquipes();
             return liste;
-        }
+        }*/
         public static EquipeDAO getEquipe(int idEquipe)
         {
             EquipeDAO e = EquipeDAL.getEquipe(idEquipe);

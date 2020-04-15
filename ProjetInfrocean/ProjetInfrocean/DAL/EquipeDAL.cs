@@ -13,15 +13,12 @@ namespace ProjetInfrocean.DAL
     public class EquipeDAL
     {
 
-        public EquipeDAL()
-        {}
-        public static ObservableCollection<EquipeDAO> listeAllEquipes()
+        public EquipeDAL(){}
+
+        public static ObservableCollection<EquipeDAO> listeMembresEquipes()
         {
             ObservableCollection<EquipeDAO> liste = new ObservableCollection<EquipeDAO>();
-            string query = "select equipe.idEquipe,  equipe.nom, personne.nom, etude.titre " +
-                "FROM equipe " +
-                "join personne on personne.idPersonne = equipe.Personne_idPersonne " +
-                "join etude on etude.idEtude = equipe.Etude_idEtude;";
+            string query = "select * from equipe;";
             MySqlCommand cmdEquipe = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataReader reader = null;
             try
@@ -31,7 +28,7 @@ namespace ProjetInfrocean.DAL
 
                 while (reader.Read())
                 {
-                    EquipeDAO e = new EquipeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    EquipeDAO e = new EquipeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetBoolean(3));
                     liste.Add(e);
                 }
             }
@@ -56,7 +53,7 @@ namespace ProjetInfrocean.DAL
 
                 while (reader.Read())
                 {
-                    EquipeDAO e = new EquipeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    EquipeDAO e = new EquipeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetBoolean(3));
                     liste.Add(e);
                 }
             }
@@ -98,7 +95,7 @@ namespace ProjetInfrocean.DAL
         }*/
         public static void updateEquipe(EquipeDAO e)
         {
-            string query = "UPDATE equipe set nom=\"" + e.nomEquipeDAO + ";";
+            string query = "UPDATE equipe set nom=\"" + e.nomDAO + ";";
             MySqlCommand cmdEquipe = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdEquipe);
             cmdEquipe.ExecuteNonQuery();
@@ -106,7 +103,7 @@ namespace ProjetInfrocean.DAL
         public static void insertEquipe(EquipeDAO e)
         {
             int id = getMaxIdEquipe() + 1;
-            string query = "INSERT INTO Equipe VALUES (\"" + id + "\",\"" + e.nomEquipeDAO + "\");";
+            string query = "INSERT INTO Equipe VALUES (\"" + id + "\",\"" + e.nomDAO + "\");";
             MySqlCommand cmd2Equipe = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmd2Equipe);
             cmd2Equipe.ExecuteNonQuery();
@@ -139,7 +136,7 @@ namespace ProjetInfrocean.DAL
             cmdEquipe.ExecuteNonQuery();
             MySqlDataReader reader = cmdEquipe.ExecuteReader();
             reader.Read();
-            EquipeDAO Equipe = new EquipeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+            EquipeDAO Equipe = new EquipeDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetBoolean(3));
             reader.Close();
             return Equipe;
         }

@@ -11,79 +11,56 @@ namespace ProjetInfrocean.Ctrl
     public class EtudeViewModel : INotifyPropertyChanged
     {
         private int idEtude;
-        private string titreEtude;
-        private DateTime dateCreationEtude;
-        private DateTime dateFinEtude;
-        private string nomPlage;
-        private string departementPlage;
+        private string titre;
+        private Boolean statut;
+        private EquipeViewModel idEquipeEtude;
 
        
         public EtudeViewModel(){}
-        public EtudeViewModel(int idEtude, string titre, DateTime dateCrea, DateTime dateFin, string nomPlage, string departementPlage)
+        public EtudeViewModel(int idEtude, string titre, Boolean statut, EquipeViewModel idEquipeEtude)
         {
             this.idEtude = idEtude;
-            this.titreEtudeProperty = titre;
-            this.dateCreationEtudeProperty = dateCrea;
-            this.dateFinEtudeProperty = dateFin;
-            this.nomPlageProperty = nomPlage;
-            this.departementPlage = departementPlage;
+            this.titreProperty = titre;
+            this.statutProperty = statut;
+            this.idEquipeEtude = idEquipeEtude;
         }
-        public EtudeViewModel(int idEtude, string titre, DateTime dateCrea, DateTime dateFin)
+        public EtudeViewModel(int idEtude, string titre, Boolean statut)
         {
             this.idEtude = idEtude;
-            this.titreEtudeProperty = titre;
-            this.dateCreationEtudeProperty = dateCrea;
-            this.dateFinEtudeProperty = dateFin;
+            this.titreProperty = titre;
+            this.statutProperty = statut;
         }
 
         public int idEtudeProperty
         {
             get { return idEtude; }
         }
-        public string titreEtudeProperty
-        {
-            get { return titreEtude; }
-            set
-            {
-                titreEtude = value;
-                OnPropertyChanged("titreEtudeProperty");
-            }
-        }
 
-        public DateTime dateCreationEtudeProperty
+        public string titreProperty
         {
-            get { return dateCreationEtude; }
+            get { return titre; }
             set
             {
-                dateCreationEtude = value;
-                OnPropertyChanged("dateCreationEtudeProperty");
+                titre = value;
+                OnPropertyChanged("titreProperty");
             }
         }
-        public DateTime dateFinEtudeProperty
+        public Boolean statutProperty
         {
-            get { return dateFinEtude; }
+            get { return statut; }
             set
             {
-                dateFinEtude = value;
-                OnPropertyChanged("dateFinEtudeProperty");
+                statut = value;
+                OnPropertyChanged("statutProperty");
             }
         }
-        public string nomPlageProperty
+        public EquipeViewModel idEquipeEtudeProperty
         {
-            get { return nomPlage; }
+            get { return idEquipeEtude; }
             set
             {
-                nomPlage = value;
-                OnPropertyChanged("nomPlageProperty");
-            }
-        }
-        public string departementPlageProperty
-        {
-            get { return departementPlage; }
-            set
-            {
-                departementPlage = value;
-                OnPropertyChanged("departementPlageProperty");
+                idEquipeEtude = value;
+                OnPropertyChanged("idEquipeEtudeProperty");
             }
         }
 

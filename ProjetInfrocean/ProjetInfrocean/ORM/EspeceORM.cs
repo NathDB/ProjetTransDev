@@ -14,7 +14,7 @@ namespace ProjetInfrocean.ORM
         public static EspeceViewModel getEspece(int idEspece)
         {
             EspeceDAO esDAO = EspeceDAO.getEspece(idEspece);
-            EspeceViewModel es = new EspeceViewModel(esDAO.idEspeceDAO, esDAO.nomEspeceDAO, esDAO.quantiteEspeceDAO);
+            EspeceViewModel es = new EspeceViewModel(esDAO.idEspeceDAO, esDAO.nomDAO, esDAO.quantiteDAO);
             return es;
         }
 
@@ -24,7 +24,7 @@ namespace ProjetInfrocean.ORM
             ObservableCollection<EspeceViewModel> liste = new ObservableCollection<EspeceViewModel>();
             foreach(EspeceDAO element in listeDAO)
             {
-                EspeceViewModel es = new EspeceViewModel(element.idEspeceDAO, element.nomEspeceDAO, element.quantiteEspeceDAO);
+                EspeceViewModel es = new EspeceViewModel(element.idEspeceDAO, element.nomDAO, element.quantiteDAO);
                 liste.Add(es);
             }
             return liste;
@@ -32,7 +32,7 @@ namespace ProjetInfrocean.ORM
 
         public static void updateEspece(EspeceViewModel es)
         {
-            EspeceDAO.updateEspece(new EspeceDAO(es.idEspeceProperty, es.nomEspeceProperty, es.quantiteEspeceProperty));
+            EspeceDAO.updateEspece(new EspeceDAO(es.idEspeceProperty, es.nomProperty, es.quantiteProperty));
         }
         public static void supprimerEspece(int id)
         {
@@ -40,7 +40,7 @@ namespace ProjetInfrocean.ORM
         }
         public static void insertEspece(EspeceViewModel es)
         {
-            EspeceDAO.insertEspece(new EspeceDAO(es.idEspeceProperty, es.nomEspeceProperty, es.quantiteEspeceProperty));
+            EspeceDAO.insertEspece(new EspeceDAO(es.idEspeceProperty, es.nomProperty, es.quantiteProperty));
         }
     }
 }

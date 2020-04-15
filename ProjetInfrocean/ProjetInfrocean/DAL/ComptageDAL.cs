@@ -28,7 +28,7 @@ namespace ProjetInfrocean.DAL
 
                 while (reader.Read())
                 {
-                    ComptageDAO cp = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3));
+                    ComptageDAO cp = new ComptageDAO(reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), reader.GetBoolean(3), reader.GetInt32(4));
                     l.Add(cp);
                 }
                 reader.Close();
@@ -42,7 +42,7 @@ namespace ProjetInfrocean.DAL
         public static void insertComptage(ComptageDAO cp)
         {
             int id = getMaxIdComptage() + 1;
-            string query = "INSERT INTO comptage VALUES (\"" + id + "\",\"" + cp.idZoneComptageDAO + "\",\"" + cp.idEspeceComptageDAO + "\",\"" + cp.populationComptageDAO + "\");";
+            string query = "INSERT INTO comptage VALUES (\"" + id + "\",\"" + cp.dateDebutDAO + "\",\"" + cp.dateFinDAO + "\",\"" + cp.statutDAO + "\"\"" + cp.idZoneComptageDAO + "\");";
             MySqlCommand cmd2Comp = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmd2Comp);
             cmd2Comp.ExecuteNonQuery();
@@ -50,7 +50,7 @@ namespace ProjetInfrocean.DAL
 
         public static void updateComptage(ComptageDAO cp)
         {
-            string query = "UPDATE comptage set populationComptage=\"" + cp.populationComptageDAO;
+            string query = "UPDATE comptage set dateFin=\"" + cp.dateFinDAO + "\",  statut = \"" + cp.statutDAO;
             MySqlCommand cmdComp = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(cmdComp);
             cmdComp.ExecuteNonQuery();
@@ -83,7 +83,7 @@ namespace ProjetInfrocean.DAL
             cmdComp.ExecuteNonQuery();
             MySqlDataReader reader = cmdComp.ExecuteReader();
             reader.Read();
-            ComptageDAO comptage = new ComptageDAO(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3));
+            ComptageDAO comptage = new ComptageDAO(reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), reader.GetBoolean(3), reader.GetInt32(4));
             reader.Close();
             return comptage;
         }

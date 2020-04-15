@@ -14,7 +14,7 @@ namespace ProjetInfrocean.ORM
         public static EtudeViewModel getEtude(int idEtude)
         {
             EtudeDAO eDAO = EtudeDAO.getEtude(idEtude);
-            EtudeViewModel e = new EtudeViewModel(eDAO.idEtudeDAO, eDAO.titreEtudeDAO, eDAO.dateCreationEtudeDAO, eDAO.dateFinEtudeDAO);
+            EtudeViewModel e = new EtudeViewModel(eDAO.idEtudeDAO, eDAO.titreDAO, eDAO.statutDAO, eDAO.idEquipeEtudeDAO);
             return e;
         }
 
@@ -24,7 +24,7 @@ namespace ProjetInfrocean.ORM
             ObservableCollection<EtudeViewModel> liste = new ObservableCollection<EtudeViewModel>();
             foreach(EtudeDAO element in listeDAO)
             {
-                EtudeViewModel e = new EtudeViewModel(element.idEtudeDAO, element.titreEtudeDAO, element.dateCreationEtudeDAO, element.dateFinEtudeDAO);
+                EtudeViewModel e = new EtudeViewModel(element.idEtudeDAO, element.titreDAO, element.statutDAO, element.idEquipeEtudeDAO);
                 liste.Add(e);
             }
             return liste;
@@ -35,7 +35,7 @@ namespace ProjetInfrocean.ORM
             ObservableCollection<EtudeViewModel> liste = new ObservableCollection<EtudeViewModel>();
             foreach (EtudeDAO element in listeDAO)
             {
-                EtudeViewModel e = new EtudeViewModel(element.idEtudeDAO, element.titreEtudeDAO, element.dateCreationEtudeDAO, element.dateFinEtudeDAO, element.nomPlageDAO, element.departementPlageDAO);
+                EtudeViewModel e = new EtudeViewModel(element.idEtudeDAO, element.titreDAO, element.statutDAO, element.idEquipeEtudeDAO);
                 liste.Add(e);
             }
             return liste;
@@ -43,7 +43,7 @@ namespace ProjetInfrocean.ORM
 
         public static void updateEtude(EtudeViewModel e)
         {
-            EtudeDAO.updateEtude(new EtudeDAO(e.idEtudeProperty, e.titreEtudeProperty, e.dateCreationEtudeProperty, e.dateFinEtudeProperty));
+            EtudeDAO.updateEtude(new EtudeDAO(e.idEtudeProperty, e.titreProperty, e.statutProperty, e.idEquipeEtudeProperty));
         }
         public static void supprimerEtude(int id)
         {
@@ -51,7 +51,7 @@ namespace ProjetInfrocean.ORM
         }
         public static void insertEtude(EtudeViewModel e)
         {
-            EtudeDAO.insertEtude(new EtudeDAO(e.idEtudeProperty, e.titreEtudeProperty, e.dateCreationEtudeProperty, e.dateFinEtudeProperty));
+            EtudeDAO.insertEtude(new EtudeDAO(e.idEtudeProperty, e.titreProperty, e.statutProperty, e.dateFinEtudeProperty));
         }
     }
 }

@@ -11,16 +11,15 @@ namespace ProjetInfrocean.DAO
     public class EspeceDAO
     {
         public int idEspeceDAO;
-        public string nomEspeceDAO;
-        public int quantiteEspeceDAO;
+        public string nomDAO;
+        public int quantiteDAO;
         
 
-        public EspeceDAO(int idEspeceDAO, string nomEspeceDAO, int quantiteEspeceDAO)
+        public EspeceDAO(int idEspeceDAO, string nomDAO, int quantiteDAO)
         {
             this.idEspeceDAO = idEspeceDAO;
-            this.nomEspeceDAO = nomEspeceDAO;
-            this.quantiteEspeceDAO = quantiteEspeceDAO;
-           
+            this.nomDAO = nomDAO;
+            this.quantiteDAO = quantiteDAO;
         }
 
         public static ObservableCollection<EspeceDAO> listeEspeces(){

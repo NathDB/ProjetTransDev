@@ -9,7 +9,7 @@ namespace ProjetInfrocean.ORM
         public static ComptageViewModel getComptage(int idComptage)
         {
             ComptageDAO cpDAO = ComptageDAO.getComptage(idComptage);
-            ComptageViewModel cp = new ComptageViewModel(cpDAO.idComptageDAO, ZoneORM.getZone(cpDAO.idZoneComptageDAO), EspeceORM.getEspece(cpDAO.idEspeceComptageDAO), cpDAO.populationComptageDAO);
+            ComptageViewModel cp = new ComptageViewModel(cpDAO.idComptageDAO, cpDAO.dateDebutDAO, cpDAO.dateFinDAO, cpDAO.statutDAO, ZoneORM.getZone(cpDAO.idZoneComptageDAO));
             return cp;
         }
 
@@ -19,7 +19,7 @@ namespace ProjetInfrocean.ORM
             ObservableCollection<ComptageViewModel> l = new ObservableCollection<ComptageViewModel>();
             foreach (ComptageDAO element in lDAO)
             {                
-                ComptageViewModel cp = new ComptageViewModel(element.idComptageDAO, ZoneORM.getZone(element.idZoneComptageDAO), EspeceORM.getEspece(element.idEspeceComptageDAO), element.populationComptageDAO);
+                ComptageViewModel cp = new ComptageViewModel(element.idComptageDAO, element.dateDebutDAO, element.dateFinDAO, element.statutDAO, ZoneORM.getZone(element.idZoneComptageDAO));
                 l.Add(cp);
             }
             return l;
@@ -29,7 +29,7 @@ namespace ProjetInfrocean.ORM
         
         public static void updateComptage(ComptageViewModel cp)
         {
-            ComptageDAO.updateComptage(new ComptageDAO(cp.idComptageProperty, cp.idZoneProperty.idZoneProperty, cp.idEspeceProperty.idEspeceProperty, cp.populationComptageProperty));
+            ComptageDAO.updateComptage(new ComptageDAO(cp.idComptageProperty, cp.dateDebutProperty, cp.dateFinProperty, cp.statutProperty, cp.idZoneProperty.idZoneProperty));
         }
 
         public static void supprimerComptage(int id)
@@ -39,7 +39,7 @@ namespace ProjetInfrocean.ORM
 
         public static void insertComptage(ComptageViewModel cp)
         {
-            ComptageDAO.insertComptage(new ComptageDAO(cp.idComptageProperty, cp.idZoneProperty.idZoneProperty, cp.idEspeceProperty.idEspeceProperty, cp.populationComptageProperty));
+            ComptageDAO.insertComptage(new ComptageDAO(cp.idComptageProperty, cp.dateDebutProperty, cp.dateFinProperty, cp.statutProperty, cp.idZoneProperty.idZoneProperty));
         }
     }
 }

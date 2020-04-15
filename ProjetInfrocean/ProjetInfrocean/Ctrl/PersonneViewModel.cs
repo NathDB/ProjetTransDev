@@ -22,7 +22,7 @@ namespace ProjetInfrocean.Ctrl
         
         public PersonneViewModel() { }
 
-        public PersonneViewModel(int idPersonne, string nom, string prenom, string email, string mdp, RoleViewModel rolePersonneProperty, EtudeViewModel etudePersonneProperty)
+        public PersonneViewModel(int idPersonne, string nom, string prenom, string email, string mdp, RoleViewModel rolePersonneProperty, EquipeViewModel equipePersonneProperty)
         {
             this.idPersonne = idPersonne;
             this.nomProperty = nom;
@@ -30,7 +30,7 @@ namespace ProjetInfrocean.Ctrl
             this.emailProperty = email;
             this.mdpProperty = mdp;
             this.rolePersonneProperty = rolePersonneProperty;
-            this.etudePersonneProperty = etudePersonneProperty;
+            this.equipePersonneProperty = equipePersonneProperty;
         }
         public int idPersonneProperty
         {
@@ -53,27 +53,45 @@ namespace ProjetInfrocean.Ctrl
             get { return prenom; }
             set
             {
-                this.prenomPersonne = value;
-                this.concatProperty = this.nomPersonne + " " + value;
-                OnPropertyChanged("prenomPersonneProperty");
+                this.prenom = value;
+                this.concatProperty = this.nom + " " + value;
+                OnPropertyChanged("prenomProperty");
             }
         }
-        public EtudeViewModel etudePersonneProperty
+        public String emailProperty
         {
-            get { return etudePersonne; }
+            get { return email; }
             set
             {
-                this.etudePersonne = value;
-                OnPropertyChanged("etudePersonneProperty");
+                this.email = value;
+                OnPropertyChanged("emailProperty");
             }
         }
-        public int isAdminPersonneProperty
+        public String mdpProperty
         {
-            get { return isAdminPersonne; }
+            get { return mdp; }
             set
             {
-                this.isAdminPersonne =value;
-                OnPropertyChanged("isAdminPersonneProperty");
+                this.mdp = value;
+                OnPropertyChanged("mdpProperty");
+            }
+        }
+        public RoleViewModel rolePersonneProperty
+        {
+            get { return idRolePersonne; }
+            set
+            {
+                this.idRolePersonne = value;
+                OnPropertyChanged("rolePersonneProperty");
+            }
+        }
+        public EquipeViewModel equipePersonneProperty
+        {
+            get { return idEquipePersonne; }
+            set
+            {
+                this.idEquipePersonne = value;
+                OnPropertyChanged("equipePersonneProperty");
             }
         }
 

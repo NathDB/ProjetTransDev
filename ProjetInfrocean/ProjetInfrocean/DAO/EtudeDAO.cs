@@ -11,28 +11,24 @@ namespace ProjetInfrocean.DAO
     public class EtudeDAO
     {
         public int idEtudeDAO;
-        public string titreEtudeDAO;
-        public DateTime dateCreationEtudeDAO;
-        public DateTime dateFinEtudeDAO;
-        public string nomPlageDAO;
-        public string departementPlageDAO;
+        public string titreDAO;
+        public Boolean statutDAO;
+        public int idEquipeEtudeDAO;
 
-        public EtudeDAO(int idEtudeDAO, string titreEtudeDAO, DateTime dateCreationEtudeDAO, DateTime dateFinEtudeDAO, string nomPlageDAO, string departementPlageDAO)
+        public EtudeDAO(int idEtudeDAO, string titreDAO, Boolean statutDAO, int idEquipeEtudeDAO)
+        {
+            this.idEtudeDAO = idEtudeDAO;
+            this.titreDAO = titreDAO;
+            this.statutDAO = statutDAO;
+            this.idEquipeEtudeDAO = idEquipeEtudeDAO;
+        }
+        /*public EtudeDAO(int idEtudeDAO, string titreEtudeDAO, DateTime dateCreationEtudeDAO, DateTime dateFinEtudeDAO)
         {
             this.idEtudeDAO = idEtudeDAO;
             this.titreEtudeDAO = titreEtudeDAO;
             this.dateCreationEtudeDAO = dateCreationEtudeDAO;
             this.dateFinEtudeDAO = dateFinEtudeDAO;
-            this.nomPlageDAO = nomPlageDAO;
-            this.departementPlageDAO = departementPlageDAO;
-        }
-        public EtudeDAO(int idEtudeDAO, string titreEtudeDAO, DateTime dateCreationEtudeDAO, DateTime dateFinEtudeDAO)
-        {
-            this.idEtudeDAO = idEtudeDAO;
-            this.titreEtudeDAO = titreEtudeDAO;
-            this.dateCreationEtudeDAO = dateCreationEtudeDAO;
-            this.dateFinEtudeDAO = dateFinEtudeDAO;
-        }
+        }*/
 
         public static ObservableCollection<EtudeDAO> listeEtudes(){
             ObservableCollection<EtudeDAO> liste = EtudeDAL.selectEtudes();
