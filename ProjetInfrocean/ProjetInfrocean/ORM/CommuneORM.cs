@@ -11,10 +11,10 @@ namespace ProjetInfrocean.ORM
 {
     public class CommuneORM
     {
-        public static CommuneViewModel getCommune(int idCommune)
+        public static CommuneViewModel getCommune(int id)
         {
-            CommuneDAO cDAO = CommuneDAO.getCommune(idCommune);
-            CommuneViewModel c = new CommuneViewModel(cDAO.idCommuneDAO, cDAO.nomCommuneDAO);
+            CommuneDAO cDAO = CommuneDAO.getCommune(id);
+            CommuneViewModel c = new CommuneViewModel(cDAO.idDAO, cDAO.idDepartementDAO, cDAO.codePostalDAO, cDAO.nomDAO);
             return c;
         }
 
@@ -24,7 +24,7 @@ namespace ProjetInfrocean.ORM
             ObservableCollection<CommuneViewModel> liste = new ObservableCollection<CommuneViewModel>();
             foreach(CommuneDAO element in listeDAO)
             {
-                CommuneViewModel c = new CommuneViewModel(element.idCommuneDAO, element.nomCommuneDAO);
+                CommuneViewModel c = new CommuneViewModel(element.idDAO, element.idDepartementDAO, element.codePostalDAO, element.nomDAO);
                 liste.Add(c);
             }
             return liste;
@@ -32,7 +32,7 @@ namespace ProjetInfrocean.ORM
 
         public static void updateCommune(CommuneViewModel c)
         {
-            CommuneDAO.updateCommune(new CommuneDAO(c.idCommuneProperty, c.nomCommuneProperty));
+            CommuneDAO.updateCommune(new CommuneDAO(c.idProperty, c.idDepartementProperty, c.codePostalProperty, c.nomProperty));
         }
         public static void supprimerCommune(int id)
         {
@@ -40,7 +40,7 @@ namespace ProjetInfrocean.ORM
         }
         public static void insertCommune(CommuneViewModel c)
         {
-            CommuneDAO.insertCommune(new CommuneDAO(c.idCommuneProperty, c.nomCommuneProperty));
+            CommuneDAO.insertCommune(new CommuneDAO(c.idProperty, c.idDepartementProperty, c.codePostalProperty, c.nomProperty));
         }
     }
 }

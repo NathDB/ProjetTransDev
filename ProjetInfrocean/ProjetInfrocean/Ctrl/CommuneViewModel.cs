@@ -10,31 +10,49 @@ namespace ProjetInfrocean.Ctrl
 {
     public class CommuneViewModel : INotifyPropertyChanged
     {
-        private int idCommune;
-        private string nomCommune;
+        private int id;
+        private int idDepartement;
+        private string codePostal;
+        private string nom;
      
 
         public CommuneViewModel()
         {
 
         }
-        public CommuneViewModel(int idCommune, string nom)
+        public CommuneViewModel(int id, int idDepartement, string codePostal, string nom)
         {
-            this.idCommune = idCommune;
-            this.nomCommuneProperty = nom;
+            this.id = id;
+            this.idDepartement = idDepartement;
+            this.codePostalProperty = codePostal;
+            this.nomProperty = nom;
         }
 
-        public int idCommuneProperty
+        public int idProperty
         {
-            get { return idCommune; }
+            get { return id; }
         }
-        public string nomCommuneProperty
+        public int idDepartementProperty
         {
-            get { return nomCommune; }
+            get { return idDepartement; }
+        }
+
+        public string codePostalProperty
+        {
+            get { return codePostal; }
             set
             {
-                nomCommune = value;
-                OnPropertyChanged("nomCommuneProperty");
+                codePostal = value;
+                OnPropertyChanged("codePostalProperty");
+            }
+        }
+        public string nomProperty
+        {
+            get { return nom; }
+            set
+            {
+                nom = value;
+                OnPropertyChanged("nomProperty");
             }
         }
 

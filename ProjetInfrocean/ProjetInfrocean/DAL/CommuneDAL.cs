@@ -19,7 +19,7 @@ namespace ProjetInfrocean.DAL
         public static ObservableCollection<CommuneDAO> selectCommunes()
         {
             ObservableCollection<CommuneDAO> liste = new ObservableCollection<CommuneDAO>();
-            string query = "SELECT * from commune;";
+            string query = "SELECT * from communes;";
             MySqlCommand cmdEtu = new MySqlCommand(query, DalConnexion.OpenConnection());
             try
             {
@@ -41,7 +41,7 @@ namespace ProjetInfrocean.DAL
         }
         public static void updateCommune(CommuneDAO c)
         {
-            string query = "UPDATE commune set nomEtude=\"" + c.nomCommuneDAO + ";";
+            string query = "UPDATE communes set nom=\"" + c.nomDAO + ";";
             MySqlCommand cmdCom = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdCom);
             cmdCom.ExecuteNonQuery();
@@ -49,7 +49,7 @@ namespace ProjetInfrocean.DAL
         public static void insertCommune(CommuneDAO c)
         {
             int id = getMaxIdCommune() + 1;
-            string query = "INSERT INTO commune VALUES (\"" + id + "\",\"" + c.nomCommuneDAO + "\");";
+            string query = "INSERT INTO communes VALUES (\"" + id + "\",\"" + c.nomDAO + "\");";
             MySqlCommand cmd2Com = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmd2Com);
             cmd2Com.ExecuteNonQuery();
@@ -57,14 +57,14 @@ namespace ProjetInfrocean.DAL
 
         public static void supprimerCommune(int id)
         {
-            string query = "DELETE FROM commune WHERE idCommune = \"" + id + "\";";
+            string query = "DELETE FROM communes WHERE id = \"" + id + "\";";
             MySqlCommand cmdCom = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdCom);
             cmdCom.ExecuteNonQuery();
         }
         public static int getMaxIdCommune()
         {
-            string query = "SELECT MAX(idCommune) FROM commune;";
+            string query = "SELECT MAX(id) FROM communes;";
             MySqlCommand cmdCom = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdCom.ExecuteNonQuery();
 
@@ -75,9 +75,9 @@ namespace ProjetInfrocean.DAL
             return maxIdCommune;
         }
 
-        public static CommuneDAO getCommune(int idCommune)
+        public static CommuneDAO getCommune(int id)
         {
-            string query = "SELECT * FROM commune WHERE id=" + idCommune + ";";
+            string query = "SELECT * FROM communes WHERE id=" + id + ";";
             MySqlCommand cmdCom = new MySqlCommand(query, DalConnexion.OpenConnection());
             cmdCom.ExecuteNonQuery();
             MySqlDataReader reader = cmdCom.ExecuteReader();

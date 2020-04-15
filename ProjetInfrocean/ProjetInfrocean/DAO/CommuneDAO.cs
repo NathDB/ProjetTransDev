@@ -10,22 +10,26 @@ namespace ProjetInfrocean.DAO
 {
     public class CommuneDAO
     {
-        public int idCommuneDAO;
-        public string nomCommuneDAO;
+        public int idDAO;
+        public int idDepartementDAO;
+        public string codePostalDAO;
+        public string nomDAO;
 
-        public CommuneDAO(int idCommuneDAO, string nomCommuneDAO)
+        public CommuneDAO(int idDAO, int idDepartementDAO, string codePostalDAO, string nomDAO)
         {
-            this.idCommuneDAO = idCommuneDAO;
-            this.nomCommuneDAO = nomCommuneDAO;
+            this.idDAO = idDAO;
+            this.idDepartementDAO = idDepartementDAO;
+            this.codePostalDAO = codePostalDAO;
+            this.nomDAO = nomDAO;
         }
 
         public static ObservableCollection<CommuneDAO> listeCommunes(){
             ObservableCollection<CommuneDAO> liste = CommuneDAL.selectCommunes();
             return liste;
         }
-        public static CommuneDAO getCommune(int idCommune)
+        public static CommuneDAO getCommune(int id)
         {
-            CommuneDAO c = CommuneDAL.getCommune(idCommune);
+            CommuneDAO c = CommuneDAL.getCommune(id);
             return c;
         }
         public static void updateCommune(CommuneDAO c)
