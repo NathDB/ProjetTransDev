@@ -11,11 +11,15 @@ namespace ProjetInfrocean.DAO
     public class ZoneDAO
     {
         public int idZoneDAO;
-        public string pointADAO;
-        public string pointBDAO;
-        public string pointCDAO;
-        public string pointDDAO;
-        public int superficieZoneDAO;
+        public decimal pointALoDAO;
+        public decimal pointALaDAO;
+        public decimal pointBLoDAO;
+        public decimal pointBLaDAO;
+        public decimal pointCLoDAO;
+        public decimal pointCLaDAO;
+        public decimal pointDLoDAO;
+        public decimal pointDLaDAO;
+        public decimal superficieZoneDAO;
         public int idPlageZoneDAO;
         public int idEtudeZoneDAO;
         public int idPlageDAO;
@@ -28,29 +32,35 @@ namespace ProjetInfrocean.DAO
             this.nomPlageDAO = nomPlageDAO;
             this.idZoneDAO = idZoneDAO;
         }
-        public ZoneDAO(int idZoneDAO, string pointADAO, string pointBDAO, string pointCDAO, string pointDDAO, int superficieZoneDAO, string nomPlageDAO, string titreEtudeDAO)
+        public ZoneDAO(int idZoneDAO, decimal pointALoDAO, decimal pointALaDAO, decimal pointBLoDAO, decimal pointBLaDAO, decimal pointCLoDAO, decimal pointCLaDAO, decimal pointDLoDAO, decimal pointDLaDAO, decimal superficieZoneDAO, string nomPlageDAO, string titreEtudeDAO)
         {
             this.idZoneDAO = idZoneDAO;
-            this.pointADAO = pointADAO;
-            this.pointBDAO = pointBDAO;
-            this.pointCDAO = pointCDAO;
-            this.pointDDAO = pointDDAO;
+            this.pointALoDAO = pointALoDAO;
+            this.pointALaDAO = pointALaDAO;
+            this.pointBLoDAO = pointBLoDAO;
+            this.pointBLaDAO = pointBLaDAO;
+            this.pointCLoDAO = pointCLoDAO;
+            this.pointCLaDAO = pointCLaDAO;
+            this.pointDLoDAO = pointDLoDAO;
+            this.pointDLaDAO = pointDLaDAO;
             this.superficieZoneDAO = superficieZoneDAO;
             this.nomPlageDAO = nomPlageDAO;
             this.titreEtudeDAO = titreEtudeDAO;
         }
-        public ZoneDAO(int idZoneDAO, string pointADAO, string pointBDAO, string pointCDAO, string pointDDAO, int superficieZoneDAO, int idPlageZoneDAO, int idEtudeZoneDAO)
+        public ZoneDAO(int idZoneDAO, decimal pointALoDAO, decimal pointALaDAO, decimal pointBLoDAO, decimal pointBLaDAO, decimal pointCLoDAO, decimal pointCLaDAO, decimal pointDLoDAO, decimal pointDLaDAO, decimal superficieZoneDAO, int idPlageZoneDAO, int idEtudeZoneDAO)
         {
             this.idZoneDAO = idZoneDAO;
-            this.pointADAO = pointADAO;
-            this.pointBDAO = pointBDAO;
-            this.pointCDAO = pointCDAO;
-            this.pointDDAO = pointDDAO;
+            this.pointALoDAO = pointALoDAO;
+            this.pointALaDAO = pointALaDAO;
+            this.pointBLoDAO = pointBLoDAO;
+            this.pointBLaDAO = pointBLaDAO;
+            this.pointCLoDAO = pointCLoDAO;
+            this.pointCLaDAO = pointCLaDAO;
+            this.pointDLoDAO = pointDLoDAO;
+            this.pointDLaDAO = pointDLaDAO;
             this.superficieZoneDAO = superficieZoneDAO;
             this.idPlageZoneDAO = idPlageZoneDAO;
-            this.idEtudeZoneDAO = idEtudeZoneDAO;
-
-            
+            this.idEtudeZoneDAO = idEtudeZoneDAO;  
         }
 
         public static ObservableCollection<ZoneDAO> listeZones(){

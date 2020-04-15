@@ -11,11 +11,15 @@ namespace ProjetInfrocean.Ctrl
     public class ZoneViewModel : INotifyPropertyChanged
     {
         private int idZone;
-        private string pointA;
-        private string pointB;
-        private string pointC;
-        private string pointD;
-        private int superficieZone;
+        private decimal pointALo;
+        private decimal pointALa;
+        private decimal pointBLo;
+        private decimal pointBLa;
+        private decimal pointCLo;
+        private decimal pointCLa;
+        private decimal pointDLo;
+        private decimal pointDLa;
+        private decimal superficieZone;
         private PlageViewModel idPlageZone;
         private EtudeViewModel idEtudeZone;
         private int idPlage;
@@ -30,72 +34,118 @@ namespace ProjetInfrocean.Ctrl
             this.idZone = idZone;
 
         }
-        public ZoneViewModel(int idZone, string pointA, string pointB, string pointC, string pointD, int superficie, string nomPlage, string titreEtude)
+        public ZoneViewModel(int idZone, decimal pointALo, decimal pointALa, decimal pointBLo, decimal pointBLa, decimal pointCLo,
+            decimal pointCLa, decimal pointDLo, decimal pointDLa, decimal superficieZone, string nomPlage, string titreEtude)
         {
             this.idZone = idZone;
-            this.pointA = pointA;
-            this.pointB = pointB;
-            this.pointC = pointC;
-            this.pointD = pointD;
-            this.superficieZone = superficie;
+            this.pointALo = pointALo;
+            this.pointALa = pointALa;
+            this.pointBLo = pointBLo;
+            this.pointBLa = pointBLa;
+            this.pointCLo = pointCLo;
+            this.pointCLa = pointCLa;
+            this.pointDLo = pointDLo;
+            this.pointDLa = pointDLa;
+            this.superficieZone = superficieZone;
             this.nomPlage = nomPlage;
             this.titreEtude = titreEtude;
         }
-        public ZoneViewModel(int idZone, string pointA, string pointB, string pointC, string pointD, int superficie, PlageViewModel idPlageProperty, EtudeViewModel idEtudeProperty)
+        public ZoneViewModel(int idZone, decimal pointALo, decimal pointALa, decimal pointBLo, decimal pointBLa, decimal pointCLo,
+            decimal pointCLa, decimal pointDLo, decimal pointDLa, decimal superficieZone, PlageViewModel idPlageProperty, EtudeViewModel idEtudeProperty)
         {
             this.idZone = idZone;
-            this.pointA = pointA;
-            this.pointB = pointB;
-            this.pointC = pointC;
-            this.pointD = pointD;
-            this.superficieZone = superficie;
+            this.pointALo = pointALo;
+            this.pointALa = pointALa;
+            this.pointBLo = pointBLo;
+            this.pointBLa = pointBLa;
+            this.pointCLo = pointCLo;
+            this.pointCLa = pointCLa;
+            this.pointDLo = pointDLo;
+            this.pointDLa = pointDLa;
+            this.superficieZone = superficieZone;
             this.idPlageZone = idPlageProperty;
-            this.idEtudeZone = idEtudeProperty;
-            
+            this.idEtudeZone = idEtudeProperty;   
         }
 
         public int idZoneProperty
         {
             get { return idZone; }
         }
-        public string pointAProperty
+        public decimal pointALoProperty
         {
-            get { return pointA; }
+            get { return pointALo; }
             set
             {
-                pointA = value;
-                OnPropertyChanged("pointAProperty");
+                pointALo = value;
+                OnPropertyChanged("pointALoProperty");
             }
         }
-        public string pointBProperty
+        public decimal pointALaProperty
         {
-            get { return pointB; }
+            get { return pointALa; }
             set
             {
-                pointB = value;
-                OnPropertyChanged("pointBProperty");
+                pointALa = value;
+                OnPropertyChanged("pointALaProperty");
             }
         }
-        public string pointCProperty
+        public decimal pointBLoProperty
         {
-            get { return pointC; }
+            get { return pointBLo; }
             set
             {
-                pointC = value;
-                OnPropertyChanged("pointCProperty");
+                pointBLo = value;
+                OnPropertyChanged("pointBLoProperty");
             }
         }
-        public string pointDProperty
+        public decimal pointBLaProperty
         {
-            get { return pointD; }
+            get { return pointBLa; }
             set
             {
-                pointD = value;
-                OnPropertyChanged("pointDProperty");
+                pointBLa = value;
+                OnPropertyChanged("pointBLaProperty");
+            }
+        }
+        public decimal pointCLoProperty
+        {
+            get { return pointCLo; }
+            set
+            {
+                pointCLo = value;
+                OnPropertyChanged("pointCLoProperty");
+            }
+        }
+        public decimal pointCLaProperty
+        {
+            get { return pointCLa; }
+            set
+            {
+                pointCLa = value;
+                OnPropertyChanged("pointCLaProperty");
+            }
+        }
+        public decimal pointDLoProperty
+        {
+            get { return pointDLo; }
+            set
+            {
+                pointDLo = value;
+                OnPropertyChanged("pointDLoProperty");
+            }
+        }
+        public decimal pointDLaProperty
+        {
+            get { return pointDLa; }
+            set
+            {
+                pointDLa = value;
+                OnPropertyChanged("pointDLaProperty");
             }
         }
 
-        public int superficieZoneProperty
+
+        public decimal superficieZoneProperty
         {
             get { return superficieZone; }
             set

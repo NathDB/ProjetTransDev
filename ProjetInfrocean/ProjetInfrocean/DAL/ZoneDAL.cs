@@ -18,10 +18,10 @@ namespace ProjetInfrocean.DAL
         public static ObservableCollection<ZoneDAO> listeAllZones()
         {
             ObservableCollection<ZoneDAO> liste = new ObservableCollection<ZoneDAO>();
-            string query = "select zone.idZone, zone.pointA, zone.pointB, zone.pointC, zone.pointD, zone.superfie, plage.nom, etude.titre " +
+            string query = "select zone.idZone, zone.pointALo, zone.pointALa, zone.pointBLo, zone.pointBLa, zone.pointCLo, zone.pointCLa, zone.pointDLo, zone.pointDLa, zone.superfieZone, plage.nom, etude.titre " +
                 "FROM zone " +
-                "join plage on plage.idPlage = zone.Plage_idPlage " +
-                "join etude on etude.idEtude = zone.Etude_idEtude1;";
+                "join plage on plage.idPlage = zone.idPlageZone " +
+                "join etude on etude.idEtude = zone.idEtudeZone;";
             MySqlCommand cmdZone = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataReader reader = null;
             try
@@ -31,7 +31,8 @@ namespace ProjetInfrocean.DAL
 
                 while (reader.Read())
                 {
-                    ZoneDAO z = new ZoneDAO(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetString(6), reader.GetString(7));
+                    ZoneDAO z = new ZoneDAO(reader.GetInt32(0), reader.GetDecimal(1), reader.GetDecimal(2), reader.GetDecimal(3), reader.GetDecimal(4),
+                        reader.GetDecimal(5), reader.GetDecimal(6), reader.GetDecimal(7), reader.GetDecimal(8), reader.GetDecimal(9), reader.GetString(10), reader.GetString(11));
                     liste.Add(z);
                 }
             }
@@ -73,7 +74,7 @@ namespace ProjetInfrocean.DAL
             ObservableCollection<ZoneDAO> liste = new ObservableCollection<ZoneDAO>();
             string query = "SELECT plage.idPlage, plage.nom, COUNT(zone.idZone)" +
                 "FROM zone " +
-                "JOIN plage on plage.idPlage=zone.Plage_idPlage " +
+                "JOIN plage on plage.idPlage=zone.idPlageZone " +
                 "GROUP BY plage.idPlage, plage.nom;";
             MySqlCommand cmdCompteurZone = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataReader reader = null;
@@ -98,7 +99,8 @@ namespace ProjetInfrocean.DAL
         }
         public static void updateZone(ZoneDAO z)
         {
-            string query = "UPDATE zone set pointA=\"" + z.pointADAO + "\",  pointB = \"" + z.pointBDAO + "\",   pointC = \"" + z.pointCDAO + "\",   pointD = \"" + z.pointDDAO + "\",  superficieZone = \"" + z.superficieZoneDAO + ";";
+            string query = "UPDATE zone set pointALo=\"" + z.pointALoDAO + "\", pointALa=\"" + z.pointALaDAO + "\",  pointBLo = \"" + z.pointBLoDAO + "\", pointBLa = \"" + z.pointBLaDAO + "\", " +
+                "pointCLo = \"" + z.pointCloDAO + "\",   pointCLa = \"" + z.pointCLaDAO + "\",   pointDLo = \"" + z.pointDLoDAO + "\", pointDLa = \"" + z.pointDLaDAO + "\", superficieZone = \"" + z.superficieZoneDAO + ";";
             MySqlCommand cmdZone = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmdZone);
             cmdZone.ExecuteNonQuery();
@@ -106,7 +108,8 @@ namespace ProjetInfrocean.DAL
         public static void insertZone(ZoneDAO z)
         {
             int id = getMaxIdZone() + 1;
-            string query = "INSERT INTO zone VALUES (\"" + id + "\",\"" + z.pointADAO + "\",\"" + z.pointBDAO + "\",\"" + z.pointCDAO + "\",\"" + z.pointDDAO + "\",\"" + z.superficieZoneDAO + "\");";
+            string query = "INSERT INTO zone VALUES (\"" + idZone + "\",\"" + z.pointALoDAO + "\", pointALa=\"" + z.pointALaDAO + "\",  pointBLo = \"" + z.pointBLoDAO + "\", pointBLa = \"" + z.pointBLaDAO + "\", " +
+                "pointCLo = \"" + z.pointCloDAO + "\",   pointCLa = \"" + z.pointCLaDAO + "\",   pointDLo = \"" + z.pointDLoDAO + "\", pointDLa = \"" + z.pointDLaDAO + "\", superficieZone = \"" + z.superficieZoneDAO + ");";
             MySqlCommand cmd2Zone = new MySqlCommand(query, DalConnexion.OpenConnection());
             MySqlDataAdapter sqlDataAdpat = new MySqlDataAdapter(cmd2Zone);
             cmd2Zone.ExecuteNonQuery();
