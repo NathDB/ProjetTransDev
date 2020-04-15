@@ -20,9 +20,9 @@ namespace ProjetInfrocean.DAL
                 if (connection == null) //  si la connexion est déjà ouverte, il ne la refera pas 
                 {
                     server = "localhost";
-                    database = "ifrocean";
-                    uid = "ifrocean";
-                    password = "ifrocean";
+                    database = "ifroceanbts";
+                    uid = "ifroceanbts";
+                    password = "Epsi2020!";
                     string connectionString;
                     connectionString = "SERVER=" + server + ";" + "DATABASE=" +
                     database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
